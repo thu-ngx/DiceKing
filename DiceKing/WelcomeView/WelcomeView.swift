@@ -23,7 +23,6 @@ struct WelcomeView: View {
                             .font(.system(size: 30).weight(.semibold))
                             .foregroundColor(Color("yellow"))
                     }
-                    Spacer()
                     
                     // MARK: LOGO
                     Image("DiceKingTrans")
@@ -42,6 +41,7 @@ struct WelcomeView: View {
                 }
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
