@@ -22,7 +22,7 @@ struct PlayerStatusView: View {
             .font(.system(size: 27).weight(.heavy))
         }
         .foregroundColor(Color("yellow"))
-        .padding()
+        .padding(.horizontal, 30)
     }
 }
 
