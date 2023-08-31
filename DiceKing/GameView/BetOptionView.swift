@@ -10,6 +10,7 @@ import SwiftUI
 struct BetOptionView: View {
     
     @Binding var isShowingBetOption: Bool
+    
     var body: some View {
         ZStack {
             Color("blue").opacity(0.5)

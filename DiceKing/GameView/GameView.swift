@@ -10,6 +10,13 @@ import SwiftUI
 struct GameView: View {
     
     @State var isShowingBetOption = false
+    @State var isShowingLosingView = false
+    @State var isShowingWinningView = true
+    
+    // MARK: check bg blur
+    func isBackGroundBlur() -> Bool {
+        return isShowingBetOption || isShowingLosingView || isShowingWinningView
+    }
     
     
     var body: some View {
@@ -45,6 +52,7 @@ struct GameView: View {
                     // MARK: BET / ROLL
                     Button {
                         // bet logic
+                        isShowingLosingView = true
                     } label: {
                         Text("Roll")
                             .font(.system(size: 40).weight(.heavy))
@@ -70,13 +78,19 @@ struct GameView: View {
                 
             }
             .padding(.vertical)
+            .blur(radius: isBackGroundBlur() ? 10 : 0)
         }
         .overlay {
-            BetOptionView(isShowingBetOption: $isShowingBetOption)
-                .opacity(isShowingBetOption  ? 1 :  0)
+//            BetOptionView(isShowingBetOption: $isShowingBetOption)
+//                .opacity(isShowingBetOption  ? 1 :  0)
+//            LosingView(isShowingLosingView: $isShowingLosingView)
+//                .opacity(isShowingLosingView  ? 1 :  0)
+            WinningView(isShowingWinningView: $isShowingWinningView)
+                .opacity(isShowingWinningView  ? 1 :  0)
         }
     }
 }
+
 
 
 // MARK: DICES VIEW
