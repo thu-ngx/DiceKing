@@ -11,6 +11,16 @@
 		A3D593CB2A9F3B55000F2753 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593CA2A9F3B55000F2753 /* ContentView.swift */; };
 		A3D593CD2A9F3B59000F2753 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D593CC2A9F3B59000F2753 /* Assets.xcassets */; };
 		A3D593D02A9F3B59000F2753 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D593CF2A9F3B59000F2753 /* Preview Assets.xcassets */; };
+		A3D593D82A9F4129000F2753 /* NameInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593D72A9F4129000F2753 /* NameInputView.swift */; };
+		A3D593DB2AA0488A000F2753 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593DA2AA0488A000F2753 /* Modifiers.swift */; };
+		A3D593DD2AA0524E000F2753 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593DC2AA0524E000F2753 /* WelcomeView.swift */; };
+		A3D593DF2AA05621000F2753 /* NavigationLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593DE2AA05621000F2753 /* NavigationLinksView.swift */; };
+		A3D593E22AA05681000F2753 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593E12AA05681000F2753 /* GameView.swift */; };
+		A3D593E72AA05C98000F2753 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593E62AA05C98000F2753 /* SettingsView.swift */; };
+		A3D593E92AA05CB9000F2753 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593E82AA05CB8000F2753 /* LeaderboardView.swift */; };
+		A3D593EB2AA05CD3000F2753 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593EA2AA05CD3000F2753 /* TutorialView.swift */; };
+		A3D593EE2AA062A9000F2753 /* PlayerStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593ED2AA062A9000F2753 /* PlayerStatusView.swift */; };
+		A3D593F12AA063E4000F2753 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593F02AA063E4000F2753 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +29,16 @@
 		A3D593CA2A9F3B55000F2753 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A3D593CC2A9F3B59000F2753 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3D593CF2A9F3B59000F2753 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A3D593D72A9F4129000F2753 /* NameInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameInputView.swift; sourceTree = "<group>"; };
+		A3D593DA2AA0488A000F2753 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		A3D593DC2AA0524E000F2753 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		A3D593DE2AA05621000F2753 /* NavigationLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLinksView.swift; sourceTree = "<group>"; };
+		A3D593E12AA05681000F2753 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		A3D593E62AA05C98000F2753 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A3D593E82AA05CB8000F2753 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		A3D593EA2AA05CD3000F2753 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		A3D593ED2AA062A9000F2753 /* PlayerStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatusView.swift; sourceTree = "<group>"; };
+		A3D593F02AA063E4000F2753 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +71,13 @@
 		A3D593C72A9F3B55000F2753 /* DiceKing */ = {
 			isa = PBXGroup;
 			children = (
+				A3D593EF2AA063CC000F2753 /* Model */,
+				A3D593E52AA05C78000F2753 /* TutorialView */,
+				A3D593E42AA05C6C000F2753 /* LeaderboardView */,
+				A3D593E32AA05C61000F2753 /* SettingsView */,
+				A3D593E02AA0566C000F2753 /* GameView */,
+				A3D593D92AA04872000F2753 /* Helpers */,
+				A3D593D62A9F40E3000F2753 /* WelcomeView */,
 				A3D593C82A9F3B55000F2753 /* DiceKingApp.swift */,
 				A3D593CA2A9F3B55000F2753 /* ContentView.swift */,
 				A3D593CC2A9F3B59000F2753 /* Assets.xcassets */,
@@ -65,6 +92,65 @@
 				A3D593CF2A9F3B59000F2753 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A3D593D62A9F40E3000F2753 /* WelcomeView */ = {
+			isa = PBXGroup;
+			children = (
+				A3D593D72A9F4129000F2753 /* NameInputView.swift */,
+				A3D593DC2AA0524E000F2753 /* WelcomeView.swift */,
+				A3D593DE2AA05621000F2753 /* NavigationLinksView.swift */,
+				A3D593ED2AA062A9000F2753 /* PlayerStatusView.swift */,
+			);
+			path = WelcomeView;
+			sourceTree = "<group>";
+		};
+		A3D593D92AA04872000F2753 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A3D593DA2AA0488A000F2753 /* Modifiers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A3D593E02AA0566C000F2753 /* GameView */ = {
+			isa = PBXGroup;
+			children = (
+				A3D593E12AA05681000F2753 /* GameView.swift */,
+			);
+			path = GameView;
+			sourceTree = "<group>";
+		};
+		A3D593E32AA05C61000F2753 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				A3D593E62AA05C98000F2753 /* SettingsView.swift */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
+		A3D593E42AA05C6C000F2753 /* LeaderboardView */ = {
+			isa = PBXGroup;
+			children = (
+				A3D593E82AA05CB8000F2753 /* LeaderboardView.swift */,
+			);
+			path = LeaderboardView;
+			sourceTree = "<group>";
+		};
+		A3D593E52AA05C78000F2753 /* TutorialView */ = {
+			isa = PBXGroup;
+			children = (
+				A3D593EA2AA05CD3000F2753 /* TutorialView.swift */,
+			);
+			path = TutorialView;
+			sourceTree = "<group>";
+		};
+		A3D593EF2AA063CC000F2753 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A3D593F02AA063E4000F2753 /* Player.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +223,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3D593DD2AA0524E000F2753 /* WelcomeView.swift in Sources */,
+				A3D593E72AA05C98000F2753 /* SettingsView.swift in Sources */,
+				A3D593DB2AA0488A000F2753 /* Modifiers.swift in Sources */,
+				A3D593EE2AA062A9000F2753 /* PlayerStatusView.swift in Sources */,
+				A3D593F12AA063E4000F2753 /* Player.swift in Sources */,
+				A3D593DF2AA05621000F2753 /* NavigationLinksView.swift in Sources */,
+				A3D593E92AA05CB9000F2753 /* LeaderboardView.swift in Sources */,
 				A3D593CB2A9F3B55000F2753 /* ContentView.swift in Sources */,
 				A3D593C92A9F3B55000F2753 /* DiceKingApp.swift in Sources */,
+				A3D593D82A9F4129000F2753 /* NameInputView.swift in Sources */,
+				A3D593EB2AA05CD3000F2753 /* TutorialView.swift in Sources */,
+				A3D593E22AA05681000F2753 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
