@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Level
 
 struct Round {
-    var turns: [Int]
     var currentLevel: Level
+//    var turns: [Int] = Array(repeating: 0, count: currentLevel.turnsPerGame)
+//    var coinsLeft = self.currentLevel.startingCoinsPerGame
 }

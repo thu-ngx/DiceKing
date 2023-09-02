@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct SettingsView: View {
+
+    @EnvironmentObject var appModeVM: AppModeViewModel
+
     var body: some View {
         ZStack {
             Color("blue")
                 .edgesIgnoringSafeArea(.all)
+                
             VStack {
                 Text("Settings")
                     .font(.system(size: 50).weight(.bold))
@@ -19,7 +23,6 @@ struct SettingsView: View {
                     .padding(.bottom, 30)
 
                 Spacer()
-                
                 // MARK: GAME MODE
                 VStack (alignment: .leading, spacing: 0) {
                     Text("Game mode")
@@ -32,25 +35,25 @@ struct SettingsView: View {
                 
                 HStack (spacing: 30) {
                     Button {
-                        // game logic
+                        appModeVM.setGameModeTo2Dices()
                     } label: {
                         Text("2 dices")
                             .font(.system(size: 20).weight(.heavy))
                             .foregroundColor(Color("yellow"))
                             .frame(width: 120, height: 40)
-                            .background(Color("red").opacity(0.5))
+                            .background(Color("red").opacity(appModeVM.appMode.gameMode == "2 dices" ? 1 : 0.5))
                             .cornerRadius(10)
                             .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
                     }
                     
                     Button {
-                        // game logic
+                        appModeVM.setGameModeTo3Dices()
                     } label: {
                         Text("3 dices")
                             .font(.system(size: 20).weight(.heavy))
                             .foregroundColor(Color("yellow"))
                             .frame(width: 120, height: 40)
-                            .background(Color("red").opacity(1))
+                            .background(Color("red").opacity(appModeVM.appMode.gameMode == "3 dices" ? 1 : 0.5))
                             .cornerRadius(10)
                             .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
                     }
@@ -69,25 +72,25 @@ struct SettingsView: View {
 
                 HStack (spacing: 30) {
                     Button {
-                        // game logic
+                        appModeVM.setColorSchemeToLight()
                     } label: {
                         Text("Light")
                             .font(.system(size: 20).weight(.heavy))
                             .foregroundColor(Color("yellow"))
                             .frame(width: 120, height: 40)
-                            .background(Color("red").opacity(0.5))
+                            .background(Color("red").opacity(appModeVM.appMode.colorScheme == .light ? 1 : 0.5))
                             .cornerRadius(10)
                             .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
                     }
 
                     Button {
-                        // game logic
+                        appModeVM.setColorSchemeToDark()
                     } label: {
                         Text("Dark")
                             .font(.system(size: 20).weight(.heavy))
                             .foregroundColor(Color("yellow"))
                             .frame(width: 120, height: 40)
-                            .background(Color("red").opacity(1))
+                            .background(Color("red").opacity(appModeVM.appMode.colorScheme == .dark ? 1 : 0.5))
                             .cornerRadius(10)
                             .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
                     }
@@ -115,8 +118,3 @@ struct SettingsView: View {
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
-    }
-}

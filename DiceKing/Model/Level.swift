@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Level {
+public struct Level {
     var levelNumber: Int
     var minExp: Int
     var startingCoinsPerGame: Int

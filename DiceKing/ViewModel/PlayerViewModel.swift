@@ -8,18 +8,19 @@
 import Foundation
 
 class PlayerViewModel: ObservableObject {
-    @Published var player = Player(name: "", currentExp: 0)
+    @Published var currentPlayer = Player(name: "", currentExp: 0)
     
     // get current level by compare the currentExp of player with the minExp of each level
     func getCurrentLevel() -> Level {
         var currentLevel = levels[0]
         
         for level in levels {
-            if player.currentExp >= level.minExp {
+            if currentPlayer.currentExp >= level.minExp {
                 currentLevel = level
                 break;
             }
         }
         return currentLevel
     }
+
 }

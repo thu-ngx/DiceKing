@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameView: View {
     
+    // MARK: check showing bet option & result view
     @State var isShowingBetOption = false
     @State var isShowingLosingView = false
     @State var isShowingWinningView = false
@@ -17,6 +18,14 @@ struct GameView: View {
     func isBackGroundBlur() -> Bool {
         return isShowingBetOption || isShowingLosingView || isShowingWinningView
     }
+
+    // MARK: current player
+    @EnvironmentObject var playerVM: PlayerViewModel
+
+    // MARK: app mode
+    @EnvironmentObject var appModeVM: AppModeViewModel
+
+    
     
     
     var body: some View {
@@ -31,8 +40,11 @@ struct GameView: View {
                 
                 
                 // MARK: DICES
-//                TwoDicesView()
-                                ThreeDicesView()
+                if appModeVM.appMode.gameMode == "2 dices" {
+                    TwoDicesView()
+                } else {
+                    ThreeDicesView()
+                }
                 
                 Spacer()
                 

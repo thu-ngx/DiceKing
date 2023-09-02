@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct NameInputView: View {
-    @AppStorage("currentPlayerName") var currentPlayerName: String = ""
     @State private var showingWelcomeView = false // New state for controlling navigation
     
+    @EnvironmentObject var currentPlayerVM: PlayerViewModel
+    @AppStorage("currentPlayerName") var currentPlayerName = currentPlayerVM.currentPlayer.name
     
     // MARK: SAVE PLAYER LOGIC
     private func savePlayerName() {

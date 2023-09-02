@@ -38,6 +38,9 @@
 		A3D594192AA31C59000F2753 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594182AA31C59000F2753 /* Level.swift */; };
 		A3D5941B2AA31D7D000F2753 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5941A2AA31D7D000F2753 /* Round.swift */; };
 		A3D5941D2AA31E77000F2753 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5941C2AA31E77000F2753 /* Badge.swift */; };
+		A3D5941F2AA32F29000F2753 /* AppMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5941E2AA32F29000F2753 /* AppMode.swift */; };
+		A3D594212AA32FAB000F2753 /* AppModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594202AA32FAB000F2753 /* AppModeViewModel.swift */; };
+		A3D594232AA33969000F2753 /* RoundViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594222AA33969000F2753 /* RoundViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +76,9 @@
 		A3D594182AA31C59000F2753 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		A3D5941A2AA31D7D000F2753 /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
 		A3D5941C2AA31E77000F2753 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		A3D5941E2AA32F29000F2753 /* AppMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMode.swift; sourceTree = "<group>"; };
+		A3D594202AA32FAB000F2753 /* AppModeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModeViewModel.swift; sourceTree = "<group>"; };
+		A3D594222AA33969000F2753 /* RoundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +200,7 @@
 				A3D594182AA31C59000F2753 /* Level.swift */,
 				A3D5941A2AA31D7D000F2753 /* Round.swift */,
 				A3D5941C2AA31E77000F2753 /* Badge.swift */,
+				A3D5941E2AA32F29000F2753 /* AppMode.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				A3D594152AA31A50000F2753 /* PlayerViewModel.swift */,
+				A3D594202AA32FAB000F2753 /* AppModeViewModel.swift */,
+				A3D594222AA33969000F2753 /* RoundViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -301,6 +310,7 @@
 				A3D593DD2AA0524E000F2753 /* WelcomeView.swift in Sources */,
 				A3D593E72AA05C98000F2753 /* SettingsView.swift in Sources */,
 				A3D593F32AA07843000F2753 /* GameStatusView.swift in Sources */,
+				A3D594232AA33969000F2753 /* RoundViewModel.swift in Sources */,
 				A3D594192AA31C59000F2753 /* Level.swift in Sources */,
 				A3D594092AA0C47B000F2753 /* MemberDetailsView.swift in Sources */,
 				A3D593DB2AA0488A000F2753 /* Modifiers.swift in Sources */,
@@ -314,10 +324,12 @@
 				A3D593E92AA05CB9000F2753 /* LeaderboardView.swift in Sources */,
 				A3D5940F2AA0F8F6000F2753 /* TutorialContentView.swift in Sources */,
 				A3D593CB2A9F3B55000F2753 /* ContentView.swift in Sources */,
+				A3D594212AA32FAB000F2753 /* AppModeViewModel.swift in Sources */,
 				A3D594012AA0A8A8000F2753 /* LosingView.swift in Sources */,
 				A3D593C92A9F3B55000F2753 /* DiceKingApp.swift in Sources */,
 				A3D593D82A9F4129000F2753 /* NameInputView.swift in Sources */,
 				A3D594162AA31A50000F2753 /* PlayerViewModel.swift in Sources */,
+				A3D5941F2AA32F29000F2753 /* AppMode.swift in Sources */,
 				A3D593EB2AA05CD3000F2753 /* TutorialView.swift in Sources */,
 				A3D593E22AA05681000F2753 /* GameView.swift in Sources */,
 				A3D594112AA0FD93000F2753 /* PointDetailsSheetView.swift in Sources */,
