@@ -27,6 +27,13 @@
 		A3D593F92AA09496000F2753 /* OddOrEvenOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593F82AA09496000F2753 /* OddOrEvenOptionView.swift */; };
 		A3D594012AA0A8A8000F2753 /* LosingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594002AA0A8A8000F2753 /* LosingView.swift */; };
 		A3D594032AA0B382000F2753 /* WinningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594022AA0B382000F2753 /* WinningView.swift */; };
+		A3D594052AA0B825000F2753 /* MemberRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594042AA0B825000F2753 /* MemberRow.swift */; };
+		A3D594072AA0BBA5000F2753 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594062AA0BBA5000F2753 /* ProgressBar.swift */; };
+		A3D594092AA0C47B000F2753 /* MemberDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594082AA0C47B000F2753 /* MemberDetailsView.swift */; };
+		A3D5940B2AA0C808000F2753 /* BadgesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5940A2AA0C808000F2753 /* BadgesList.swift */; };
+		A3D5940F2AA0F8F6000F2753 /* TutorialContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5940E2AA0F8F6000F2753 /* TutorialContentView.swift */; };
+		A3D594112AA0FD93000F2753 /* PointDetailsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594102AA0FD93000F2753 /* PointDetailsSheetView.swift */; };
+		A3D594132AA1914E000F2753 /* AchievementsDetailsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594122AA1914E000F2753 /* AchievementsDetailsSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +58,13 @@
 		A3D593F82AA09496000F2753 /* OddOrEvenOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddOrEvenOptionView.swift; sourceTree = "<group>"; };
 		A3D594002AA0A8A8000F2753 /* LosingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LosingView.swift; sourceTree = "<group>"; };
 		A3D594022AA0B382000F2753 /* WinningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinningView.swift; sourceTree = "<group>"; };
+		A3D594042AA0B825000F2753 /* MemberRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRow.swift; sourceTree = "<group>"; };
+		A3D594062AA0BBA5000F2753 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		A3D594082AA0C47B000F2753 /* MemberDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailsView.swift; sourceTree = "<group>"; };
+		A3D5940A2AA0C808000F2753 /* BadgesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesList.swift; sourceTree = "<group>"; };
+		A3D5940E2AA0F8F6000F2753 /* TutorialContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialContentView.swift; sourceTree = "<group>"; };
+		A3D594102AA0FD93000F2753 /* PointDetailsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDetailsSheetView.swift; sourceTree = "<group>"; };
+		A3D594122AA1914E000F2753 /* AchievementsDetailsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsDetailsSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +164,10 @@
 			isa = PBXGroup;
 			children = (
 				A3D593E82AA05CB8000F2753 /* LeaderboardView.swift */,
+				A3D594042AA0B825000F2753 /* MemberRow.swift */,
+				A3D594062AA0BBA5000F2753 /* ProgressBar.swift */,
+				A3D594082AA0C47B000F2753 /* MemberDetailsView.swift */,
+				A3D5940A2AA0C808000F2753 /* BadgesList.swift */,
 			);
 			path = LeaderboardView;
 			sourceTree = "<group>";
@@ -158,6 +176,9 @@
 			isa = PBXGroup;
 			children = (
 				A3D593EA2AA05CD3000F2753 /* TutorialView.swift */,
+				A3D5940E2AA0F8F6000F2753 /* TutorialContentView.swift */,
+				A3D594102AA0FD93000F2753 /* PointDetailsSheetView.swift */,
+				A3D594122AA1914E000F2753 /* AchievementsDetailsSheetView.swift */,
 			);
 			path = TutorialView;
 			sourceTree = "<group>";
@@ -252,21 +273,28 @@
 				A3D593DD2AA0524E000F2753 /* WelcomeView.swift in Sources */,
 				A3D593E72AA05C98000F2753 /* SettingsView.swift in Sources */,
 				A3D593F32AA07843000F2753 /* GameStatusView.swift in Sources */,
+				A3D594092AA0C47B000F2753 /* MemberDetailsView.swift in Sources */,
 				A3D593DB2AA0488A000F2753 /* Modifiers.swift in Sources */,
 				A3D593EE2AA062A9000F2753 /* PlayerStatusView.swift in Sources */,
 				A3D594032AA0B382000F2753 /* WinningView.swift in Sources */,
 				A3D593F72AA0946A000F2753 /* RangeOptionView.swift in Sources */,
 				A3D593F12AA063E4000F2753 /* Player.swift in Sources */,
 				A3D593DF2AA05621000F2753 /* NavigationLinksView.swift in Sources */,
+				A3D594132AA1914E000F2753 /* AchievementsDetailsSheetView.swift in Sources */,
 				A3D593E92AA05CB9000F2753 /* LeaderboardView.swift in Sources */,
+				A3D5940F2AA0F8F6000F2753 /* TutorialContentView.swift in Sources */,
 				A3D593CB2A9F3B55000F2753 /* ContentView.swift in Sources */,
 				A3D594012AA0A8A8000F2753 /* LosingView.swift in Sources */,
 				A3D593C92A9F3B55000F2753 /* DiceKingApp.swift in Sources */,
 				A3D593D82A9F4129000F2753 /* NameInputView.swift in Sources */,
 				A3D593EB2AA05CD3000F2753 /* TutorialView.swift in Sources */,
 				A3D593E22AA05681000F2753 /* GameView.swift in Sources */,
+				A3D594112AA0FD93000F2753 /* PointDetailsSheetView.swift in Sources */,
 				A3D593F92AA09496000F2753 /* OddOrEvenOptionView.swift in Sources */,
 				A3D593F52AA08115000F2753 /* BetOptionView.swift in Sources */,
+				A3D594072AA0BBA5000F2753 /* ProgressBar.swift in Sources */,
+				A3D594052AA0B825000F2753 /* MemberRow.swift in Sources */,
+				A3D5940B2AA0C808000F2753 /* BadgesList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
