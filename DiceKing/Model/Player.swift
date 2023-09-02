@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct Player: Codable, Identifiable {
+struct Player: Identifiable {
     var id: Int
     var name: String
     var currentExp: Int
+    var pastRounds: [GameRound]
 }
 
 struct Level {
@@ -29,5 +30,11 @@ let levels: [Level] = [
     Level(levelNumber: 4, minExp: 600, startingCoinsPerGame: 150, turnsPerGame: 12, winningExp: 80, losingExp: 20),
     Level(levelNumber: 5, minExp: 1000, startingCoinsPerGame: 200, turnsPerGame: 15, winningExp: 100, losingExp: 25)
 ]
+
+struct GameRound {
+    var turns: [Int]
+    var level: Level
+    
+}
 
 

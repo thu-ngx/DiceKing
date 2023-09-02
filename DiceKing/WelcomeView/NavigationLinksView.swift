@@ -23,9 +23,7 @@ struct NavigationLinksView: View {
     ]
     
     var body: some View {
-        VStack(spacing: 15) {
-            // Loop through the array to create NavigationLinks
-            ForEach(destinations, id: \.label) { destination in
+        VStack(spacing: 15) {            ForEach(destinations, id: \.label) { destination in
                 NavigationLink(destination: destination.destination) {
                     Text(destination.label)
                         .font(.system(size: 33).weight(.heavy))

@@ -11,7 +11,7 @@ struct GameView: View {
     
     @State var isShowingBetOption = false
     @State var isShowingLosingView = false
-    @State var isShowingWinningView = true
+    @State var isShowingWinningView = false
     
     // MARK: check bg blur
     func isBackGroundBlur() -> Bool {
@@ -31,8 +31,8 @@ struct GameView: View {
                 
                 
                 // MARK: DICES
-                TwoDicesView()
-                //                ThreeDicesView()
+//                TwoDicesView()
+                                ThreeDicesView()
                 
                 Spacer()
                 
@@ -52,7 +52,7 @@ struct GameView: View {
                     // MARK: BET / ROLL
                     Button {
                         // bet logic
-                        isShowingLosingView = true
+                        isShowingWinningView = true
                     } label: {
                         Text("Roll")
                             .font(.system(size: 40).weight(.heavy))
@@ -81,10 +81,10 @@ struct GameView: View {
             .blur(radius: isBackGroundBlur() ? 10 : 0)
         }
         .overlay {
-//            BetOptionView(isShowingBetOption: $isShowingBetOption)
-//                .opacity(isShowingBetOption  ? 1 :  0)
-//            LosingView(isShowingLosingView: $isShowingLosingView)
-//                .opacity(isShowingLosingView  ? 1 :  0)
+            BetOptionView(isShowingBetOption: $isShowingBetOption)
+                .opacity(isShowingBetOption  ? 1 :  0)
+            LosingView(isShowingLosingView: $isShowingLosingView)
+                .opacity(isShowingLosingView  ? 1 :  0)
             WinningView(isShowingWinningView: $isShowingWinningView)
                 .opacity(isShowingWinningView  ? 1 :  0)
         }
@@ -97,11 +97,11 @@ struct GameView: View {
 struct TwoDicesView: View {
     var body: some View {
         HStack(spacing: 35) {
-            Image("dice-red-3")
+            Image("Dice 3")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 130)
-            Image("dice-red-1")
+            Image("Dice 1")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 130)
@@ -113,16 +113,16 @@ struct ThreeDicesView: View {
     var body: some View {
         VStack(spacing: 35) {
             HStack(spacing: 35) {
-                Image("dice-red-3")
+                Image("Dice 3")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 130)
-                Image("dice-red-1")
+                Image("Dice 1")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 130)
             }
-            Image("dice-red-1")
+            Image("Dice 1")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 130)

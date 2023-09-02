@@ -13,13 +13,13 @@ struct RangeOptionView: View {
             //MARK: TITLE
             HStack (spacing: 0) {
                 Text("Range: ")
-                    .foregroundColor(Color(.black).opacity(0.7)) .font(.system(size: 26, weight: .semibold))
+                    .foregroundColor(Color("blue")) .font(.system(size: 26, weight: .semibold))
                 Image("coins")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 40)
                 Text("10")
-                    .foregroundColor(Color(.black).opacity(0.7)) .font(.system(size: 26, weight: .semibold))
+                    .foregroundColor(Color("blue")) .font(.system(size: 26, weight: .semibold))
                 Spacer()
             }
             

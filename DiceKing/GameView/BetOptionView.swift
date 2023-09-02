@@ -18,6 +18,8 @@ struct BetOptionView: View {
             ZStack  {
                 Color("yellow")
                 VStack (spacing: 3) {
+                    
+                    // MARK: CLOSE ICON
                     HStack {
                         Spacer()
                         Button {
@@ -34,7 +36,7 @@ struct BetOptionView: View {
                     // MARK: TITLE
                     Text("Bet option")
                         .font(.system(size: 45).weight(.semibold))
-                        .foregroundColor(Color(.black).opacity(0.7))
+                        .foregroundColor(Color("blue"))
                         .padding(0)
                     
                     // MARK: RANGE
@@ -54,7 +56,7 @@ struct BetOptionView: View {
                         Text("Bet")
                             .font(.system(size: 25).weight(.heavy))
                             .foregroundColor(Color("yellow"))
-                            .frame(width: 100)
+                            .frame(width: 340)
                             .padding(.vertical, 5)
                             .background(Color("red"))
                             .cornerRadius(10)
@@ -65,7 +67,6 @@ struct BetOptionView: View {
             .frame(height: 320)
             .cornerRadius(20)
             .padding(.horizontal, 90)
-            
         }
     }
 }

@@ -14,13 +14,13 @@ struct OddOrEvenOptionView: View {
             //MARK: TITLE
             HStack (spacing: 0) {
                 Text("Odd or even: ")
-                    .foregroundColor(Color(.black).opacity(0.7)) .font(.system(size: 26, weight: .semibold))
+                    .foregroundColor(Color("blue")) .font(.system(size: 26, weight: .semibold))
                 Image("coins")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 40)
                 Text("5")
-                    .foregroundColor(Color(.black).opacity(0.7)) .font(.system(size: 26, weight: .semibold))
+                    .foregroundColor(Color("blue")) .font(.system(size: 26, weight: .semibold))
                 Spacer()
             }
             

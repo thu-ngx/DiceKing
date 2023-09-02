@@ -25,7 +25,7 @@ struct WelcomeView: View {
                     }
                     
                     // MARK: LOGO
-                    Image("DiceKingTrans")
+                    Image("Dice_King_Transparent")
                         .resizable()
                         .scaledToFit()
                         .frame(height: 220)

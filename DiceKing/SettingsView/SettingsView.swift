@@ -9,7 +9,109 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        Text("This is setting view")
+        ZStack {
+            Color("blue")
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Text("Settings")
+                    .font(.system(size: 50).weight(.bold))
+                    .foregroundColor(Color("yellow"))
+                    .padding(.bottom, 30)
+
+                Spacer()
+                
+                // MARK: GAME MODE
+                VStack (alignment: .leading, spacing: 0) {
+                    Text("Game mode")
+                        .foregroundColor(Color("yellow"))
+                        .font(.system(size: 30).weight(.semibold))
+                    Text("This will change your bet options")
+                        .foregroundColor(Color("yellow").opacity(0.9))
+                        .font(.system(size: 20).weight(.semibold))
+                }
+                
+                HStack (spacing: 30) {
+                    Button {
+                        // game logic
+                    } label: {
+                        Text("2 dices")
+                            .font(.system(size: 20).weight(.heavy))
+                            .foregroundColor(Color("yellow"))
+                            .frame(width: 120, height: 40)
+                            .background(Color("red").opacity(0.5))
+                            .cornerRadius(10)
+                            .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
+                    }
+                    
+                    Button {
+                        // game logic
+                    } label: {
+                        Text("3 dices")
+                            .font(.system(size: 20).weight(.heavy))
+                            .foregroundColor(Color("yellow"))
+                            .frame(width: 120, height: 40)
+                            .background(Color("red").opacity(1))
+                            .cornerRadius(10)
+                            .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
+                    }
+                    
+                }
+
+                // MARK: DARK MODE
+                VStack (alignment: .leading, spacing: 0) {
+                    Text("Dark mode")
+                        .foregroundColor(Color("yellow"))
+                        .font(.system(size: 30).weight(.semibold))
+                    Text("This will change the app's theme")
+                        .foregroundColor(Color("yellow").opacity(0.9))
+                        .font(.system(size: 20).weight(.semibold))
+                }
+
+                HStack (spacing: 30) {
+                    Button {
+                        // game logic
+                    } label: {
+                        Text("Light")
+                            .font(.system(size: 20).weight(.heavy))
+                            .foregroundColor(Color("yellow"))
+                            .frame(width: 120, height: 40)
+                            .background(Color("red").opacity(0.5))
+                            .cornerRadius(10)
+                            .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
+                    }
+
+                    Button {
+                        // game logic
+                    } label: {
+                        Text("Dark")
+                            .font(.system(size: 20).weight(.heavy))
+                            .foregroundColor(Color("yellow"))
+                            .frame(width: 120, height: 40)
+                            .background(Color("red").opacity(1))
+                            .cornerRadius(10)
+                            .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
+                    }
+
+                }
+
+                Spacer()
+
+
+                // MARK: RESET
+                Button {
+                        // game logic
+                    } label: {
+                        Text("Switch account")
+                            .font(.system(size: 20).weight(.heavy))
+                            .foregroundColor(Color("yellow"))
+                            .frame(width: 200, height: 50)
+                            .background(Color("red").opacity(1))
+                            .cornerRadius(10)
+                            .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
+                    }
+            }
+            .frame(height: 600)
+        }
     }
 }
 
