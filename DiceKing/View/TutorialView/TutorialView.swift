@@ -29,6 +29,8 @@ struct TutorialView: View {
                 
                 // MARK: EXTRA INFO
                 HStack {
+                    
+                    
                     // MARK: POINTS DETAILS
                     Button(action: {
                         showPointDetailsSheet = true
@@ -41,7 +43,7 @@ struct TutorialView: View {
                             .background(Color("yellow"))
                             .cornerRadius(10)
                     }
-                    .sheet(isPresented: $showPointDetailsSheet) {  PointDetailsSheetView()}
+                    .sheet(isPresented: $showPointDetailsSheet) {  PointDetailsSheetView(isPresented: $showPointDetailsSheet)}
                     
                     Spacer()
                     
@@ -57,7 +59,7 @@ struct TutorialView: View {
                             .background(Color("yellow"))
                             .cornerRadius(10)
                     }
-                    .sheet(isPresented: $showAchievementsDetailsSheet) {  AchievementsDetailsSheetView()}
+                    .sheet(isPresented: $showAchievementsDetailsSheet) {  AchievementsDetailsSheetView(isPresented: $showAchievementsDetailsSheet)}
                 }
                 .padding(.vertical)
             }

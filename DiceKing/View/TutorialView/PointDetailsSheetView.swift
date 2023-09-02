@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct PointDetailsSheetView: View {
-    
-    @Environment(\.dismiss) var dismiss
+    @Binding var isPresented: Bool
     
     var body: some View {
         ZStack {
@@ -21,7 +20,10 @@ struct PointDetailsSheetView: View {
                     
                     // MARK: CLOSE BUTTON
                     Button {
-                        dismiss()
+                        withAnimation {
+                            // MARK: CLOSE SHEET
+                            isPresented = false
+                        }
                     } label: {
                         Image(systemName: "xmark")
                             .font(.system(size: 30))
@@ -121,8 +123,8 @@ struct LosingExpList: View {
 }
 
 
-struct PointDetailsSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-        PointDetailsSheetView()
-    }
-}
+//struct PointDetailsSheetView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PointDetailsSheetView()
+//    }
+//}

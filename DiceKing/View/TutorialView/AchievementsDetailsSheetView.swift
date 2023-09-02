@@ -8,16 +8,7 @@
 import SwiftUI
 
 struct AchievementsDetailsSheetView: View {
-    @Environment(\.dismiss) var dismiss
-    
-    let badges: [Badge] = [
-        Badge(name: "Newbie", description: "Take your first steps into the dice world", imageName: "Newbie"),
-        Badge(name: "Lucky 7s", description: "Roll a total of 7 with the 2 dice", imageName: "Lucky_7s"),
-        Badge(name: "Snake eyes", description: "Roll double 1s", imageName: "Snake_Eyes"),
-        Badge(name: "Grandmaster", description: "You've reached level 5 mastery of the dice", imageName: "Grandmaster"),
-        Badge(name: "Victory", description: "Win 3 turns in a row", imageName: "Victory"),
-        Badge(name: "Straight dices", description: "Rolling a straight (sequence like 3,4,5)", imageName: "Straight_Dices")
-    ]
+    @Binding var isPresented: Bool
     
     var body: some View {
         ZStack {
@@ -27,7 +18,7 @@ struct AchievementsDetailsSheetView: View {
                 HStack {
                     Spacer()
                     Button {
-                        dismiss()
+                        isPresented = false
                     } label: {
                         Image(systemName: "xmark")
                             .font(.system(size: 30))
@@ -81,15 +72,10 @@ struct BadgeView : View {
     }
 }
 
-// MARK: BADGE STRUCT
-struct Badge {
-    var name: String
-    var description: String
-    var imageName: String
-}
 
-struct AchievementsDetailsSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-        AchievementsDetailsSheetView()
-    }
-}
+
+//struct AchievementsDetailsSheetView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AchievementsDetailsSheetView()
+//    }
+//}
