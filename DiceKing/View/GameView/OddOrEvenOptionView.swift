@@ -27,14 +27,14 @@ struct OddOrEvenOptionView: View {
             }
             
             //MARK: 3 OPTIONS
-            HStack (spacing: 20) {
+            HStack (spacing: 12) {
                 Button {
                     applicationVM.resetDiceType()
                 } label: {
                     Text("All")
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
-                        .frame(width: 100)
+                        .frame(width: 110)
                         .padding(.vertical, 5)
                         .background(Color("red").opacity(applicationVM.getIsEvenNumber() == nil ? 1 : 0.5))
                         .cornerRadius(10)
@@ -48,7 +48,7 @@ struct OddOrEvenOptionView: View {
                     Text("Odd")
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
-                        .frame(width: 100)
+                        .frame(width: 110)
                         .padding(.vertical, 5)
                         .background(Color("red").opacity(applicationVM.getIsEvenNumber() == false ? 1 : 0.5))
                         .cornerRadius(10)
@@ -62,7 +62,7 @@ struct OddOrEvenOptionView: View {
                     Text("Even")
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
-                        .frame(width: 100)
+                        .frame(width: 110)
                         .padding(.vertical, 5)
                         .background(Color("red").opacity(applicationVM.getIsEvenNumber() == true ? 1 : 0.5))
                         .cornerRadius(10)

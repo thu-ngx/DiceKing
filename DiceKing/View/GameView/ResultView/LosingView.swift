@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LosingView: View {
+    @EnvironmentObject var appVM: ApplicationViewModel
     @Binding var isShowingLosingView: Bool
     
     var body: some View {
@@ -27,7 +28,6 @@ struct LosingView: View {
                     .foregroundColor(Color("light-red"))
                     .offset(y:-50)
                 Button {
-                    // continue playing
                     isShowingLosingView = false
                 } label: {
                     Text("Tap to continue")

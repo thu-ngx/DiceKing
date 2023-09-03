@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct GameView: View {
+    // MARK: app mode
+    @EnvironmentObject var applicationVM: ApplicationViewModel
+    
     // MARK: check showing bet option & result view
     @State var isShowingBetOption = false
     @State var isShowingLosingView = false
@@ -17,9 +20,6 @@ struct GameView: View {
     func isBackGroundBlur() -> Bool {
         return isShowingBetOption || isShowingLosingView || isShowingWinningView
     }
-
-    // MARK: app mode
-    @EnvironmentObject var applicationVM: ApplicationViewModel
     
     func getDiceNames(dices: [Int]) -> [String] {
         var names: [String] = []
@@ -62,9 +62,15 @@ struct GameView: View {
                     // MARK: BET / ROLL
                     Button {
                         if (applicationVM.getIsBetted()) {
-                        applicationVM.randomizeDices()
+                            applicationVM.rollDices()
+                            
+                            if (applicationVM.getCurrentPoint() <= 0) {
+                                isShowingLosingView = true
+                            } else if (applicationVM.getIsWin()) {
+                                isShowingWinningView = true
+                            }
                         } else {
-                        isShowingBetOption = true
+                            isShowingBetOption = true
                         }
                     } label: {
                         Text(applicationVM.getIsBetted() ? "Roll" : "Bet")
@@ -81,7 +87,7 @@ struct GameView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 50)
-                        Text("30")
+                        Text("\(applicationVM.getCurrentPoint())")
                             .foregroundColor(Color("yellow")) .font(.system(size: 30, weight: .bold))
                     }
                     

@@ -94,6 +94,18 @@ struct SettingsView: View {
                 
                 // MARK: RESET
                 Button {
+                    applicationVM.resetAll()
+                } label: {
+                    Text("Reset to default")
+                        .font(.system(size: 20).weight(.heavy))
+                        .foregroundColor(Color("yellow"))
+                        .frame(width: 200, height: 50)
+                        .background(Color("red").opacity(1))
+                        .cornerRadius(10)
+                        .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
+                }
+
+                Button {
                     // switch account
                 } label: {
                     Text("Switch account")

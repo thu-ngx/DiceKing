@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WinningView: View {
+    @EnvironmentObject var appVM: ApplicationViewModel
     @Binding var isShowingWinningView: Bool
     
     var body: some View {
@@ -27,7 +28,6 @@ struct WinningView: View {
                     .foregroundColor(Color("yellow"))
                     .offset(y:-50)
                 Button {
-                    // continue playing
                     isShowingWinningView = false
                 } label: {
                     Text("Tap to continue")

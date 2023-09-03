@@ -50,13 +50,13 @@ struct BetOptionView: View {
                     
                     // MARK: BET BUTTON
                     Button {
-                        applicationVM.setIsBetted()
+                        applicationVM.setIsBetted(value: true)
                         isShowingBetOption = false
                     } label: {
                         Text("Bet")
                             .font(.system(size: 25).weight(.heavy))
                             .foregroundColor(Color("yellow"))
-                            .frame(width: 340)
+                            .frame(width: 200)
                             .padding(.vertical, 5)
                             .background(Color("red"))
                             .cornerRadius(10)

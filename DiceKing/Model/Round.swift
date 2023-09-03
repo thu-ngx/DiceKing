@@ -8,11 +8,13 @@
 import Foundation
 
 struct Round {
+    var startingPoint: Int
     var points: [Int]
     var expDiff: Int?
-    var isWon: Bool?
 
     init() {
-        self.points = []
+        self.startingPoint = 50
+        self.points = [0, 0, 0]
+        self.expDiff = nil
     }
 }

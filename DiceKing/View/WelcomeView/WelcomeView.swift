@@ -19,7 +19,7 @@ struct WelcomeView: View {
                         Text("DiceKing")
                             .font(.system(size: 60).weight(.heavy))
                             .foregroundColor(Color("yellow"))
-                        Text("Claim Your Fortume")
+                        Text("Claim Your Fortune")
                             .font(.system(size: 30).weight(.semibold))
                             .foregroundColor(Color("yellow"))
                     }
