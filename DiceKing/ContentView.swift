@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var appModeVM = AppModeViewModel()
-    @StateObject var playerVM = PlayerViewModel()
     
     var body: some View {
         NavigationView {
@@ -17,7 +16,6 @@ struct ContentView: View {
         }
         .environmentObject(appModeVM)
         .preferredColorScheme(appModeVM.appMode.colorScheme)
-        .environmentObject(playerVM)
     }
 }
 

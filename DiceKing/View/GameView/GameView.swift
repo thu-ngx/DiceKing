@@ -19,8 +19,6 @@ struct GameView: View {
         return isShowingBetOption || isShowingLosingView || isShowingWinningView
     }
 
-    // MARK: current player
-    @EnvironmentObject var playerVM: PlayerViewModel
 
     // MARK: app mode
     @EnvironmentObject var appModeVM: AppModeViewModel
