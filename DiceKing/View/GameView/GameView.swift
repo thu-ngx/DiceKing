@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GameView: View {
-    
     // MARK: check showing bet option & result view
     @State var isShowingBetOption = false
     @State var isShowingLosingView = false
@@ -19,12 +18,16 @@ struct GameView: View {
         return isShowingBetOption || isShowingLosingView || isShowingWinningView
     }
 
-
     // MARK: app mode
-    @EnvironmentObject var appModeVM: AppModeViewModel
-
+    @EnvironmentObject var applicationVM: ApplicationViewModel
     
-    
+    func getDiceNames(dices: [Int]) -> [String] {
+        var names: [String] = []
+        for dice in dices {
+            names.append("Dice \(dice)")
+        }
+        return names
+    }
     
     var body: some View {
         ZStack {
@@ -38,16 +41,13 @@ struct GameView: View {
                 
                 
                 // MARK: DICES
-                if appModeVM.appMode.gameMode == "2 dices" {
-                    TwoDicesView()
-                } else {
-                    ThreeDicesView()
-                }
+                DicesView(diceNames: getDiceNames(dices: applicationVM.getDices()))
                 
                 Spacer()
                 
                 VStack (spacing: 5)  {
                     // MARK: BET AMOUNT
+                    applicationVM.getIsBetted() ?
                     HStack (spacing: 0) {
                         Text("Bet")
                             .foregroundColor(Color("yellow")) .font(.system(size: 26, weight: .semibold))
@@ -55,16 +55,19 @@ struct GameView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 40)
-                        Text("10")
+                        Text(applicationVM.getIsEvenNumber() == nil ? "10" : "15")
                             .foregroundColor(Color("yellow")) .font(.system(size: 26, weight: .semibold))
-                    }
+                    } : nil
                     
                     // MARK: BET / ROLL
                     Button {
-                        // bet logic
-                        isShowingWinningView = true
+                        if (applicationVM.getIsBetted()) {
+                        applicationVM.randomizeDices()
+                        } else {
+                        isShowingBetOption = true
+                        }
                     } label: {
-                        Text("Roll")
+                        Text(applicationVM.getIsBetted() ? "Roll" : "Bet")
                             .font(.system(size: 40).weight(.heavy))
                             .foregroundColor(Color("yellow"))
                             .padding(.horizontal, 50)
@@ -102,46 +105,31 @@ struct GameView: View {
 }
 
 
-
 // MARK: DICES VIEW
-struct TwoDicesView: View {
-    var body: some View {
-        HStack(spacing: 35) {
-            Image("Dice 3")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 130)
-            Image("Dice 1")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 130)
-        }
-    }
-}
-
-struct ThreeDicesView: View {
+struct DicesView: View {
+    var diceNames: [String]
+    
     var body: some View {
         VStack(spacing: 35) {
-            HStack(spacing: 35) {
-                Image("Dice 3")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 130)
-                Image("Dice 1")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 130)
+            ForEach(0..<diceNames.count/2 + diceNames.count%2, id: \.self) { row in
+                HStack(spacing: 30) {
+                    ForEach(0..<2, id: \.self) { column in
+                        let index = row * 2 + column
+                        if index < diceNames.count {
+                            Image(diceNames[index])
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 130)
+                        }
+                    }
+                }
             }
-            Image("Dice 1")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 130)
         }
     }
 }
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView()
+        ContentView()
     }
 }

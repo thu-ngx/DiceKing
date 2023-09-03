@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct BetOptionView: View {
-    
     @Binding var isShowingBetOption: Bool
+    
+    @EnvironmentObject var applicationVM: ApplicationViewModel
     
     var body: some View {
         ZStack {
@@ -40,7 +41,7 @@ struct BetOptionView: View {
                         .padding(0)
                     
                     // MARK: RANGE
-                    RangeOptionView()
+                    RangeOptionView(selectedRange: applicationVM.getSelectedRange())
                     
                     // MARK: ODD OR EVEN
                     OddOrEvenOptionView()
@@ -49,8 +50,7 @@ struct BetOptionView: View {
                     
                     // MARK: BET BUTTON
                     Button {
-                        print("Bet")
-                        // save bet value
+                        applicationVM.setIsBetted()
                         isShowingBetOption = false
                     } label: {
                         Text("Bet")

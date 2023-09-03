@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A318182D2AA48B580097F901 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318182C2AA48B580097F901 /* Round.swift */; };
 		A3D593C92A9F3B55000F2753 /* DiceKingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593C82A9F3B55000F2753 /* DiceKingApp.swift */; };
 		A3D593CB2A9F3B55000F2753 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593CA2A9F3B55000F2753 /* ContentView.swift */; };
 		A3D593CD2A9F3B59000F2753 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D593CC2A9F3B59000F2753 /* Assets.xcassets */; };
@@ -33,11 +34,12 @@
 		A3D5940F2AA0F8F6000F2753 /* TutorialContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5940E2AA0F8F6000F2753 /* TutorialContentView.swift */; };
 		A3D594112AA0FD93000F2753 /* PointDetailsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594102AA0FD93000F2753 /* PointDetailsSheetView.swift */; };
 		A3D594132AA1914E000F2753 /* AchievementsDetailsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594122AA1914E000F2753 /* AchievementsDetailsSheetView.swift */; };
-		A3D5941F2AA32F29000F2753 /* AppMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5941E2AA32F29000F2753 /* AppMode.swift */; };
-		A3D594212AA32FAB000F2753 /* AppModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594202AA32FAB000F2753 /* AppModeViewModel.swift */; };
+		A3D5941F2AA32F29000F2753 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5941E2AA32F29000F2753 /* Application.swift */; };
+		A3D594212AA32FAB000F2753 /* ApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D594202AA32FAB000F2753 /* ApplicationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A318182C2AA48B580097F901 /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
 		A3D593C52A9F3B55000F2753 /* DiceKing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiceKing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D593C82A9F3B55000F2753 /* DiceKingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceKingApp.swift; sourceTree = "<group>"; };
 		A3D593CA2A9F3B55000F2753 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,8 +67,8 @@
 		A3D5940E2AA0F8F6000F2753 /* TutorialContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialContentView.swift; sourceTree = "<group>"; };
 		A3D594102AA0FD93000F2753 /* PointDetailsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDetailsSheetView.swift; sourceTree = "<group>"; };
 		A3D594122AA1914E000F2753 /* AchievementsDetailsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsDetailsSheetView.swift; sourceTree = "<group>"; };
-		A3D5941E2AA32F29000F2753 /* AppMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMode.swift; sourceTree = "<group>"; };
-		A3D594202AA32FAB000F2753 /* AppModeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModeViewModel.swift; sourceTree = "<group>"; };
+		A3D5941E2AA32F29000F2753 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		A3D594202AA32FAB000F2753 /* ApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +186,8 @@
 		A3D593EF2AA063CC000F2753 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A3D5941E2AA32F29000F2753 /* AppMode.swift */,
+				A3D5941E2AA32F29000F2753 /* Application.swift */,
+				A318182C2AA48B580097F901 /* Round.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -201,7 +204,7 @@
 		A3D594142AA31A3A000F2753 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				A3D594202AA32FAB000F2753 /* AppModeViewModel.swift */,
+				A3D594202AA32FAB000F2753 /* ApplicationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -302,12 +305,13 @@
 				A3D593E92AA05CB9000F2753 /* LeaderboardView.swift in Sources */,
 				A3D5940F2AA0F8F6000F2753 /* TutorialContentView.swift in Sources */,
 				A3D593CB2A9F3B55000F2753 /* ContentView.swift in Sources */,
-				A3D594212AA32FAB000F2753 /* AppModeViewModel.swift in Sources */,
+				A3D594212AA32FAB000F2753 /* ApplicationViewModel.swift in Sources */,
 				A3D594012AA0A8A8000F2753 /* LosingView.swift in Sources */,
 				A3D593C92A9F3B55000F2753 /* DiceKingApp.swift in Sources */,
 				A3D593D82A9F4129000F2753 /* NameInputView.swift in Sources */,
-				A3D5941F2AA32F29000F2753 /* AppMode.swift in Sources */,
+				A3D5941F2AA32F29000F2753 /* Application.swift in Sources */,
 				A3D593EB2AA05CD3000F2753 /* TutorialView.swift in Sources */,
+				A318182D2AA48B580097F901 /* Round.swift in Sources */,
 				A3D593E22AA05681000F2753 /* GameView.swift in Sources */,
 				A3D594112AA0FD93000F2753 /* PointDetailsSheetView.swift in Sources */,
 				A3D593F92AA09496000F2753 /* OddOrEvenOptionView.swift in Sources */,

@@ -1,9 +1,18 @@
+//
+//  Round.swift
+//  DiceKing
+//
+//  Created by Thu Nguyen  on 03/09/2023.
+//
+
+import Foundation
+
 struct Round {
-    var turnPoints: [Int]
-    var currentLevel: Int
-    
-    init(turnPoints: [Int], currentLevel: Int) {
-        self.turnPoints = turnPoints
-        self.currentLevel = currentLevel
+    var points: [Int]
+    var expDiff: Int?
+    var isWon: Bool?
+
+    init() {
+        self.points = []
     }
 }

@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct SettingsView: View {
-
-    @EnvironmentObject var appModeVM: AppModeViewModel
-
+    
+    @EnvironmentObject var applicationVM: ApplicationViewModel
+    
     var body: some View {
         ZStack {
             Color("blue")
                 .edgesIgnoringSafeArea(.all)
-                
+            
             VStack {
                 Text("Settings")
                     .font(.system(size: 50).weight(.bold))
                     .foregroundColor(Color("yellow"))
                     .padding(.bottom, 30)
-
+                
                 Spacer()
                 // MARK: GAME MODE
                 VStack (alignment: .leading, spacing: 0) {
@@ -33,33 +33,25 @@ struct SettingsView: View {
                         .font(.system(size: 20).weight(.semibold))
                 }
                 
-                HStack (spacing: 30) {
-                    Button {
-                        appModeVM.setGameModeTo2Dices()
-                    } label: {
-                        Text("2 dices")
-                            .font(.system(size: 20).weight(.heavy))
-                            .foregroundColor(Color("yellow"))
-                            .frame(width: 120, height: 40)
-                            .background(Color("red").opacity(appModeVM.appMode.gameMode == "2 dices" ? 1 : 0.5))
-                            .cornerRadius(10)
-                            .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 30) {
+                        ForEach([1, 2, 3, 4, 5, 6], id: \.self) { diceCount in
+                            Button {
+                                applicationVM.setDices(dices: diceCount)
+                            } label: {
+                                Text("\(diceCount) dices")
+                                    .font(.system(size: 20).weight(.heavy))
+                                    .foregroundColor(Color("yellow"))
+                                    .frame(width: 120, height: 40)
+                                    .background(Color("red").opacity(applicationVM.getDices().count == diceCount ? 1 : 0.5))
+                                    .cornerRadius(10)
+                                    .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
+                                    .disabled(applicationVM.getDices().count == diceCount)
+                            }
+                        }
                     }
-                    
-                    Button {
-                        appModeVM.setGameModeTo3Dices()
-                    } label: {
-                        Text("3 dices")
-                            .font(.system(size: 20).weight(.heavy))
-                            .foregroundColor(Color("yellow"))
-                            .frame(width: 120, height: 40)
-                            .background(Color("red").opacity(appModeVM.appMode.gameMode == "3 dices" ? 1 : 0.5))
-                            .cornerRadius(10)
-                            .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                    }
-                    
                 }
-
+                
                 // MARK: DARK MODE
                 VStack (alignment: .leading, spacing: 0) {
                     Text("Dark mode")
@@ -69,52 +61,60 @@ struct SettingsView: View {
                         .foregroundColor(Color("yellow").opacity(0.9))
                         .font(.system(size: 20).weight(.semibold))
                 }
-
+                
                 HStack (spacing: 30) {
                     Button {
-                        appModeVM.setColorSchemeToLight()
+                        applicationVM.setLightMode()
                     } label: {
                         Text("Light")
                             .font(.system(size: 20).weight(.heavy))
                             .foregroundColor(Color("yellow"))
                             .frame(width: 120, height: 40)
-                            .background(Color("red").opacity(appModeVM.appMode.colorScheme == .light ? 1 : 0.5))
+                            .background(Color("red").opacity(applicationVM.application.colorScheme == .light ? 1 : 0.5))
                             .cornerRadius(10)
                             .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
                     }
-
+                    
                     Button {
-                        appModeVM.setColorSchemeToDark()
+                        applicationVM.setDarkMode()
                     } label: {
                         Text("Dark")
                             .font(.system(size: 20).weight(.heavy))
                             .foregroundColor(Color("yellow"))
                             .frame(width: 120, height: 40)
-                            .background(Color("red").opacity(appModeVM.appMode.colorScheme == .dark ? 1 : 0.5))
+                            .background(Color("red").opacity(applicationVM.application.colorScheme == .dark ? 1 : 0.5))
                             .cornerRadius(10)
                             .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
                     }
-
+                    
                 }
-
+                
                 Spacer()
-
-
+                
+                
                 // MARK: RESET
                 Button {
-                        // game logic
-                    } label: {
-                        Text("Switch account")
-                            .font(.system(size: 20).weight(.heavy))
-                            .foregroundColor(Color("yellow"))
-                            .frame(width: 200, height: 50)
-                            .background(Color("red").opacity(1))
-                            .cornerRadius(10)
-                            .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                    }
+                    // switch account
+                } label: {
+                    Text("Switch account")
+                        .font(.system(size: 20).weight(.heavy))
+                        .foregroundColor(Color("yellow"))
+                        .frame(width: 200, height: 50)
+                        .background(Color("red").opacity(1))
+                        .cornerRadius(10)
+                        .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
+                }
             }
             .frame(height: 600)
         }
     }
 }
 
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .preferredColorScheme(.dark)
+        ContentView()
+            .preferredColorScheme(.light)
+    }
+}

@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var appModeVM = AppModeViewModel()
+    @StateObject var applicationVM = ApplicationViewModel()
     
     var body: some View {
-        NavigationView {
-            NameInputView()
-        }
-        .environmentObject(appModeVM)
-        .preferredColorScheme(appModeVM.appMode.colorScheme)
+            WelcomeView()
+        .environmentObject(applicationVM)
+        .preferredColorScheme(applicationVM.application.colorScheme)
     }
 }
 
