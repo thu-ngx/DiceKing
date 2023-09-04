@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct RangeOptionView: View {
-    @EnvironmentObject var applicationVM: ApplicationViewModel
-
-    var dices: Int = 2
-    var selectedRange: Int = 0
+    @EnvironmentObject var gameVM: GameViewModel
     
     var body: some View {
         VStack (spacing: 0) {
@@ -30,17 +27,16 @@ struct RangeOptionView: View {
             
             //MARK: 3 OPTIONS
             HStack (spacing: 12) {
-                ForEach(applicationVM.getRanges().indices, id: \.self) { index in
-                    let range = applicationVM.getRanges()[index]
+                ForEach(gameVM.getRanges(), id: \.self) { range in
                     Button {
-                        applicationVM.setSelectedRange(num: index)
+                        gameVM.setSelectedRange(range: range)
                     } label: {
                         Text("\(range[0]) - \(range[1])")
                             .font(.system(size: 20).weight(.heavy))
                             .foregroundColor(Color("yellow"))
                             .frame(width: 110)
                             .padding(.vertical, 5)
-                            .background(Color("red").opacity(index == applicationVM.getSelectedRange() ? 1 : 0.5))
+                            .background(Color("red").opacity(range == gameVM.getSelectedRange() ? 1 : 0.5))
                             .cornerRadius(10)
                             .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
                     }
@@ -52,8 +48,8 @@ struct RangeOptionView: View {
     }
 }
 
-struct RangeOptionView_Previews: PreviewProvider {
-    static var previews: some View {
-        RangeOptionView()
-    }
-}
+//struct RangeOptionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RangeOptionView()
+//    }
+//}

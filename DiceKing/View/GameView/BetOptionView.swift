@@ -10,7 +10,7 @@ import SwiftUI
 struct BetOptionView: View {
     @Binding var isShowingBetOption: Bool
     
-    @EnvironmentObject var applicationVM: ApplicationViewModel
+    @EnvironmentObject var gameVM: GameViewModel
     
     var body: some View {
         ZStack {
@@ -41,7 +41,7 @@ struct BetOptionView: View {
                         .padding(0)
                     
                     // MARK: RANGE
-                    RangeOptionView(selectedRange: applicationVM.getSelectedRange())
+                    RangeOptionView()
                     
                     // MARK: ODD OR EVEN
                     OddOrEvenOptionView()
@@ -50,7 +50,6 @@ struct BetOptionView: View {
                     
                     // MARK: BET BUTTON
                     Button {
-                        applicationVM.setIsBetted(value: true)
                         isShowingBetOption = false
                     } label: {
                         Text("Bet")
@@ -73,8 +72,10 @@ struct BetOptionView: View {
 
 
 
-//struct BetOptionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BetOptionView()
-//    }
-//}
+struct BetOptionView_Previews: PreviewProvider {
+    static var previews: some View {
+        @State var isShowing = true
+        BetOptionView(isShowingBetOption: $isShowing)
+            .environmentObject(GameViewModel())
+    }
+}

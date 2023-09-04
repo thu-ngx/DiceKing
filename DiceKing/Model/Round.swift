@@ -7,14 +7,25 @@
 
 import Foundation
 
-struct Round {
-    var startingPoint: Int
-    var points: [Int]
-    var expDiff: Int?
+class Round {
+    var startingCoins: Int = 50
+    var totalTurns: Int = 3
+    var expDiff: Int? = nil
 
-    init() {
-        self.startingPoint = 50
-        self.points = [0, 0, 0]
-        self.expDiff = nil
+    var turns: [Turn] = [Turn()]
+
+    func getLatestTurn() -> Turn {
+        return turns.last!
+    }
+
+    func isFinished() -> Bool {
+        // Check if all turns are finished
+        for turn in turns {
+            if !turn.isFinished() {
+                return false
+            }
+        }
+
+        return true
     }
 }

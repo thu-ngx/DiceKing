@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OddOrEvenOptionView: View {
-    @EnvironmentObject var applicationVM: ApplicationViewModel
+    @EnvironmentObject var gameVM: GameViewModel
     
     var body: some View {
         VStack (spacing: 0) {
@@ -21,7 +21,7 @@ struct OddOrEvenOptionView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(height: 40)
-                Text(applicationVM.getIsEvenNumber() == nil ? "0" : "5")
+                Text(gameVM.getOddOrEvenBet() == nil ? "0" : "5")
                     .foregroundColor(Color("blue")) .font(.system(size: 26, weight: .semibold))
                 Spacer()
             }
@@ -29,45 +29,45 @@ struct OddOrEvenOptionView: View {
             //MARK: 3 OPTIONS
             HStack (spacing: 12) {
                 Button {
-                    applicationVM.resetDiceType()
+                    gameVM.resetDiceTypeBet()
                 } label: {
                     Text("All")
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
                         .frame(width: 110)
                         .padding(.vertical, 5)
-                        .background(Color("red").opacity(applicationVM.getIsEvenNumber() == nil ? 1 : 0.5))
+                        .background(Color("red").opacity(gameVM.getOddOrEvenBet() == nil ? 1 : 0.5))
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                        .disabled(applicationVM.getIsEvenNumber() == nil)
+                        .disabled(gameVM.getOddOrEvenBet() == nil)
                 }
                 
                 Button {
-                    applicationVM.setOddNumber()
+                    gameVM.betOnOddSum()
                 } label: {
                     Text("Odd")
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
                         .frame(width: 110)
                         .padding(.vertical, 5)
-                        .background(Color("red").opacity(applicationVM.getIsEvenNumber() == false ? 1 : 0.5))
+                        .background(Color("red").opacity(gameVM.getOddOrEvenBet() == false ? 1 : 0.5))
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                        .disabled(applicationVM.getIsEvenNumber() == false)
+                        .disabled(gameVM.getOddOrEvenBet() == false)
                 }
                 
                 Button {
-                    applicationVM.setEvenNumber()
+                    gameVM.betOnEvenSum()
                 } label: {
                     Text("Even")
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
                         .frame(width: 110)
                         .padding(.vertical, 5)
-                        .background(Color("red").opacity(applicationVM.getIsEvenNumber() == true ? 1 : 0.5))
+                        .background(Color("red").opacity(gameVM.getOddOrEvenBet() == true ? 1 : 0.5))
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                        .disabled(applicationVM.getIsEvenNumber() == true)
+                        .disabled(gameVM.getOddOrEvenBet() == true)
                 }
                 
             }

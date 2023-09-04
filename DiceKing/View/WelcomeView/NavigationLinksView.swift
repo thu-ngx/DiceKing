@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NavigationLinksView: View {
-    @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var gameVM: GameViewModel
     
     // Define a struct to hold label and destination information
     struct Destination {
@@ -18,7 +18,7 @@ struct NavigationLinksView: View {
     
     var body: some View {
         VStack(spacing: 15) {            ForEach([
-            Destination(label: appVM.getIsResumable() ? "Resume" : "Start", destination: AnyView(GameView())),
+            Destination(label: gameVM.getStartLabel(), destination: AnyView(GameView())),
             Destination(label: "Tutorial", destination: AnyView(TutorialView())),
             Destination(label: "Leaderboard", destination: AnyView(LeaderboardView())),
             Destination(label: "Settings", destination: AnyView(SettingsView()))
@@ -33,11 +33,6 @@ struct NavigationLinksView: View {
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(1), radius: 5, x: 0, y: 5)
             }
-            // }.simultaneousGesture(TapGesture().onEnded{
-            //     if (destination.label == "Start") {
-            //         appVM.startRound()
-            //     }
-            // })
         }
         }
     }
@@ -46,5 +41,6 @@ struct NavigationLinksView: View {
 struct NavigationLinksView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationLinksView()
+            .environmentObject(GameViewModel())
     }
 }

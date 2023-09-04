@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var applicationVM = ApplicationViewModel()
+    @StateObject var appVM = ApplicationViewModel()
+    @StateObject var gameVM = GameViewModel()
     
     var body: some View {
             WelcomeView()
-        .environmentObject(applicationVM)
-        .preferredColorScheme(applicationVM.application.colorScheme)
+        .environmentObject(appVM)
+        .environmentObject(gameVM)
+        .preferredColorScheme(appVM.getColorScheme())
     }
 }
 
@@ -22,7 +24,5 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .preferredColorScheme(.dark)
-        ContentView()
-            .preferredColorScheme(.light)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GameView: View {
     // MARK: app mode
-    @EnvironmentObject var applicationVM: ApplicationViewModel
+    @EnvironmentObject var gameVM: GameViewModel
     
     // MARK: check showing bet option & result view
     @State var isShowingBetOption = false
@@ -19,14 +19,6 @@ struct GameView: View {
     // MARK: check bg blur
     func isBackGroundBlur() -> Bool {
         return isShowingBetOption || isShowingLosingView || isShowingWinningView
-    }
-    
-    func getDiceNames(dices: [Int]) -> [String] {
-        var names: [String] = []
-        for dice in dices {
-            names.append("Dice \(dice)")
-        }
-        return names
     }
     
     var body: some View {
@@ -41,13 +33,13 @@ struct GameView: View {
                 
                 
                 // MARK: DICES
-                DicesView(diceNames: getDiceNames(dices: applicationVM.getDices()))
+                DicesView(diceNames: gameVM.gm.currentRound.turns.last!.getDiceNames())
                 
                 Spacer()
                 
                 VStack (spacing: 5)  {
                     // MARK: BET AMOUNT
-                    applicationVM.getIsBetted() ?
+                    gameVM.isBetted() ?
                     HStack (spacing: 0) {
                         Text("Bet")
                             .foregroundColor(Color("yellow")) .font(.system(size: 26, weight: .semibold))
@@ -55,25 +47,25 @@ struct GameView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 40)
-                        Text(applicationVM.getIsEvenNumber() == nil ? "10" : "15")
+                        Text(gameVM.getTotalBetLabel())
                             .foregroundColor(Color("yellow")) .font(.system(size: 26, weight: .semibold))
                     } : nil
                     
                     // MARK: BET / ROLL
                     Button {
-                        if (applicationVM.getIsBetted()) {
-                            applicationVM.rollDices()
+                        if (gameVM.isBetted()) {
+                            gameVM.rollDices()
                             
-                            if (applicationVM.getCurrentPoint() <= 0) {
-                                isShowingLosingView = true
-                            } else if (applicationVM.getIsWin()) {
-                                isShowingWinningView = true
-                            }
+                            // if (appVM.getCurrentPoint() <= 0) {
+                            //     isShowingLosingView = true
+                            // } else if (appVM.getIsWin()) {
+                            //     isShowingWinningView = true
+                            // }
                         } else {
                             isShowingBetOption = true
                         }
                     } label: {
-                        Text(applicationVM.getIsBetted() ? "Roll" : "Bet")
+                        Text(gameVM.getRollOrBetLabel())
                             .font(.system(size: 40).weight(.heavy))
                             .foregroundColor(Color("yellow"))
                             .padding(.horizontal, 50)
@@ -87,7 +79,7 @@ struct GameView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 50)
-                        Text("\(applicationVM.getCurrentPoint())")
+                        Text("\(gameVM.getCurrentPoints())")
                             .foregroundColor(Color("yellow")) .font(.system(size: 30, weight: .bold))
                     }
                     
@@ -133,9 +125,9 @@ struct DicesView: View {
         }
     }
 }
-
-struct GameView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//
+//struct GameView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}

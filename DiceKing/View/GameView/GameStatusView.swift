@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct GameStatusView: View {
-    @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var gameVM: GameViewModel
     
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
                 // Implement for each loop using indices
-                ForEach(appVM.getLastRound()!.points.indices) { index in
-                    GameStatusCircle(point: appVM.getLastRound()!.points[index])
+                ForEach(gameVM.getLatestTurns().indices) { index in
+                    GameStatusCircle(point: gameVM.getLatestTurns()[index].point)
                 }
             }
         }

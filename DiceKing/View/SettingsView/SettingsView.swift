@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @EnvironmentObject var applicationVM: ApplicationViewModel
+    @EnvironmentObject var gameVM: GameViewModel
     
     var body: some View {
         ZStack {
@@ -23,78 +23,16 @@ struct SettingsView: View {
                     .padding(.bottom, 30)
                 
                 Spacer()
-                // MARK: GAME MODE
-                VStack (alignment: .leading, spacing: 0) {
-                    Text("Game mode")
-                        .foregroundColor(Color("yellow"))
-                        .font(.system(size: 30).weight(.semibold))
-                    Text("This will change your bet options")
-                        .foregroundColor(Color("yellow").opacity(0.9))
-                        .font(.system(size: 20).weight(.semibold))
-                }
                 
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 30) {
-                        ForEach([1, 2, 3, 4, 5, 6], id: \.self) { diceCount in
-                            Button {
-                                applicationVM.setDices(dices: diceCount)
-                            } label: {
-                                Text("\(diceCount) dices")
-                                    .font(.system(size: 20).weight(.heavy))
-                                    .foregroundColor(Color("yellow"))
-                                    .frame(width: 120, height: 40)
-                                    .background(Color("red").opacity(applicationVM.getDices().count == diceCount ? 1 : 0.5))
-                                    .cornerRadius(10)
-                                    .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                                    .disabled(applicationVM.getDices().count == diceCount)
-                            }
-                        }
-                    }
-                }
-                
-                // MARK: DARK MODE
-                VStack (alignment: .leading, spacing: 0) {
-                    Text("Dark mode")
-                        .foregroundColor(Color("yellow"))
-                        .font(.system(size: 30).weight(.semibold))
-                    Text("This will change the app's theme")
-                        .foregroundColor(Color("yellow").opacity(0.9))
-                        .font(.system(size: 20).weight(.semibold))
-                }
-                
-                HStack (spacing: 30) {
-                    Button {
-                        applicationVM.setLightMode()
-                    } label: {
-                        Text("Light")
-                            .font(.system(size: 20).weight(.heavy))
-                            .foregroundColor(Color("yellow"))
-                            .frame(width: 120, height: 40)
-                            .background(Color("red").opacity(applicationVM.application.colorScheme == .light ? 1 : 0.5))
-                            .cornerRadius(10)
-                            .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                    }
-                    
-                    Button {
-                        applicationVM.setDarkMode()
-                    } label: {
-                        Text("Dark")
-                            .font(.system(size: 20).weight(.heavy))
-                            .foregroundColor(Color("yellow"))
-                            .frame(width: 120, height: 40)
-                            .background(Color("red").opacity(applicationVM.application.colorScheme == .dark ? 1 : 0.5))
-                            .cornerRadius(10)
-                            .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                    }
-                    
-                }
+                GameModeSwitcher()
+                AppThemeSwitcherView()
                 
                 Spacer()
                 
                 
                 // MARK: RESET
                 Button {
-                    applicationVM.resetAll()
+                    gameVM.resetAll()
                 } label: {
                     Text("Reset to default")
                         .font(.system(size: 20).weight(.heavy))
@@ -104,7 +42,7 @@ struct SettingsView: View {
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
                 }
-
+                
                 Button {
                     // switch account
                 } label: {
@@ -121,12 +59,16 @@ struct SettingsView: View {
         }
     }
 }
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            .preferredColorScheme(.dark)
-        ContentView()
-            .preferredColorScheme(.light)
-    }
-}
+//
+//struct SettingsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SettingsView()
+//            .environmentObject(ApplicationViewModel())
+//            .environmentObject(GameViewModel())
+//            .preferredColorScheme(.dark)
+//        SettingsView()
+//            .environmentObject(ApplicationViewModel())
+//            .environmentObject(GameViewModel())
+//            .preferredColorScheme(.light)
+//    }
+//}
