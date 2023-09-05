@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    @EnvironmentObject var appVM: ApplicationViewModel
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -31,22 +33,21 @@ struct WelcomeView: View {
                         .frame(height: 220)
                     
                     // MARK: PLAYER STATUS
+                    // appVM.hasUser() ? PlayerStatusView() : nil
                     PlayerStatusView()
-                    
                     
                     // MARK: NAV LINKS
                     NavigationLinksView()
                     
                     Spacer()
                 }
+                .blur(radius: appVM.hasUser() ? 0 : 5)
+            }
+            .overlay {
+                NameInputView()
+                    .opacity(appVM.hasUser() ? 0 : 1)
             }
         }
         .navigationBarHidden(true)
-    }
-}
-
-struct WelcomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        WelcomeView()
     }
 }

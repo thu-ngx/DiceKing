@@ -16,9 +16,9 @@ struct TutorialView: View {
         ZStack {
             Color("blue")
                 .edgesIgnoringSafeArea(.all)
-            VStack {
+            ScrollView {
                 // MARK: TITLE
-                Text("How to play")
+                Text("Tutorial")
                     .font(.system(size: 50).weight(.bold))
                     .foregroundColor(Color("yellow"))
                     .padding(.bottom, 30)
@@ -26,42 +26,32 @@ struct TutorialView: View {
                 // MARK: CONTENT
                 TutorialContentView()
                 
-                
-                // MARK: EXTRA INFO
-                HStack {
-                    
-                    
-                    // MARK: POINTS DETAILS
+                LazyVGrid(columns: [GridItem()], spacing: 8) {
                     Button(action: {
                         showPointDetailsSheet = true
                     }) {
                         Text("Levels & Exp")
                             .font(.system(size: 18).weight(.heavy))
                             .foregroundColor(Color("blue"))
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 10)
+                            .frame(maxWidth: .infinity, minHeight: 40)
                             .background(Color("yellow"))
                             .cornerRadius(10)
                     }
                     .sheet(isPresented: $showPointDetailsSheet) {  PointDetailsSheetView(isPresented: $showPointDetailsSheet)}
                     
-                    Spacer()
-                    
-                    // MARK: ACHIEVEMENT DETAILS
                     Button(action: {
                         showAchievementsDetailsSheet = true
                     }) {
                         Text("Achievements")
                             .font(.system(size: 18).weight(.heavy))
                             .foregroundColor(Color("blue"))
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 10)
+                            .frame(maxWidth: .infinity, minHeight: 40)
                             .background(Color("yellow"))
                             .cornerRadius(10)
                     }
                     .sheet(isPresented: $showAchievementsDetailsSheet) {  AchievementsDetailsSheetView(isPresented: $showAchievementsDetailsSheet)}
                 }
-                .padding(.vertical)
+                .frame(maxWidth: .infinity)
             }
             .padding(.horizontal, 30)
         }

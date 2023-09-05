@@ -57,19 +57,19 @@ class GameViewModel: ObservableObject {
     }
     
     func getDicesLabel() -> String {
-        return gm.currentRound.turns.last!.dices.map({ String($0) }).joined(separator: " ")
+        return gm.currentRound.turns.last?.dices.map({ String($0) }).joined(separator: " ") ?? "1"
     }
     
     func getPointLabel() -> String {
-        return String(gm.currentRound.turns.last!.point)
+        return String(gm.currentRound.turns.last?.point ?? 0)
     }
     
     func getOddOrEvenLabel() -> String {
-        return gm.currentRound.turns.last!.betOnEven == nil ? "All" : gm.currentRound.turns.last!.betOnEven! ? "Even" : "Odd"
+        return gm.currentRound.turns.last?.betOnEven == nil ? "All" : gm.currentRound.turns.last!.betOnEven! ? "Even" : "Odd"
     }
     
     func getRangeLabel() -> String {
-        return gm.currentRound.turns.last!.selectedRange == nil ? "No range selected" : "\(gm.currentRound.turns.last!.selectedRange![0]) - \(gm.currentRound.turns.last!.selectedRange![1])"
+        return gm.currentRound.turns.last?.selectedRange == nil ? "No range selected" : "\(gm.currentRound.turns.last!.selectedRange![0]) - \(gm.currentRound.turns.last!.selectedRange![1])"
     }
     
     func getTurnsLabel() -> String {
@@ -77,7 +77,7 @@ class GameViewModel: ObservableObject {
     }
     
     func getIsBettedLabel() -> String {
-        return gm.currentRound.turns.last!.isBetted ? "Yes" : "No"
+        return gm.currentRound.turns.last?.isBetted == true ? "Yes" : "No"
     }
     
     // MARK: Other
@@ -85,7 +85,7 @@ class GameViewModel: ObservableObject {
     func getRanges() -> [[Int]] {
         let numberOfRanges = 3
         
-        let dices = gm.currentRound.turns.last!.dices.count
+        let dices = gm.currentRound.turns.last?.dices.count ?? 0
         
         var ranges: [[Int]] = []
         
@@ -116,7 +116,7 @@ class GameViewModel: ObservableObject {
     }
     
     func getSelectedRangeIndex() -> Int? {
-        guard let selectedRange = gm.currentRound.turns.last!.selectedRange else {
+        guard let selectedRange = gm.currentRound.turns.last?.selectedRange else {
             return nil
         }
         
@@ -191,6 +191,10 @@ class GameViewModel: ObservableObject {
     func getDefaultDices() -> Int {
         return gm.defaultDices
     }
+
+    func isDefault() -> Bool {
+        return gm.defaultDices == 1
+    }
     
     func resetDiceTypeBet() {
         let lastTurnIndex = getLastTurnIndex()
@@ -255,7 +259,7 @@ class GameViewModel: ObservableObject {
     func rollDices(turnIndex: Int) {
         // Use DispatchQueue to delay the randomization of dices with combination of for loop and random values
         // to create an animation effect
-        let animationTurns = 20
+        let animationTurns = 10
         let animationDuration = 0.1
         let delayAfterAnimation = 0.5
         
@@ -292,8 +296,8 @@ class GameViewModel: ObservableObject {
         )
     }
     
-    func createNewRound() -> Round {
-        let lastRound = gm.pastRounds.last
+    func createNewRound(user: User) -> Round {
+        let lastRound = user.rounds.last
         
         let newStartingCoins = lastRound?.startingCoins ?? 50
         let newTotalTurns = lastRound?.totalTurns ?? 3
@@ -308,7 +312,7 @@ class GameViewModel: ObservableObject {
         )
     }
     
-    func startNewTurn() {
+    func startNewTurn(app: ApplicationViewModel) {
         // If current turn is still less than total turns, create a new turn
         if gm.currentRound.turns.count < gm.currentRound.totalTurns {
             let newTurn = createNewTurn(dices: nil)
@@ -317,11 +321,21 @@ class GameViewModel: ObservableObject {
         
         // If current turn is equal to total turns, create a new round
         else {
-            gm.pastRounds.append(gm.currentRound)
+            app.addRound(round: gm.currentRound)
             
-            let newRound = createNewRound()
+            let newRound = createNewRound(user: app.getUser()!)
             gm.currentRound = newRound
         }
+    }
+
+    func handleRoundWin(app: ApplicationViewModel) {
+        // Add exp
+        app.addUserExp(exp: 20)
+    }
+
+    func handleRoundLose(app: ApplicationViewModel) {
+        // Remove exp
+        app.removeUserExp(exp: 10)
     }
     
     func getSelectedRange() -> [Int]? {
@@ -356,10 +370,6 @@ class GameViewModel: ObservableObject {
         return coins + coinsDiff
     }
     
-    func getAllRounds() -> [Round] {
-        return gm.pastRounds + [gm.currentRound]
-    }
-    
     func setSelectedRange(range: [Int]) {
         let lastTurnIndex = getLastTurnIndex()
         gm.currentRound.turns[lastTurnIndex].selectedRange = range
@@ -377,6 +387,6 @@ class GameViewModel: ObservableObject {
     }
     
     func resetAll() {
-        gm = GameManager()
+        gm.defaultDices = 1
     }
 }

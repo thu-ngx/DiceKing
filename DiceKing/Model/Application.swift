@@ -9,5 +9,10 @@ import Foundation
 import SwiftUI
 
 struct Application {
+    var currentUser: User? = nil
+    var currentUserName: String = "Thu"
+    var showAccountSwitcher = false
+    
+    var locale: String = "en"
     var colorScheme: ColorScheme = .dark
 }

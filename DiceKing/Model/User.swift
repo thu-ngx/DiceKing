@@ -1,0 +1,15 @@
+//
+//  User.swift
+//  DiceKing
+//
+//  Created by Thu Nguyen  on 05/09/2023.
+//
+
+import Foundation
+
+struct User {
+    var name: String
+    var exp: Int = 0
+    var badges: [Badge] = []
+    var rounds: [Round] = []
+}

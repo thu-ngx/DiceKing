@@ -9,10 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var appVM = ApplicationViewModel()
+    @StateObject var dbVM = DatabaseViewModel()
     @StateObject var gameVM = GameViewModel()
     
     var body: some View {
             WelcomeView()
+        .environmentObject(dbVM)
         .environmentObject(appVM)
         .environmentObject(gameVM)
         .preferredColorScheme(appVM.getColorScheme())

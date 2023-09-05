@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct WinningView: View {
+    @EnvironmentObject var appVM: ApplicationViewModel
     @EnvironmentObject var gameVM: GameViewModel
     @Binding var isShowingWinningView: Bool
     
     var body: some View {
         Button {
-            gameVM.startNewTurn()
+            gameVM.handleRoundWin(app: appVM)
+            gameVM.startNewTurn(app: appVM)
             isShowingWinningView = false
         } label: {
             ZStack {

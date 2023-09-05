@@ -10,7 +10,7 @@ import SwiftUI
 struct OtherSettingsView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
     @EnvironmentObject var gameVM: GameViewModel
-
+    
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
             VStack (alignment: .leading, spacing: 0) {
@@ -28,13 +28,14 @@ struct OtherSettingsView: View {
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
                         .frame(maxWidth: .infinity, minHeight: 40)
-                        .background(Color("red").opacity(1))
+                        .background(Color("red").opacity(appVM.isDefault() && gameVM.isDefault() ? 0.5 : 1))
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
                 }
+                .disabled(appVM.isDefault() && gameVM.isDefault())
                 
-                Button {
-                    // switch account
+                appVM.hasUser() ? Button {
+                    appVM.application.showAccountSwitcher = true
                 } label: {
                     Text("Switch account")
                         .font(.system(size: 20).weight(.heavy))
@@ -43,7 +44,7 @@ struct OtherSettingsView: View {
                         .background(Color("red").opacity(1))
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                }
+                } : nil
             }
             .frame(maxWidth: .infinity)
         }

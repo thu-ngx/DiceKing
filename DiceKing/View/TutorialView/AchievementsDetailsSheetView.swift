@@ -11,12 +11,12 @@ struct AchievementsDetailsSheetView: View {
     @Binding var isPresented: Bool
     
     let badges: [Badge] = [
-        Badge(name: "Newbie", description: "Take your first steps into the dice world", imageName: "Newbie"),
-        Badge(name: "Lucky 7s", description: "Roll a total of 7 with the 2 dice", imageName: "Lucky_7s"),
-        Badge(name: "Snake eyes", description: "Roll double 1s", imageName: "Snake_Eyes"),
-        Badge(name: "Grandmaster", description: "You've reached level 5 mastery of the dice", imageName: "Grandmaster"),
-        Badge(name: "Victory", description: "Win 3 turns in a row", imageName: "Victory"),
-        Badge(name: "Straight dices", description: "Rolling a straight (sequence like 3,4,5)", imageName: "Straight_Dices")
+        Badge(name: "Newbie", description: "Take your first steps into the dice world", image: "Newbie"),
+        Badge(name: "Lucky 7s", description: "Roll a total of 7 with the 2 dice", image: "Lucky_7s"),
+        Badge(name: "Snake eyes", description: "Roll double 1s", image: "Snake_Eyes"),
+        Badge(name: "Grandmaster", description: "You've reached level 5 mastery of the dice", image: "Grandmaster"),
+        Badge(name: "Victory", description: "Win 3 turns in a row", image: "Victory"),
+        Badge(name: "Straight dices", description: "Rolling a straight (sequence like 3,4,5)", image: "Straight_Dices")
     ]
     
     var body: some View {
@@ -44,7 +44,7 @@ struct AchievementsDetailsSheetView: View {
                 ScrollView {
                     VStack (alignment: .leading, spacing: 18) {
                         ForEach(badges, id: \.name) { badge in
-                            BadgeView(imgName: badge.imageName, name: badge.name, description: badge.description)
+                            BadgeView(image: badge.image, name: badge.name, description: badge.description)
                         }
                     }
                 }
@@ -56,22 +56,15 @@ struct AchievementsDetailsSheetView: View {
     }
 }
 
-struct Badge {
-    var name: String
-    var description: String
-    var imageName: String
-}
-
 // MARK: BADGE VIEW
 struct BadgeView : View {
-
-    var imgName: String
+    var image: String
     var name: String
     var description: String
-
+    
     var body: some View {
         HStack (spacing: 12) {
-                Image("\(imgName)")
+            Image("\(image)")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 70)
@@ -80,17 +73,9 @@ struct BadgeView : View {
                     .font(.system(size: 25).weight(.bold))
                 Text("\(description)")
                     .font(.system(size: 18).weight(.medium))
-            } 
+            }
         }
         .foregroundColor(Color("yellow"))
         
     }
 }
-
-
-
-//struct AchievementsDetailsSheetView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AchievementsDetailsSheetView()
-//    }
-//}

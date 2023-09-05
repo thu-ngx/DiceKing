@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var appVM: ApplicationViewModel
+    
     var body: some View {
         ZStack {
             Color("blue")
@@ -24,11 +26,16 @@ struct SettingsView: View {
                 // DebugView()
                 GameModeSwitcher()
                 AppThemeSwitcherView()
+                LanguageSwitcherView()
                 
                 Spacer()
                 OtherSettingsView()
             }
             .padding(.horizontal, 30)
+            .blur(radius: appVM.getShowAccountSwitcher() ? 5 : 0)
+        }.overlay {
+            NameInputView()
+            .opacity(appVM.getShowAccountSwitcher() ? 1 : 0)
         }
     }
 }

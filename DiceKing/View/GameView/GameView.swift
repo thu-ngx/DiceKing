@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameView: View {
     // MARK: app mode
+    @EnvironmentObject var appVM: ApplicationViewModel
     @EnvironmentObject var gameVM: GameViewModel
     
     // MARK: check showing bet option & result view
@@ -48,7 +49,6 @@ struct GameView: View {
                 
                 VStack (spacing: 5)  {
                     // MARK: BET AMOUNT
-                    
                     HStack (spacing: 0) {
                         Text(gameVM.isBetted() ? "Betted" : "Set a bet to continue...")
                             .foregroundColor(Color("yellow")) .font(.system(size: 26, weight: .semibold))
@@ -68,7 +68,7 @@ struct GameView: View {
                             } else if (gameVM.isWon()) {
                                 isShowingWinningView = true
                             } else {
-                                gameVM.startNewTurn()
+                                gameVM.startNewTurn(app: appVM)
                             }
                         } else if (gameVM.isBetted()) {
                             gameVM.rollDices(turnIndex: currentIndex)
@@ -141,9 +141,3 @@ struct DicesView: View {
         }
     }
 }
-//
-//struct GameView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}

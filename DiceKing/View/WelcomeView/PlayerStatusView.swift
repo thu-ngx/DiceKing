@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct PlayerStatusView: View {
+    @EnvironmentObject var appVM: ApplicationViewModel
+
     var body: some View {
         HStack {
-            Text("Name")
+            Text(appVM.getUser()?.name ?? "Unknown")
                 .font(.system(size: 32).weight(.heavy))
             Spacer()
             VStack(alignment: .leading) {
-                Text("Level 1")
-                Text("Exp 90/100")
+                // Text("Level 1")
+                Text("Exp: \(appVM.getUser()?.exp ?? 0)")
             }
             .font(.system(size: 27).weight(.heavy))
         }
