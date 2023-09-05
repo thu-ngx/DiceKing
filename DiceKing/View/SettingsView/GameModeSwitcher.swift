@@ -39,6 +39,7 @@ struct GameModeSwitcher: View {
             }
             .frame(maxWidth: .infinity)
         }
+        .padding(.bottom, 30)
     }
 }
 

@@ -10,16 +10,13 @@ import SwiftUI
 struct OtherSettingsView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
     @EnvironmentObject var gameVM: GameViewModel
-    
+
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
             VStack (alignment: .leading, spacing: 0) {
-                Text("Game mode")
+                Text("Other settings")
                     .foregroundColor(Color("yellow"))
                     .font(.system(size: 30).weight(.semibold))
-                Text("This will change your bet options")
-                    .foregroundColor(Color("yellow").opacity(0.9))
-                    .font(.system(size: 20).weight(.semibold))
             }
             
             LazyVGrid(columns: [GridItem()], spacing: 8) {
@@ -50,6 +47,7 @@ struct OtherSettingsView: View {
             }
             .frame(maxWidth: .infinity)
         }
+        .padding(.bottom, 30)
     }
 }
 

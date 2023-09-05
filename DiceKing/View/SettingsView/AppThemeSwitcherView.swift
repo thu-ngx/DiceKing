@@ -50,6 +50,7 @@ struct AppThemeSwitcherView: View {
             }
             .frame(maxWidth: .infinity)
         }
+        .padding(.bottom, 30)
     }
 }
 
