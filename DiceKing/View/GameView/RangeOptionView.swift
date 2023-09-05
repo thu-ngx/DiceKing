@@ -10,6 +10,14 @@ import SwiftUI
 struct RangeOptionView: View {
     @EnvironmentObject var gameVM: GameViewModel
     
+    func compareRanges(range1: [Int]?, range2: [Int]?) -> Bool {
+        if (range1 == nil || range2 == nil) {
+            return false
+        }
+        
+        return range1?[0] == range2?[0] && range1?[1] == range2?[1]
+    }
+    
     var body: some View {
         VStack (spacing: 0) {
             //MARK: TITLE
@@ -36,7 +44,7 @@ struct RangeOptionView: View {
                             .foregroundColor(Color("yellow"))
                             .frame(width: 110)
                             .padding(.vertical, 5)
-                            .background(Color("red").opacity(range == gameVM.getSelectedRange() ? 1 : 0.5))
+                            .background(Color("red").opacity(compareRanges(range1: range, range2: gameVM.gm.currentRound.turns.last?.selectedRange ?? gameVM.getRanges()[gameVM.getSelectedRangeIndex() ?? 0]) ? 1 : 0.5))
                             .cornerRadius(10)
                             .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
                     }
@@ -48,8 +56,9 @@ struct RangeOptionView: View {
     }
 }
 
-//struct RangeOptionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RangeOptionView()
-//    }
-//}
+struct RangeOptionView_Previews: PreviewProvider {
+    static var previews: some View {
+        RangeOptionView()
+            .environmentObject(GameViewModel())
+    }
+}

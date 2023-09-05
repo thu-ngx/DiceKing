@@ -10,6 +10,7 @@
 		A318182D2AA48B580097F901 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318182C2AA48B580097F901 /* Round.swift */; };
 		A354AE6B2AA5E4AB002049AF /* AppThemeSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354AE6A2AA5E4AB002049AF /* AppThemeSwitcherView.swift */; };
 		A354AE6D2AA5E51F002049AF /* GameModeSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354AE6C2AA5E51F002049AF /* GameModeSwitcher.swift */; };
+		A354AE6F2AA6E7FE002049AF /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354AE6E2AA6E7FE002049AF /* DebugView.swift */; };
 		A3A5F55B2AA5AE3900652284 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A5F55A2AA5AE3900652284 /* Turn.swift */; };
 		A3A5F5612AA5B4FF00652284 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A5F5602AA5B4FF00652284 /* GameViewModel.swift */; };
 		A3A5F5632AA5B53B00652284 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A5F5622AA5B53B00652284 /* GameManager.swift */; };
@@ -47,6 +48,7 @@
 		A318182C2AA48B580097F901 /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
 		A354AE6A2AA5E4AB002049AF /* AppThemeSwitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeSwitcherView.swift; sourceTree = "<group>"; };
 		A354AE6C2AA5E51F002049AF /* GameModeSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeSwitcher.swift; sourceTree = "<group>"; };
+		A354AE6E2AA6E7FE002049AF /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		A3A5F55A2AA5AE3900652284 /* Turn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn.swift; sourceTree = "<group>"; };
 		A3A5F5602AA5B4FF00652284 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		A3A5F5622AA5B53B00652284 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				A3D593E62AA05C98000F2753 /* SettingsView.swift */,
 				A354AE6A2AA5E4AB002049AF /* AppThemeSwitcherView.swift */,
 				A354AE6C2AA5E51F002049AF /* GameModeSwitcher.swift */,
+				A354AE6E2AA6E7FE002049AF /* DebugView.swift */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				A3D593C92A9F3B55000F2753 /* DiceKingApp.swift in Sources */,
 				A3D593D82A9F4129000F2753 /* NameInputView.swift in Sources */,
 				A3D5941F2AA32F29000F2753 /* Application.swift in Sources */,
+				A354AE6F2AA6E7FE002049AF /* DebugView.swift in Sources */,
 				A3D593EB2AA05CD3000F2753 /* TutorialView.swift in Sources */,
 				A318182D2AA48B580097F901 /* Round.swift in Sources */,
 				A3D593E22AA05681000F2753 /* GameView.swift in Sources */,

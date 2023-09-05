@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SettingsView: View {
-    
     @EnvironmentObject var gameVM: GameViewModel
     
     var body: some View {
@@ -24,6 +23,7 @@ struct SettingsView: View {
                 
                 Spacer()
                 
+                DebugView()
                 GameModeSwitcher()
                 AppThemeSwitcherView()
                 

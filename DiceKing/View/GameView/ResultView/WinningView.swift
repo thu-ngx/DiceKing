@@ -8,34 +8,35 @@
 import SwiftUI
 
 struct WinningView: View {
-    @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var gameVM: GameViewModel
     @Binding var isShowingWinningView: Bool
     
     var body: some View {
-        ZStack {
-            Color("transparent-green")
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                Text("VICTORY")
-                    .font(.system(size: 93).weight(.bold))
-                    .foregroundColor(Color("bright-yellow"))
-                    .rotationEffect(.degrees(-35))
-                    .shadow(color: Color("yellow").opacity(0.3), radius: 10, x: 0, y: 2)
-                    .offset(y:-100)
-                 Text("+20 Exp")
-                    .font(.system(size: 50).weight(.semibold))
-                    .foregroundColor(Color("yellow"))
-                    .offset(y:-50)
-                Button {
-                    isShowingWinningView = false
-                } label: {
+        Button {
+            gameVM.startNewTurn()
+            isShowingWinningView = false
+        } label: {
+            ZStack {
+                Color("transparent-green")
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack {
+                    Text("VICTORY")
+                        .font(.system(size: 93).weight(.bold))
+                        .foregroundColor(Color("bright-yellow"))
+                        .rotationEffect(.degrees(-35))
+                        .shadow(color: Color("yellow").opacity(0.3), radius: 10, x: 0, y: 2)
+                        .offset(y:-100)
+                    Text("+20 Exp")
+                        .font(.system(size: 50).weight(.semibold))
+                        .foregroundColor(Color("yellow"))
+                        .offset(y:-50)
                     Text("Tap to continue")
                         .font(.system(size: 30).weight(.medium))
                         .foregroundColor(Color("yellow"))
                         .offset(y:50)
                 }
-
+                
             }
         }
     }

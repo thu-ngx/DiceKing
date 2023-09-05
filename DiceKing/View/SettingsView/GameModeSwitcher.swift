@@ -25,7 +25,7 @@ struct GameModeSwitcher: View {
             HStack(spacing: 30) {
                 ForEach([1, 2, 3, 4, 5, 6], id: \.self) { diceCount in
                     Button {
-                        gameVM.gm.defaultDices = diceCount
+                        gameVM.setDefaultDices(dices: diceCount)
                     } label: {
                         Text("\(diceCount) dices")
                             .font(.system(size: 20).weight(.heavy))

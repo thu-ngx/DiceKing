@@ -22,57 +22,73 @@ struct GameView: View {
     }
     
     var body: some View {
+        let currentIndex = gameVM.getLastTurnIndex()
+        
         ZStack {
             Color("blue")
                 .edgesIgnoringSafeArea(.all)
             VStack {
+                gameVM.isBetted() ?  HStack {
+                    VStack(alignment: .leading) {
+                        Text(gameVM.getBetRangeLabel())
+                        Text(gameVM.getBetTypeLabel())
+                    }
+                    .font(.system(size: 20).weight(.heavy))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .foregroundColor(Color("yellow"))
+                .padding(.horizontal, 30) : nil
                 
-                // MARK: PLAYER STATUS
-                PlayerStatusView()
                 Spacer()
                 
-                
                 // MARK: DICES
-                DicesView(diceNames: gameVM.gm.currentRound.turns.last!.getDiceNames())
+                DicesView(diceNames: gameVM.getDiceNames(turnIndex: currentIndex))
                 
                 Spacer()
                 
                 VStack (spacing: 5)  {
                     // MARK: BET AMOUNT
-                    gameVM.isBetted() ?
+                    
                     HStack (spacing: 0) {
-                        Text("Bet")
+                        Text(gameVM.isBetted() ? "Betted" : "Set a bet to continue...")
                             .foregroundColor(Color("yellow")) .font(.system(size: 26, weight: .semibold))
-                        Image("coins")
+                        gameVM.isBetted() ? Image("coins")
                             .resizable()
                             .scaledToFit()
-                            .frame(height: 40)
-                        Text(gameVM.getTotalBetLabel())
-                            .foregroundColor(Color("yellow")) .font(.system(size: 26, weight: .semibold))
-                    } : nil
+                            .frame(height: 40) : nil
+                        gameVM.isBetted() ? Text(gameVM.getTotalBetLabel())
+                            .foregroundColor(Color("yellow")) .font(.system(size: 26, weight: .semibold)) : nil
+                    }
                     
                     // MARK: BET / ROLL
                     Button {
-                        if (gameVM.isBetted()) {
-                            gameVM.rollDices()
-                            
-                            // if (appVM.getCurrentPoint() <= 0) {
-                            //     isShowingLosingView = true
-                            // } else if (appVM.getIsWin()) {
-                            //     isShowingWinningView = true
-                            // }
+                        if (gameVM.isTurnCompleted()) {
+                            if (gameVM.getCurrentPoints() < 0) {
+                                isShowingLosingView = true
+                            } else if (gameVM.isWon()) {
+                                isShowingWinningView = true
+                            } else {
+                                gameVM.startNewTurn()
+                            }
+                        } else if (gameVM.isBetted()) {
+                            gameVM.rollDices(turnIndex: currentIndex)
                         } else {
                             isShowingBetOption = true
                         }
                     } label: {
                         Text(gameVM.getRollOrBetLabel())
                             .font(.system(size: 40).weight(.heavy))
-                            .foregroundColor(Color("yellow"))
+                            .foregroundColor(Color("yellow").opacity(
+                                gameVM.gm.currentRound.turns.last!.isAnimating ? 0.5 : 1
+                            ))
                             .padding(.horizontal, 50)
                             .padding(.vertical, 10)
-                            .background(Color("red"))
+                            .background(Color("red").opacity(
+                                gameVM.gm.currentRound.turns.last!.isAnimating ? 0.5 : 1
+                            ))
                             .cornerRadius(10)
                     }
+                    .disabled(gameVM.gm.currentRound.turns.last!.isAnimating)
                     // MARK: CURRENT COINS
                     HStack (spacing: 0) {
                         Image("coins")

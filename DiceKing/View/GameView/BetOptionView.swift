@@ -50,6 +50,7 @@ struct BetOptionView: View {
                     
                     // MARK: BET BUTTON
                     Button {
+                        gameVM.completeBetting()
                         isShowingBetOption = false
                     } label: {
                         Text("Bet")

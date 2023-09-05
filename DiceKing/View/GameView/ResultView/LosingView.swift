@@ -8,34 +8,34 @@
 import SwiftUI
 
 struct LosingView: View {
-    @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var gameVM: GameViewModel
     @Binding var isShowingLosingView: Bool
     
     var body: some View {
-        ZStack {
-            Color("transparent-brown")
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                Text("LOSE")
-                    .font(.system(size: 145).weight(.bold))
-                    .foregroundColor(Color("bright-red"))
-                    .rotationEffect(.degrees(-35))
-                    .shadow(color: Color("red").opacity(0.3), radius: 10, x: 0, y: 2)
-                    .offset(y:-100)
-                 Text("-20 Exp")
-                    .font(.system(size: 50).weight(.semibold))
-                    .foregroundColor(Color("light-red"))
-                    .offset(y:-50)
-                Button {
-                    isShowingLosingView = false
-                } label: {
+        Button {
+            gameVM.startNewTurn()
+            isShowingLosingView = false
+        } label: {
+            ZStack {
+                Color("transparent-brown")
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack {
+                    Text("LOSE")
+                        .font(.system(size: 145).weight(.bold))
+                        .foregroundColor(Color("bright-red"))
+                        .rotationEffect(.degrees(-35))
+                        .shadow(color: Color("red").opacity(0.3), radius: 10, x: 0, y: 2)
+                        .offset(y:-100)
+                    Text("-20 Exp")
+                        .font(.system(size: 50).weight(.semibold))
+                        .foregroundColor(Color("light-red"))
+                        .offset(y:-50)
                     Text("Tap to continue")
                         .font(.system(size: 30).weight(.medium))
                         .foregroundColor(Color("light-red"))
                         .offset(y:50)
                 }
-
             }
         }
     }

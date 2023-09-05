@@ -17,12 +17,17 @@ struct NavigationLinksView: View {
     }
     
     var body: some View {
-        VStack(spacing: 15) {            ForEach([
+        var destinations = [
             Destination(label: gameVM.getStartLabel(), destination: AnyView(GameView())),
             Destination(label: "Tutorial", destination: AnyView(TutorialView())),
             Destination(label: "Leaderboard", destination: AnyView(LeaderboardView())),
             Destination(label: "Settings", destination: AnyView(SettingsView()))
-        ], id: \.label) { destination in
+        ]
+        
+        VStack(spacing: 15) {
+            ForEach(destinations.indices, id: \.self) { index in
+            let destination = destinations[index]
+                
             NavigationLink(destination: destination.destination) {
                 Text(destination.label)
                     .font(.system(size: 33).weight(.heavy))

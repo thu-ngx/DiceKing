@@ -16,6 +16,10 @@ class ApplicationViewModel: ObservableObject {
     func getColorScheme() -> ColorScheme {
         return application.colorScheme
     }
+
+    func getColorSchemeLabel() -> String {
+        return application.colorScheme == .dark ? "Dark" : "Light"
+    }
     
     // MARK: SETTER
 

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PlayerStatusView: View {
     var body: some View {
-
         HStack {
             Text("Name")
                 .font(.system(size: 32).weight(.heavy))
