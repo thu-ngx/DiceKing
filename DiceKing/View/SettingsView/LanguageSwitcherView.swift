@@ -59,6 +59,8 @@ struct LanguageSwitcherView: View {
 
 struct LanguageSwitcherView_Previews: PreviewProvider {
     static var previews: some View {
-        LanguageSwitcherView().environmentObject(ApplicationViewModel())
+        LanguageSwitcherView()
+            .environmentObject(ApplicationViewModel())
+            .environmentObject(AudioViewModel())
     }
 }

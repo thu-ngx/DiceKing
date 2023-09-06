@@ -81,6 +81,8 @@ struct GameView: View {
                         } else if (gameVM.isBetted()) {
                             audioVM.playRollSound()
                             gameVM.rollDices(db: dbVM, audio: audioVM, level:level, turnIndex: currentIndex)
+                        } else if (gameVM.isAutoBet()) {
+                            gameVM.handleAutoBet()
                         } else {
                             isShowingBetOption = true
                         }

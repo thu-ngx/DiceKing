@@ -8,17 +8,11 @@
 import SwiftUI
 
 struct AchievementsDetailsSheetView: View {
+    @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var dbVM: DatabaseViewModel
     @EnvironmentObject var audioVM: AudioViewModel
-    @Binding var isPresented: Bool
     
-    let badges: [Badge] = [
-        Badge(name: "Newbie", description: "Take your first steps into the dice world", image: "Newbie"),
-        Badge(name: "Lucky 7s", description: "Roll a total of 7 with the 2 dice", image: "Lucky_7s"),
-        Badge(name: "Snake eyes", description: "Roll double 1s", image: "Snake_Eyes"),
-        Badge(name: "Grandmaster", description: "You've reached level 5 mastery of the dice", image: "Grandmaster"),
-        Badge(name: "Victory", description: "Win 3 turns in a row", image: "Victory"),
-        Badge(name: "Straight dices", description: "Rolling a straight (sequence like 3,4,5)", image: "Straight_Dices")
-    ]
+    @Binding var isPresented: Bool
     
     var body: some View {
         ZStack {
@@ -45,8 +39,8 @@ struct AchievementsDetailsSheetView: View {
                 
                 ScrollView {
                     VStack (alignment: .leading, spacing: 18) {
-                        ForEach(badges, id: \.name) { badge in
-                            BadgeView(image: badge.image, name: badge.name, description: badge.description)
+                        ForEach(dbVM.getBadges(), id: \.name) { badge in
+                            BadgeView(badge: badge, unlocked: dbVM.hasBadge(user: appVM.application.currentUser!, badges: appVM.application.currentUser?.badges ?? [], badge: badge))
                         }
                     }
                 }
@@ -60,24 +54,32 @@ struct AchievementsDetailsSheetView: View {
 
 // MARK: BADGE VIEW
 struct BadgeView : View {
-    var image: String
-    var name: String
-    var description: String
+    var badge: Badge
+    var unlocked: Bool = false
     
     var body: some View {
         HStack (spacing: 12) {
-            Image("\(image)")
+            Image("\(badge.image)")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 70)
+                .opacity(unlocked ? 1 : 0.3)
+            
             VStack (alignment: .leading) {
-                Text("\(name)")
+                Text("\(badge.name)")
                     .font(.system(size: 25).weight(.bold))
-                Text("\(description)")
+                Text("\(badge.description)")
                     .font(.system(size: 18).weight(.medium))
             }
+            
+            Spacer()
+            
+            if unlocked {
+                Image(systemName: "checkmark")
+                    .font(.system(size: 30))
+                    .foregroundColor(Color("yellow"))
+            }
         }
-        .foregroundColor(Color("yellow"))
-        
+        .foregroundColor(Color("yellow").opacity(unlocked ? 1 : 0.3))
     }
 }

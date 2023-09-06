@@ -18,7 +18,8 @@ struct WinningView: View {
     var body: some View {
         Button {
             audioVM.playClickSound()
-            gameVM.handleRoundWin(app: appVM)
+            gameVM.handleRoundWin(db: dbVM, app: appVM)
+            appVM.saveUser(db: dbVM)
             gameVM.startNewTurn(db: dbVM, app: appVM)
             isShowingWinningView = false
         } label: {

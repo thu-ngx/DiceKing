@@ -8,33 +8,50 @@
 import SwiftUI
 
 struct LeaderboardView: View {
-    @State var isShowingDetails = false
+    @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var dbVM: DatabaseViewModel
+    
+    private let maxUsers = 99
     
     var body: some View {
         ZStack {
             Color("blue")
                 .edgesIgnoringSafeArea(.all)
-            VStack {
+            ScrollView {
                 Text("Leaderboard")
                     .font(.system(size: 50).weight(.bold))
                     .foregroundColor(Color("yellow"))
-                ScrollView {
-                    ForEach(0..<10) { _ in
-                        MemberRow()
+                
+                // Current user
+                appVM.application.currentUser != nil ?
+                MemberRow(user: appVM.application.currentUser!)
+                    .onTapGesture {
+                        appVM.setSelectedUser(user: appVM.application.currentUser!)
+                    }
+                : nil
+                
+                // Divider
+                Rectangle()
+                    .fill(Color("yellow"))
+                    .frame(width: 350, height: 2)
+                    .padding(.vertical, 10)
+                
+                // Main leaderboard
+                ForEach(dbVM.db.users.sorted(by: { $0.exp > $1.exp })
+                    .prefix(maxUsers), id: \.self) { user in
+                        MemberRow(user: user)
                             .onTapGesture {
-                                isShowingDetails.toggle()
+                                appVM.setSelectedUser(user: user)
                             }
                     }
-                }
-                .frame(height: 540)
-                .scrollIndicators(.hidden)
             }
+            .scrollIndicators(.hidden)
             .padding(.vertical, 30)
-            .blur(radius: isShowingDetails ? 10 : 0)
+            .blur(radius: appVM.getSelectedUser() != nil ? 10 : 0)
         }
         .overlay {
-            MemberDetailsView(isShowingDetails: $isShowingDetails)
-                .opacity(isShowingDetails  ? 1 :  0)
+            MemberDetailsView()
+                .opacity(appVM.getSelectedUser() != nil ? 1 :  0)
         }
     }
 }
@@ -42,5 +59,6 @@ struct LeaderboardView: View {
 struct LeaderboardView_Previews: PreviewProvider {
     static var previews: some View {
         LeaderboardView()
+            .environmentObject(DatabaseViewModel())
     }
 }

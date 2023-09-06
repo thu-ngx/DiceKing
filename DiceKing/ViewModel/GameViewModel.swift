@@ -84,7 +84,7 @@ class GameViewModel: ObservableObject {
     }
     
     // MARK: Other
-
+    
     func isAnimationEnabled() -> Bool {
         return gm.enableAnimation
     }
@@ -218,6 +218,38 @@ class GameViewModel: ObservableObject {
         gm.currentRound.turns[lastTurnIndex].betOnEven = false
     }
     
+    func handleAutoBet() {
+        if !gm.autoBet {
+            return
+        }
+        
+        // Randomly choose a range
+        let rangeIndex = Int.random(in: 0..<getRanges().count)
+        let range = getRanges()[rangeIndex]
+        
+        // Randomly choose odd or even, or nil
+        let oddOrEven = Int.random(in: 0...2) == 0 ? true : Int.random(in: 0...2) == 0 ? false : nil
+        
+        // Set the range and odd or even
+        let lastTurnIndex = getLastTurnIndex()
+        
+        gm.currentRound.turns[lastTurnIndex].selectedRange = range
+        gm.currentRound.turns[lastTurnIndex].betOnEven = oddOrEven
+        gm.currentRound.turns[lastTurnIndex].isBetted = true
+    }
+    
+    func isAutoBet() -> Bool {
+        return gm.autoBet
+    }
+    
+    func useManualBet() {
+        gm.autoBet = false
+    }
+    
+    func useAutoBet() {
+        gm.autoBet = true
+    }
+    
     func randomizeDices(turnIndex: Int) {
         // Randomize dices
         for i in 0..<gm.currentRound.turns[turnIndex].dices.count {
@@ -236,13 +268,13 @@ class GameViewModel: ObservableObject {
     func finalizeTurn(db: DatabaseViewModel, audio: AudioViewModel, level: Int, turnIndex: Int) {
         let sum = gm.currentRound.turns[turnIndex].dices.reduce(0, { $0 + $1 })
         var coins = 0
-
+        
         // Check if bet on range
         if let selectedRange = gm.currentRound.turns[turnIndex].selectedRange
             ?? getRanges().first
         {
             let coinDiff = db.getRangeBet(level: level)
-
+            
             if sum >= selectedRange[0] && sum <= selectedRange[1] {
                 coins += coinDiff
             } else {
@@ -253,7 +285,7 @@ class GameViewModel: ObservableObject {
         // Check if bet on even sum
         if let betOnEven = gm.currentRound.turns[turnIndex].betOnEven {
             let coinDiff = db.getOddOrEvenBet(level: level)
-
+            
             if ((sum % 2 == 0 && betOnEven) || (sum % 2 != 0 && !betOnEven)) {
                 coins += coinDiff
             } else {
@@ -263,7 +295,7 @@ class GameViewModel: ObservableObject {
         
         // Update coins
         gm.currentRound.turns[turnIndex].point = coins
-
+        
         if coins > 0 {
             audio.playRoundWonSound()
         } else {
@@ -365,16 +397,100 @@ class GameViewModel: ObservableObject {
         }
     }
     
-    func handleRoundWin(app: ApplicationViewModel) {
-        let exp = Constants.expPerWin
+    func handleRoundEnd(db: DatabaseViewModel, app: ApplicationViewModel, exp: Int) {
         app.addUserExp(exp: exp)
         gm.currentRound.bonusExp = exp
+        
+        // Check for badges
+        let user = app.getUser()!
+        let badges = db.getBadges()
+
+        let lastRound = gm.currentRound
+        let turns = lastRound.turns
+        let has3Turns = turns.count >= 3
+
+        print("Checking for badges...")
+        print("Dices: \(getDicesLabel())")
+        
+        // Check for NEWBIE badge
+        if !app.hasBadge(id: "NEWBIE") {
+            app.addBadge(id: "NEWBIE")
+            print("Added NEWBIE badge")
+        }
+        
+        // Check for GRANDMASTER badge
+        if !app.hasBadge(id: "GRANDMASTER") {
+            let (level, _) = db.getLevel(exp: user.exp)
+            if level >= 5 {
+                app.addBadge(id: "GRANDMASTER")
+                print("Added GRANDMASTER badge")
+            }
+        }
+        
+        // Check for Lucky 7 badge
+        if !app.hasBadge(id: "LUCKY7") {
+            // Check if any turn's dice sum is 7
+            if turns.contains(where: { $0.dices.reduce(0, { $0 + $1 }) == 7 }) {
+                app.addBadge(id: "LUCKY7")
+                print("Added LUCKY7 badge")
+            }
+        }
+        
+        // Check for Snake Eyes badge
+        if !app.hasBadge(id: "SNAKE_EYES") {
+            // Check if any turn has dice sum of 2 and only 2 dices
+            if turns.contains(where: { $0.dices.reduce(0, { $0 + $1 }) == 2 && $0.dices.count == 2 }) {
+                app.addBadge(id: "SNAKE_EYES")
+                print("Added SNAKE_EYES badge")
+            }
+        }
+        
+        // Check for Victorious badge
+        if !app.hasBadge(id: "VICTORIOUS") && has3Turns {
+            // Check if there is any 3 consecutive turns with point > 0
+            for i in 0..<(turns.count - 2) {
+                if turns[i].point > 0
+                    && turns[i + 1].point > 0
+                    && turns[i + 2].point > 0
+                {
+                    app.addBadge(id: "VICTORIOUS")
+                    print("Added VICTORIOUS badge")
+                    break
+                }
+            }
+        }
+        
+        // Check for Straight Dices badge
+        if !app.hasBadge(id: "STRAIGHT_DICES") && has3Turns {
+            // Check if there is 3 consecutive turns with dices in sequence (e.g. 3-4-5)
+            for i in 0..<(turns.count - 2) {
+                let dices = turns[i].dices
+                let nextDices = turns[i + 1].dices
+                let nextNextDices = turns[i + 2].dices
+                
+                if dices[0] + 1 == dices[1]
+                    && dices[1] + 1 == dices[2]
+                    && nextDices[0] + 1 == nextDices[1]
+                    && nextDices[1] + 1 == nextDices[2]
+                    && nextNextDices[0] + 1 == nextNextDices[1]
+                    && nextNextDices[1] + 1 == nextNextDices[2]
+                {
+                    app.addBadge(id: "STRAIGHT_DICES")
+                    print("Added STRAIGHT_DICES badge")
+                    break
+                }
+            }
+        }
     }
     
-    func handleRoundLose(app: ApplicationViewModel) {
+    func handleRoundWin(db: DatabaseViewModel, app: ApplicationViewModel) {
+        let exp = Constants.expPerWin
+        handleRoundEnd(db: db, app: app, exp: exp)
+    }
+    
+    func handleRoundLose(db: DatabaseViewModel, app: ApplicationViewModel) {
         let exp = Constants.expPerLose
-        app.addUserExp(exp: exp)
-        gm.currentRound.bonusExp = exp
+        handleRoundEnd(db: db, app: app, exp: exp)
     }
     
     func getSelectedRange() -> [Int]? {

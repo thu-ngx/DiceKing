@@ -8,7 +8,7 @@
 import Foundation
 
 struct Round {
-    var turns: [Turn] = [Turn()]
+    var turns: [Turn] = []
     var startingCoins: Int = 50
     var totalTurns: Int = 3
     var bonusExp: Int? = nil

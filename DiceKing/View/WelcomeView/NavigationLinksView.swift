@@ -18,7 +18,7 @@ struct NavigationLinksView: View {
     }
     
     var body: some View {
-        var destinations = [
+        let destinations = [
             Destination(label: gameVM.getStartLabel(), destination: AnyView(GameView())),
             Destination(label: "Tutorial", destination: AnyView(TutorialView())),
             Destination(label: "Leaderboard", destination: AnyView(LeaderboardView())),

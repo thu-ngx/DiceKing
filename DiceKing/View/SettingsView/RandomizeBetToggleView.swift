@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RandomizeBetToggleView: View {
-    @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var gameVM: GameViewModel
     @EnvironmentObject var audioVM: AudioViewModel
     
     var body: some View {
@@ -24,31 +24,31 @@ struct RandomizeBetToggleView: View {
             
             LazyVGrid(columns: [GridItem(), GridItem()], spacing: 8) {
                 Button {
-                    // appVM.useManualBet()
+                    gameVM.useManualBet()
                     audioVM.playClickSound()
                 } label: {
                     Text("Manual")
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
-                        .background(Color("red").opacity(appVM.application.locale == "en" ? 1 : 0.5))
+                        .background(Color("red").opacity(gameVM.isAutoBet() ? 0.5 : 1))
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                        .disabled(appVM.application.locale == "en")
+                        .disabled(!gameVM.isAutoBet())
                 }
                 
                 Button {
-                    // appVM.useAutoBet()
+                    gameVM.useAutoBet()
                     audioVM.playClickSound()
                 } label: {
                     Text("Automatic")
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
-                        .background(Color("red").opacity(appVM.application.locale == "vi" ? 1 : 0.5))
+                        .background(Color("red").opacity(gameVM.isAutoBet() ? 1 : 0.5))
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                        .disabled(appVM.application.locale == "vi")
+                        .disabled(gameVM.isAutoBet())
                 }
             }
             .frame(maxWidth: .infinity)

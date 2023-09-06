@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct MemberDetailsView: View {
-    @Binding var isShowingDetails: Bool
+    @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var dbVM: DatabaseViewModel
+
     var body: some View {
         ZStack {
             Color("blue").opacity(0.5)
@@ -20,8 +22,7 @@ struct MemberDetailsView: View {
                     HStack {
                         Spacer()
                         Button {
-                            // close view
-                            isShowingDetails = false
+                            appVM.resetSelectedUser()
                         } label: {
                             Image(systemName: "xmark")
                                 .foregroundColor(.black)
@@ -32,16 +33,16 @@ struct MemberDetailsView: View {
                     }
                     
                     //MARK: player name
-                    Text("nguyensusu")
+                    Text(appVM.getSelectedUser()?.name ?? "Player")
                         .font(.system(size: 35).weight(.bold))
                         .offset(y: -10)
                     
                     VStack(alignment: .leading, spacing: 5) {
                         //MARK: exp & level
                         HStack {
-                            Text("Exp: 80/100")
+                            Text(appVM.getUserExpLabel(db: dbVM, exp: appVM.getSelectedUser()?.exp ?? 0))
                             Spacer()
-                            Text("Level: 1")
+                            Text(appVM.getUserLevelLabel(db: dbVM, exp: appVM.getSelectedUser()?.exp ?? 0))
                         }
                         
                         //MARK: badges
@@ -51,10 +52,10 @@ struct MemberDetailsView: View {
                         }
                         
                         //MARK: games played
-                        Text("Games played: 20")
+                        Text("Games played: \(dbVM.getUserTotalGames(name: appVM.getSelectedUser()?.name))")
                         
                         //MARK: win percentage
-                        Text("Win percentage: 80%")
+                        Text("Win percentage: \(dbVM.getUserWinrateLabel(name: appVM.getSelectedUser()?.name))")
                     }
                     .font(.system(size: 25).weight(.medium))
                 }

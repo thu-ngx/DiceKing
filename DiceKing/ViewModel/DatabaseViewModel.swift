@@ -9,6 +9,23 @@ import Foundation
 
 class DatabaseViewModel: ObservableObject {
     @Published var db = Database()
+
+    private let badges: [Badge] = [
+        Badge(id: "NEWBIE", name: "Newbie", description: "Take your first steps into the dice world", image: "Newbie"),
+        Badge(id: "LUCKY7", name: "Lucky 7s", description: "Roll a total of 7 with the 2 or more dices", image: "Lucky_7s"),
+        Badge(id: "SNAKE_EYES", name: "Snake eyes", description: "Roll double 1s", image: "Snake_Eyes"),
+        Badge(id: "GRANDMASTER", name: "Grandmaster", description: "You've reached level 5 mastery of the dice", image: "Grandmaster"),
+        Badge(id: "VICTORIOUS", name: "Victorious", description: "Win 3 turns in a row", image: "Victory"),
+        Badge(id: "STRAIGHT_DICES", name: "Straight dices", description: "Rolling a straight (sequence like 3-4-5)", image: "Straight_Dices")
+    ]
+
+    func getUsers() -> [User] {
+        return db.users
+    }
+
+    func getBadges() -> [Badge] {
+        return badges
+    }
     
     func hasUser(name: String) -> Bool {
         return db.users.contains(where: { $0.name == name })
@@ -20,6 +37,78 @@ class DatabaseViewModel: ObservableObject {
     
     func getUser(name: String) -> User? {
         return db.users.first(where: { $0.name == name })
+    }
+
+    func getUserRanking(name: String) -> Int {
+        let user = getUser(name: name)
+        let users = getUsers()
+        let sortedUsers = users.sorted(by: { $0.exp > $1.exp })
+        return sortedUsers.firstIndex(where: { $0.name == user?.name })! + 1
+    }
+
+    func getUserRankingLabel(name: String) -> String {
+        let ranking = getUserRanking(name: name)
+        return String(ranking)
+    }
+
+    func getUserTotalGames(name: String?) -> Int {
+        if name == nil {
+            return 0
+        }
+
+        let user = getUser(name: name!)
+        return user?.rounds.count ?? 0
+    }
+
+    func getBadgeById(id: String) -> Badge {
+        return badges.first(where: { $0.id == id }) ?? Badge(
+            id: "NEWBIE",
+            name: "Newbie",
+            description: "Take your first steps into the dice world",
+            image: "Newbie"
+        )
+    }
+
+    func hasBadge(user: User, badges: [String], badge: Badge) -> Bool {
+        // If badge id is NEWBIE, return true, because everyone has this badge
+        if badge.id == "NEWBIE" {
+            return true
+        }
+
+        // If badge id is GRANDMASTER, check if user's level is 5 or higher
+        if badge.id == "GRANDMASTER" {
+            let level = getLevel(exp: user.exp).level
+            return level >= 5
+        }
+
+        // Otherwise, check if user's badges contains the badge id
+        return badges.contains(where: { $0 == badge.id })
+    }
+
+    func isRoundWon(round: Round) -> Bool {
+        // round is won if all turns' points are non-zero and turns.count is equal to totalTurns
+        return round.turns.count == round.totalTurns && round.turns.allSatisfy({ $0.point != 0 })
+    }
+
+    func getUserWinrate(name: String?) -> Double {
+        if name == nil {
+            return 0
+        }
+
+        let user = getUser(name: name!)
+        let totalGames = getUserTotalGames(name: name!)
+
+        if totalGames == 0 {
+            return 0
+        }
+
+        let totalWins = user?.rounds.filter({ isRoundWon(round: $0) }).count ?? 0
+        return Double(totalWins) / Double(totalGames)
+    }
+
+    func getUserWinrateLabel(name: String?) -> String {
+        let winrate = getUserWinrate(name: name)
+        return String(format: "%.2f", winrate * 100) + "%"
     }
     
     func getRound(user: User) -> Round {
@@ -105,38 +194,9 @@ class DatabaseViewModel: ObservableObject {
         
         return (level, expToNextLevel)
     }
-    
-    func getExpToNextLevel(level: Int) -> Int {
-        precondition(level > 0)
-        
-        var expToNextLevel = Constants.expPerLevel
-        
-        for _ in 2..<level {
-            expToNextLevel *= Constants.levelMultiplier
-        }
-        
-        return expToNextLevel
-    }
-    
-    func getExpFromLevel(level: Int) -> Int {
-        precondition(level > 0)
-        
-        var exp = 0
-        var expToNextLevel = Constants.expPerLevel
-        
-        for _ in 1..<level {
-            exp += expToNextLevel
-            expToNextLevel *= Constants.levelMultiplier
-        }
-        
-        return exp
-    }
-    
-    func getCurrentExp(exp: Int, level: Int) -> Int {
-        if level <= 1 {
-            return exp
-        }
-        
-        return exp - getExpFromLevel(level: level - 1)
+
+    func getProgress(exp: Int) -> Double {
+        let (_, expToNextLevel) = getLevel(exp: exp)
+        return Double(exp) / Double(expToNextLevel)
     }
 }

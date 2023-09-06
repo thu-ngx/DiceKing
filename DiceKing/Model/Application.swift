@@ -11,6 +11,9 @@ import SwiftUI
 struct Application {
     var currentUser: User? = nil
     var currentUserName: String = "Thu"
+
+    var selectedUser: User? = nil
+
     var showAccountSwitcher = false
     
     var locale: String = "en"

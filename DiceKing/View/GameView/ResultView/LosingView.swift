@@ -18,7 +18,8 @@ struct LosingView: View {
     var body: some View {
         Button {
             audioVM.playClickSound()
-            gameVM.handleRoundLose(app: appVM)
+            gameVM.handleRoundLose(db: dbVM, app: appVM)
+            appVM.saveUser(db: dbVM)
             gameVM.startNewTurn(db: dbVM, app: appVM)
             isShowingLosingView = false
         } label: {

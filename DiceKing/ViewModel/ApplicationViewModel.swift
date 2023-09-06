@@ -24,19 +24,42 @@ class ApplicationViewModel: ObservableObject {
     func getUserExpLabel(db: DatabaseViewModel, exp: Int) -> String {
         let (level, expToNextLevel) = db.getLevel(exp: exp)
         
-        let currentExp = db.getCurrentExp(exp: exp, level: level)
-
-        let currentExpLabel = String(currentExp)
+        let currentExpLabel = String(exp)
         let nextExpLabel = String(expToNextLevel)
 
-        return "\(currentExpLabel)/\(nextExpLabel) EXP"
+        return "\(currentExpLabel)/\(nextExpLabel) XP"
     }
 
     func getUserLevelLabel(db: DatabaseViewModel, exp: Int) -> String {
-        return "Level \(getUserLevel(db: db, exp: exp))"
+        return "Lvl \(getUserLevel(db: db, exp: exp))"
     }
     
     // MARK: SETTER
+
+    func addBadge(id: String) {
+        // If user already has the badge, don't add it
+        if (application.currentUser?.badges.contains(where: { $0 == id }) ?? false) {
+            return
+        }
+
+        application.currentUser?.badges.append(id)
+    }
+
+    func hasBadge(id: String) -> Bool {
+        return application.currentUser?.badges.contains(where: { $0 == id }) ?? false
+    }
+
+    func getSelectedUser() -> User? {
+        return application.selectedUser
+    }
+
+    func setSelectedUser(user: User) {
+        application.selectedUser = user
+    }
+
+    func resetSelectedUser() {
+        application.selectedUser = nil
+    }
 
     func setDarkMode() {
         application.colorScheme = .dark
@@ -81,12 +104,16 @@ class ApplicationViewModel: ObservableObject {
         application.currentUser?.exp -= exp
     }
 
+    func saveUser(db: DatabaseViewModel) {
+        db.saveUser(user: application.currentUser!)
+    }
+
     func loadUser(db: DatabaseViewModel, game: GameViewModel) {
         let name = application.currentUserName
 
         if (application.currentUser != nil) {
             application.currentUser?.rounds.append(game.gm.currentRound)
-            db.saveUser(user: application.currentUser!)
+            saveUser(db: db)
         }
 
         // Create new user if not exist
