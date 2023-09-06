@@ -1,5 +1,5 @@
 //
-//  AppThemeSwitcherView.swift
+//  RandomizeBetToggleView.swift
 //  DiceKing
 //
 //  Created by Thu Nguyen  on 04/09/2023.
@@ -7,45 +7,45 @@
 
 import SwiftUI
 
-struct AppThemeSwitcherView: View {
+struct RandomizeBetToggleView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
             VStack (alignment: .leading, spacing: 0) {
-                Text("Dark mode")
+                Text("Betting")
                     .foregroundColor(Color("yellow"))
                     .font(.system(size: 30).weight(.semibold))
-                Text("This will change the app's theme")
+                Text("Choose how to bet")
                     .foregroundColor(Color("yellow").opacity(0.9))
                     .font(.system(size: 20).weight(.semibold))
             }
             
             LazyVGrid(columns: [GridItem(), GridItem()], spacing: 8) {
                 Button {
-                    appVM.setLightMode()
+                    // appVM.useManualBet()
                 } label: {
-                    Text("Light")
+                    Text("Manual")
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
-                        .background(Color("red").opacity(appVM.application.colorScheme == .light ? 1 : 0.5))
+                        .background(Color("red").opacity(appVM.application.locale == "en" ? 1 : 0.5))
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                        .disabled(appVM.application.colorScheme == .light)
+                        .disabled(appVM.application.locale == "en")
                 }
                 
                 Button {
-                    appVM.setDarkMode()
+                    // appVM.useAutoBet()
                 } label: {
-                    Text("Dark")
+                    Text("Automatic")
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
-                        .background(Color("red").opacity(appVM.application.colorScheme == .dark ? 1 : 0.5))
+                        .background(Color("red").opacity(appVM.application.locale == "vi" ? 1 : 0.5))
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                        .disabled(appVM.application.colorScheme == .dark)
+                        .disabled(appVM.application.locale == "vi")
                 }
             }
             .frame(maxWidth: .infinity)
@@ -54,8 +54,8 @@ struct AppThemeSwitcherView: View {
     }
 }
 
-struct AppThemeSwitcherView_Previews: PreviewProvider {
+struct RandomizeBetToggleView_Previews: PreviewProvider {
     static var previews: some View {
-        AppThemeSwitcherView().environmentObject(ApplicationViewModel())
+        RandomizeBetToggleView().environmentObject(ApplicationViewModel())
     }
 }

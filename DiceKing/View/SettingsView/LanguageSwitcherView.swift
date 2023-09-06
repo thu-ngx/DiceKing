@@ -50,7 +50,7 @@ struct LanguageSwitcherView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .padding(.bottom, 30)
+        .padding(.bottom, 20)
     }
 }
 

@@ -13,10 +13,10 @@ struct GameModeSwitcher: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
             VStack (alignment: .leading, spacing: 0) {
-                Text("Game mode")
+                Text("Dices")
                     .foregroundColor(Color("yellow"))
                     .font(.system(size: 30).weight(.semibold))
-                Text("This will change your bet options")
+                Text("Choose how many dices to play")
                     .foregroundColor(Color("yellow").opacity(0.9))
                     .font(.system(size: 20).weight(.semibold))
             }
@@ -39,7 +39,7 @@ struct GameModeSwitcher: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .padding(.bottom, 30)
+        .padding(.bottom, 20)
     }
 }
 

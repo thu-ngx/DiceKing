@@ -25,6 +25,9 @@
 		A354AE882AA825AC002049AF /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A354AE822AA825AC002049AF /* background.mp3 */; };
 		A354AE8B2AA82654002049AF /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354AE8A2AA82654002049AF /* PlaySound.swift */; };
 		A354AE8D2AA84519002049AF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354AE8C2AA84519002049AF /* Constants.swift */; };
+		A354AE8F2AA87481002049AF /* AnimationToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354AE8E2AA87481002049AF /* AnimationToggleView.swift */; };
+		A354AE912AA87495002049AF /* AudioToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354AE902AA87495002049AF /* AudioToggleView.swift */; };
+		A354AE932AA874B1002049AF /* RandomizeBetToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354AE922AA874B1002049AF /* RandomizeBetToggleView.swift */; };
 		A3A5F55B2AA5AE3900652284 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A5F55A2AA5AE3900652284 /* Turn.swift */; };
 		A3A5F5612AA5B4FF00652284 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A5F5602AA5B4FF00652284 /* GameViewModel.swift */; };
 		A3A5F5632AA5B53B00652284 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A5F5622AA5B53B00652284 /* GameManager.swift */; };
@@ -77,6 +80,9 @@
 		A354AE822AA825AC002049AF /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 		A354AE8A2AA82654002049AF /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
 		A354AE8C2AA84519002049AF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A354AE8E2AA87481002049AF /* AnimationToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationToggleView.swift; sourceTree = "<group>"; };
+		A354AE902AA87495002049AF /* AudioToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioToggleView.swift; sourceTree = "<group>"; };
+		A354AE922AA874B1002049AF /* RandomizeBetToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomizeBetToggleView.swift; sourceTree = "<group>"; };
 		A3A5F55A2AA5AE3900652284 /* Turn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn.swift; sourceTree = "<group>"; };
 		A3A5F5602AA5B4FF00652284 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		A3A5F5622AA5B53B00652284 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
@@ -225,6 +231,9 @@
 				A354AE6C2AA5E51F002049AF /* GameModeSwitcher.swift */,
 				A354AE6E2AA6E7FE002049AF /* DebugView.swift */,
 				A354AE702AA71BE2002049AF /* OtherSettingsView.swift */,
+				A354AE8E2AA87481002049AF /* AnimationToggleView.swift */,
+				A354AE902AA87495002049AF /* AudioToggleView.swift */,
+				A354AE922AA874B1002049AF /* RandomizeBetToggleView.swift */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -390,7 +399,9 @@
 				A3D593DF2AA05621000F2753 /* NavigationLinksView.swift in Sources */,
 				A3D594132AA1914E000F2753 /* AchievementsDetailsSheetView.swift in Sources */,
 				A3D593E92AA05CB9000F2753 /* LeaderboardView.swift in Sources */,
+				A354AE932AA874B1002049AF /* RandomizeBetToggleView.swift in Sources */,
 				A3D5940F2AA0F8F6000F2753 /* TutorialContentView.swift in Sources */,
+				A354AE8F2AA87481002049AF /* AnimationToggleView.swift in Sources */,
 				A3D593CB2A9F3B55000F2753 /* ContentView.swift in Sources */,
 				A3D594212AA32FAB000F2753 /* ApplicationViewModel.swift in Sources */,
 				A3D594012AA0A8A8000F2753 /* LosingView.swift in Sources */,
@@ -410,6 +421,7 @@
 				A3D593F92AA09496000F2753 /* OddOrEvenOptionView.swift in Sources */,
 				A354AE6B2AA5E4AB002049AF /* AppThemeSwitcherView.swift in Sources */,
 				A3D593F52AA08115000F2753 /* BetOptionView.swift in Sources */,
+				A354AE912AA87495002049AF /* AudioToggleView.swift in Sources */,
 				A3D594072AA0BBA5000F2753 /* ProgressBar.swift in Sources */,
 				A354AE752AA71D6B002049AF /* User.swift in Sources */,
 				A3D594052AA0B825000F2753 /* MemberRow.swift in Sources */,

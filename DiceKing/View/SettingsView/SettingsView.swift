@@ -27,6 +27,9 @@ struct SettingsView: View {
                 GameModeSwitcher()
                 AppThemeSwitcherView()
                 LanguageSwitcherView()
+                AnimationToggleView()
+                AudioToggleView()
+                RandomizeBetToggleView()
                 
                 Spacer()
                 OtherSettingsView()
