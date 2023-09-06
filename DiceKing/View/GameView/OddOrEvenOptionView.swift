@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OddOrEvenOptionView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
     @EnvironmentObject var dbVM: DatabaseViewModel
     @EnvironmentObject var gameVM: GameViewModel
     
@@ -34,6 +35,7 @@ struct OddOrEvenOptionView: View {
             //MARK: 3 OPTIONS
             HStack (spacing: 12) {
                 Button {
+                    audioVM.playClickSound()
                     gameVM.resetDiceTypeBet()
                 } label: {
                     Text("All")
@@ -48,6 +50,7 @@ struct OddOrEvenOptionView: View {
                 }
                 
                 Button {
+                    audioVM.playClickSound()
                     gameVM.betOnOddSum()
                 } label: {
                     Text("Odd")
@@ -62,6 +65,7 @@ struct OddOrEvenOptionView: View {
                 }
                 
                 Button {
+                    audioVM.playClickSound()
                     gameVM.betOnEvenSum()
                 } label: {
                     Text("Even")
@@ -87,6 +91,7 @@ struct OddOrEvenOptionView_Previews: PreviewProvider {
         OddOrEvenOptionView()
             .environmentObject(ApplicationViewModel())
             .environmentObject(DatabaseViewModel())
+            .environmentObject(AudioViewModel())
             .environmentObject(GameViewModel())
     }
 }

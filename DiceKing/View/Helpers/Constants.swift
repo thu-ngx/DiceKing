@@ -13,7 +13,7 @@ struct Constants {
     static let levelMultiplier = 2
 
     // Turn
-    static let forceSingleTurn = true
+    static let forceSingleTurn = false
     static let maxTurns = 15
     static let maxCoins = 500
 
@@ -29,8 +29,7 @@ struct Constants {
     static let oddOrEvenBetPercentage = 0.2 // 20%
 
     // Animation
-    static let enableAnimation = false
-    static let defaultEnableAnimation = false
+    static let defaultEnableAnimation = true
     static let animationTurns = 10
     static let animationDuration = 0.1
     static let delayAfterAnimation = 0.5

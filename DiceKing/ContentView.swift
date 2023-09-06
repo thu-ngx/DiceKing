@@ -9,15 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var appVM = ApplicationViewModel()
+    @StateObject var audioVM = AudioViewModel()
     @StateObject var dbVM = DatabaseViewModel()
     @StateObject var gameVM = GameViewModel()
     
     var body: some View {
-            WelcomeView()
-        .environmentObject(dbVM)
-        .environmentObject(appVM)
-        .environmentObject(gameVM)
-        .preferredColorScheme(appVM.getColorScheme())
+        WelcomeView()
+            .environmentObject(dbVM)
+            .environmentObject(appVM)
+            .environmentObject(gameVM)
+            .environmentObject(audioVM)
+            .preferredColorScheme(appVM.getColorScheme())
+            .onAppear {
+                audioVM.playBGM()
+            }
     }
 }
 

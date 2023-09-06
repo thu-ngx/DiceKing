@@ -9,12 +9,15 @@ import SwiftUI
 
 struct LosingView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
     @EnvironmentObject var dbVM: DatabaseViewModel
     @EnvironmentObject var gameVM: GameViewModel
+
     @Binding var isShowingLosingView: Bool
     
     var body: some View {
         Button {
+            audioVM.playClickSound()
             gameVM.handleRoundLose(app: appVM)
             gameVM.startNewTurn(db: dbVM, app: appVM)
             isShowingLosingView = false
@@ -49,6 +52,7 @@ struct LosingView_Previews: PreviewProvider {
         LosingView(isShowingLosingView: .constant(true))
             .environmentObject(ApplicationViewModel())
             .environmentObject(DatabaseViewModel())
+            .environmentObject(AudioViewModel())
             .environmentObject(GameViewModel())
     }
 }

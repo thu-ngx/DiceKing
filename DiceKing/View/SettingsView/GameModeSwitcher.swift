@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameModeSwitcher: View {
     @EnvironmentObject var gameVM: GameViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
@@ -25,6 +26,7 @@ struct GameModeSwitcher: View {
                 ForEach(1...6, id: \.self) { diceCount in
                     Button {
                         gameVM.setDefaultDices(dices: diceCount)
+                        audioVM.playClickSound()
                     } label: {
                         Text("\(diceCount) dices")
                             .frame(maxWidth: .infinity, minHeight: 40)

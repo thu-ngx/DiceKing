@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NavigationLinksView: View {
     @EnvironmentObject var gameVM: GameViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
     
     // Define a struct to hold label and destination information
     struct Destination {
@@ -38,6 +39,9 @@ struct NavigationLinksView: View {
                     .cornerRadius(20)
                     .shadow(color: Color.black.opacity(1), radius: 5, x: 0, y: 5)
             }
+            .simultaneousGesture(TapGesture().onEnded {
+                audioVM.playClickSound()
+            })
         }
         }
     }
@@ -47,5 +51,6 @@ struct NavigationLinksView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationLinksView()
             .environmentObject(GameViewModel())
+            .environmentObject(AudioViewModel())
     }
 }

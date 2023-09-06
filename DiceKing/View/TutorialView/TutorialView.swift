@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TutorialView: View {
+    @EnvironmentObject var audioVM: AudioViewModel
     
     @State var showPointDetailsSheet = false
     @State var showAchievementsDetailsSheet = false
@@ -29,6 +30,7 @@ struct TutorialView: View {
                 LazyVGrid(columns: [GridItem()], spacing: 8) {
                     Button(action: {
                         showPointDetailsSheet = true
+                        audioVM.playClickSound()
                     }) {
                         Text("Levels & Exp")
                             .font(.system(size: 18).weight(.heavy))
@@ -41,6 +43,7 @@ struct TutorialView: View {
                     
                     Button(action: {
                         showAchievementsDetailsSheet = true
+                        audioVM.playClickSound()
                     }) {
                         Text("Achievements")
                             .font(.system(size: 18).weight(.heavy))

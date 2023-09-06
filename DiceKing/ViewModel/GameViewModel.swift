@@ -84,6 +84,10 @@ class GameViewModel: ObservableObject {
     }
     
     // MARK: Other
+
+    func isAnimationEnabled() -> Bool {
+        return gm.enableAnimation
+    }
     
     func getRanges() -> [[Int]] {
         let numberOfRanges = 3
@@ -229,7 +233,7 @@ class GameViewModel: ObservableObject {
         gm.currentRound.turns[turnIndex].isAnimating = false
     }
     
-    func finalizeTurn(db: DatabaseViewModel, level: Int, turnIndex: Int) {
+    func finalizeTurn(db: DatabaseViewModel, audio: AudioViewModel, level: Int, turnIndex: Int) {
         let sum = gm.currentRound.turns[turnIndex].dices.reduce(0, { $0 + $1 })
         var coins = 0
 
@@ -259,16 +263,22 @@ class GameViewModel: ObservableObject {
         
         // Update coins
         gm.currentRound.turns[turnIndex].point = coins
+
+        if coins > 0 {
+            audio.playRoundWonSound()
+        } else {
+            audio.playRoundLostSound()
+        }
     }
     
-    func rollDices(db: DatabaseViewModel, level: Int, turnIndex: Int) {
+    func rollDices(db: DatabaseViewModel, audio: AudioViewModel, level: Int, turnIndex: Int) {
         // Start the turn animation
         startAnimating(turnIndex: turnIndex)
         
         // initialize a new .now() every time the function is called
         let now = DispatchTime.now()
         
-        if (Constants.enableAnimation) {
+        if (gm.enableAnimation) {
             for i in 0..<(Constants.animationTurns + 1) {
                 let isDelayed = i == Constants.animationTurns
                 let delay = isDelayed ? Constants.delayAfterAnimation : 0
@@ -277,7 +287,7 @@ class GameViewModel: ObservableObject {
                 DispatchQueue.main.asyncAfter(deadline: now + duration) {
                     // If it's the last turn, finish the turn after the animation is done
                     if isDelayed {
-                        self.finalizeTurn(db: db, level: level, turnIndex: turnIndex)
+                        self.finalizeTurn(db: db, audio: audio, level: level, turnIndex: turnIndex)
                         self.stopAnimating(turnIndex: turnIndex)
                     } else {
                         self.randomizeDices(turnIndex: turnIndex)
@@ -286,7 +296,7 @@ class GameViewModel: ObservableObject {
             }
         } else {
             self.randomizeDices(turnIndex: turnIndex)
-            self.finalizeTurn(db: db, level: level, turnIndex: turnIndex)
+            self.finalizeTurn(db: db, audio: audio, level: level, turnIndex: turnIndex)
             self.stopAnimating(turnIndex: turnIndex)
         }
     }

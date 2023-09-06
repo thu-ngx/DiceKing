@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RandomizeBetToggleView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
@@ -24,6 +25,7 @@ struct RandomizeBetToggleView: View {
             LazyVGrid(columns: [GridItem(), GridItem()], spacing: 8) {
                 Button {
                     // appVM.useManualBet()
+                    audioVM.playClickSound()
                 } label: {
                     Text("Manual")
                         .frame(maxWidth: .infinity, minHeight: 40)
@@ -37,6 +39,7 @@ struct RandomizeBetToggleView: View {
                 
                 Button {
                     // appVM.useAutoBet()
+                    audioVM.playClickSound()
                 } label: {
                     Text("Automatic")
                         .frame(maxWidth: .infinity, minHeight: 40)

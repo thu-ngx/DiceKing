@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WelcomeView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
 
     var body: some View {
         NavigationView {
@@ -49,5 +50,13 @@ struct WelcomeView: View {
             }
         }
         .navigationBarHidden(true)
+    }
+}
+
+struct WelcomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        WelcomeView()
+            .environmentObject(ApplicationViewModel())
+            .environmentObject(AudioViewModel())
     }
 }

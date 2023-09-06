@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PointDetailsSheetView: View {
+    @EnvironmentObject var audioVM: AudioViewModel
     @Binding var isPresented: Bool
     
     var body: some View {
@@ -24,6 +25,7 @@ struct PointDetailsSheetView: View {
                             // MARK: CLOSE SHEET
                             isPresented = false
                         }
+                        audioVM.playClickSound()
                     } label: {
                         Image(systemName: "xmark")
                             .font(.system(size: 30))

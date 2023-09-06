@@ -9,12 +9,15 @@ import SwiftUI
 
 struct WinningView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
     @EnvironmentObject var dbVM: DatabaseViewModel
     @EnvironmentObject var gameVM: GameViewModel
+
     @Binding var isShowingWinningView: Bool
     
     var body: some View {
         Button {
+            audioVM.playClickSound()
             gameVM.handleRoundWin(app: appVM)
             gameVM.startNewTurn(db: dbVM, app: appVM)
             isShowingWinningView = false

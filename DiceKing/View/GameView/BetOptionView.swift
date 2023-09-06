@@ -11,6 +11,7 @@ struct BetOptionView: View {
     @Binding var isShowingBetOption: Bool
     
     @EnvironmentObject var gameVM: GameViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
     
     var body: some View {
         ZStack {
@@ -24,6 +25,7 @@ struct BetOptionView: View {
                         Spacer()
                         Button {
                             isShowingBetOption = false
+                            audioVM.playClickSound()
                         } label: {
                             Image(systemName: "xmark")
                                 .foregroundColor(.black)
@@ -48,6 +50,7 @@ struct BetOptionView: View {
                     
                     // MARK: BET BUTTON
                     Button {
+                        audioVM.playClickSound()
                         gameVM.completeBetting()
                         isShowingBetOption = false
                     } label: {
@@ -76,5 +79,6 @@ struct BetOptionView_Previews: PreviewProvider {
         @State var isShowing = true
         BetOptionView(isShowingBetOption: $isShowing)
             .environmentObject(GameViewModel())
+            .environmentObject(AudioViewModel())
     }
 }

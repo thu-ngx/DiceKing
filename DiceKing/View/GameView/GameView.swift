@@ -10,6 +10,7 @@ import SwiftUI
 struct GameView: View {
     // MARK: app mode
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
     @EnvironmentObject var dbVM: DatabaseViewModel
     @EnvironmentObject var gameVM: GameViewModel
     
@@ -66,16 +67,20 @@ struct GameView: View {
                     
                     // MARK: BET / ROLL
                     Button {
+                        audioVM.playClickSound()
                         if (gameVM.isTurnCompleted()) {
                             if (gameVM.getCurrentPoints() < 0) {
                                 isShowingLosingView = true
+                                audioVM.playGameLostSound()
                             } else if (gameVM.isWon()) {
                                 isShowingWinningView = true
+                                audioVM.playGameWonSound()
                             } else {
                                 gameVM.startNewTurn(db: dbVM, app: appVM)
                             }
                         } else if (gameVM.isBetted()) {
-                            gameVM.rollDices(db: dbVM, level:level, turnIndex: currentIndex)
+                            audioVM.playRollSound()
+                            gameVM.rollDices(db: dbVM, audio: audioVM, level:level, turnIndex: currentIndex)
                         } else {
                             isShowingBetOption = true
                         }

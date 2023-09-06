@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LanguageSwitcherView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
@@ -24,6 +25,7 @@ struct LanguageSwitcherView: View {
             LazyVGrid(columns: [GridItem(), GridItem()], spacing: 8) {
                 Button {
                     appVM.useEnglish()
+                    audioVM.playClickSound()
                 } label: {
                     Text("English")
                         .frame(maxWidth: .infinity, minHeight: 40)
@@ -37,6 +39,7 @@ struct LanguageSwitcherView: View {
                 
                 Button {
                     appVM.useVietnamese()
+                    audioVM.playClickSound()
                 } label: {
                     Text("Vietnamese")
                         .frame(maxWidth: .infinity, minHeight: 40)

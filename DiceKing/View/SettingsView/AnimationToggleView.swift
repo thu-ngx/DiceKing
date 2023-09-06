@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AnimationToggleView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
+    @EnvironmentObject var gameVM: GameViewModel
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
@@ -23,29 +25,31 @@ struct AnimationToggleView: View {
             
             LazyVGrid(columns: [GridItem(), GridItem()], spacing: 8) {
                 Button {
-                    // appVM.enableAnimation()
+                    gameVM.gm.enableAnimation = true
+                    audioVM.playClickSound()
                 } label: {
                     Text("Enable")
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
-                        .background(Color("red").opacity(appVM.application.locale == "en" ? 1 : 0.5))
+                        .background(Color("red").opacity(gameVM.isAnimationEnabled() ? 1 : 0.5))
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                        .disabled(appVM.application.locale == "en")
+                        .disabled(gameVM.isAnimationEnabled())
                 }
                 
                 Button {
-                    // appVM.disableAnimation()
+                    gameVM.gm.enableAnimation = false
+                    audioVM.playClickSound()
                 } label: {
                     Text("Disable")
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
-                        .background(Color("red").opacity(appVM.application.locale == "vi" ? 1 : 0.5))
+                        .background(Color("red").opacity(gameVM.isAnimationEnabled() ? 0.5 : 1))
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-                        .disabled(appVM.application.locale == "vi")
+                        .disabled(!gameVM.isAnimationEnabled())
                 }
             }
             .frame(maxWidth: .infinity)
@@ -56,6 +60,9 @@ struct AnimationToggleView: View {
 
 struct AnimationToggleView_Previews: PreviewProvider {
     static var previews: some View {
-        AnimationToggleView().environmentObject(ApplicationViewModel())
+        AnimationToggleView()
+            .environmentObject(ApplicationViewModel())
+            .environmentObject(AudioViewModel())
+            .environmentObject(GameViewModel())
     }
 }

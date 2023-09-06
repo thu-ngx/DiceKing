@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AppThemeSwitcherView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
     
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
@@ -24,6 +25,7 @@ struct AppThemeSwitcherView: View {
             LazyVGrid(columns: [GridItem(), GridItem()], spacing: 8) {
                 Button {
                     appVM.setLightMode()
+                    audioVM.playClickSound()
                 } label: {
                     Text("Light")
                         .frame(maxWidth: .infinity, minHeight: 40)
@@ -37,6 +39,7 @@ struct AppThemeSwitcherView: View {
                 
                 Button {
                     appVM.setDarkMode()
+                    audioVM.playClickSound()
                 } label: {
                     Text("Dark")
                         .frame(maxWidth: .infinity, minHeight: 40)

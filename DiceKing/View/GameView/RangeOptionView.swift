@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RangeOptionView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
     @EnvironmentObject var dbVM: DatabaseViewModel
     @EnvironmentObject var gameVM: GameViewModel
     
@@ -42,6 +43,7 @@ struct RangeOptionView: View {
             HStack (spacing: 12) {
                 ForEach(gameVM.getRanges(), id: \.self) { range in
                     Button {
+                        audioVM.playClickSound()
                         gameVM.setSelectedRange(range: range)
                     } label: {
                         Text("\(range[0]) - \(range[1])")
@@ -66,6 +68,7 @@ struct RangeOptionView_Previews: PreviewProvider {
         RangeOptionView()
             .environmentObject(ApplicationViewModel())
             .environmentObject(DatabaseViewModel())
+            .environmentObject(AudioViewModel())
             .environmentObject(GameViewModel())
     }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AchievementsDetailsSheetView: View {
+    @EnvironmentObject var audioVM: AudioViewModel
     @Binding var isPresented: Bool
     
     let badges: [Badge] = [
@@ -28,6 +29,7 @@ struct AchievementsDetailsSheetView: View {
                     Spacer()
                     Button {
                         isPresented = false
+                        audioVM.playClickSound()
                     } label: {
                         Image(systemName: "xmark")
                             .font(.system(size: 30))

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OtherSettingsView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
     @EnvironmentObject var dbVM: DatabaseViewModel
     @EnvironmentObject var gameVM: GameViewModel
     
@@ -22,6 +23,7 @@ struct OtherSettingsView: View {
             
             LazyVGrid(columns: [GridItem()], spacing: 8) {
                 Button {
+                    audioVM.playClickSound()
                     appVM.resetAll()
                     gameVM.resetAll()
                 } label: {
@@ -36,6 +38,7 @@ struct OtherSettingsView: View {
                 .disabled(appVM.isDefault() && gameVM.isDefault())
                 
                 appVM.hasUser() ? Button {
+                    audioVM.playClickSound()
                     appVM.application.showAccountSwitcher = true
                 } label: {
                     Text("Switch profile")
@@ -48,7 +51,9 @@ struct OtherSettingsView: View {
                 } : nil
 
                 appVM.hasUser() ? Button {
+                    audioVM.playClickSound()
                     appVM.deleteUser(db: dbVM)
+                    appVM.application.showAccountSwitcher = true
                 } label: {
                     Text("Delete profile")
                         .font(.system(size: 20).weight(.heavy))
@@ -69,6 +74,7 @@ struct OtherSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         OtherSettingsView()
             .environmentObject(ApplicationViewModel())
+            .environmentObject(AudioViewModel())
             .environmentObject(DatabaseViewModel())
             .environmentObject(GameViewModel())
     }

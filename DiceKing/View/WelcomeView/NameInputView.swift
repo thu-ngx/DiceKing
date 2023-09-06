@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NameInputView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var audioVM: AudioViewModel
     @EnvironmentObject var dbVM: DatabaseViewModel
     @EnvironmentObject var gameVM: GameViewModel
     
@@ -34,6 +35,7 @@ struct NameInputView: View {
                     .foregroundColor(Color("blue"))
                     // MARK: SAVE BUTTON
                     Button(action: {
+                        audioVM.playClickSound()
                         appVM.loadUser(db: dbVM, game: gameVM)
                     }) {
                         Text("Continue")
@@ -63,6 +65,7 @@ struct NameInputView_Previews: PreviewProvider {
         NameInputView()
             .environmentObject(ApplicationViewModel())
             .environmentObject(DatabaseViewModel())
+            .environmentObject(AudioViewModel())
             .environmentObject(GameViewModel())
     }
 }
