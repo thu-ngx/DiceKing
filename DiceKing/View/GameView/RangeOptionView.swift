@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RangeOptionView: View {
+    @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var dbVM: DatabaseViewModel
     @EnvironmentObject var gameVM: GameViewModel
     
     func compareRanges(range1: [Int]?, range2: [Int]?) -> Bool {
@@ -19,6 +21,9 @@ struct RangeOptionView: View {
     }
     
     var body: some View {
+        let exp = appVM.getUserExp() ?? 0
+        let (level, _) = dbVM.getLevel(exp: exp)
+        
         VStack (spacing: 0) {
             //MARK: TITLE
             HStack (spacing: 0) {
@@ -28,7 +33,7 @@ struct RangeOptionView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(height: 40)
-                Text("10")
+                Text(dbVM.getRangeBetLabel(level: level))
                     .foregroundColor(Color("blue")) .font(.system(size: 26, weight: .semibold))
                 Spacer()
             }
@@ -59,6 +64,8 @@ struct RangeOptionView: View {
 struct RangeOptionView_Previews: PreviewProvider {
     static var previews: some View {
         RangeOptionView()
+            .environmentObject(ApplicationViewModel())
+            .environmentObject(DatabaseViewModel())
             .environmentObject(GameViewModel())
     }
 }

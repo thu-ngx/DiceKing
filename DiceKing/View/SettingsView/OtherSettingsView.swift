@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OtherSettingsView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var dbVM: DatabaseViewModel
     @EnvironmentObject var gameVM: GameViewModel
     
     var body: some View {
@@ -37,7 +38,19 @@ struct OtherSettingsView: View {
                 appVM.hasUser() ? Button {
                     appVM.application.showAccountSwitcher = true
                 } label: {
-                    Text("Switch account")
+                    Text("Switch profile")
+                        .font(.system(size: 20).weight(.heavy))
+                        .foregroundColor(Color("yellow"))
+                        .frame(maxWidth: .infinity, minHeight: 40)
+                        .background(Color("red").opacity(1))
+                        .cornerRadius(10)
+                        .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
+                } : nil
+
+                appVM.hasUser() ? Button {
+                    appVM.deleteUser(db: dbVM)
+                } label: {
+                    Text("Delete profile")
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
                         .frame(maxWidth: .infinity, minHeight: 40)
@@ -56,6 +69,7 @@ struct OtherSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         OtherSettingsView()
             .environmentObject(ApplicationViewModel())
+            .environmentObject(DatabaseViewModel())
             .environmentObject(GameViewModel())
     }
 }

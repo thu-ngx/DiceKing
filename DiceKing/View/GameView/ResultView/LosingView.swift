@@ -9,13 +9,14 @@ import SwiftUI
 
 struct LosingView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var dbVM: DatabaseViewModel
     @EnvironmentObject var gameVM: GameViewModel
     @Binding var isShowingLosingView: Bool
     
     var body: some View {
         Button {
             gameVM.handleRoundLose(app: appVM)
-            gameVM.startNewTurn(app: appVM)
+            gameVM.startNewTurn(db: dbVM, app: appVM)
             isShowingLosingView = false
         } label: {
             ZStack {
@@ -29,7 +30,7 @@ struct LosingView: View {
                         .rotationEffect(.degrees(-35))
                         .shadow(color: Color("red").opacity(0.3), radius: 10, x: 0, y: 2)
                         .offset(y:-100)
-                    Text("-10 Exp")
+                    Text("+\(gameVM.getLoseExpLabel()) Exp")
                         .font(.system(size: 50).weight(.semibold))
                         .foregroundColor(Color("light-red"))
                         .offset(y:-50)
@@ -43,8 +44,11 @@ struct LosingView: View {
     }
 }
 
-//struct LosingView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LosingView()
-//    }
-//}
+struct LosingView_Previews: PreviewProvider {
+    static var previews: some View {
+        LosingView(isShowingLosingView: .constant(true))
+            .environmentObject(ApplicationViewModel())
+            .environmentObject(DatabaseViewModel())
+            .environmentObject(GameViewModel())
+    }
+}

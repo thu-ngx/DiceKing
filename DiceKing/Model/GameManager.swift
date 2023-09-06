@@ -8,6 +8,7 @@
 import Foundation
 
 struct GameManager {
-    var defaultDices: Int = 1
+    var defaultDices: Int = Constants.defaultDices
+    var enableAnimation: Bool = Constants.defaultEnableAnimation
     var currentRound: Round = Round()
 }

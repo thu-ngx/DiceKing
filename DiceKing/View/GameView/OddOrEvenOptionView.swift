@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct OddOrEvenOptionView: View {
+    @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var dbVM: DatabaseViewModel
     @EnvironmentObject var gameVM: GameViewModel
     
     var body: some View {
+        let exp = appVM.getUserExp() ?? 0
+        let (level, _) = dbVM.getLevel(exp: exp)
+        
         VStack (spacing: 0) {
             
             //MARK: TITLE
@@ -21,7 +26,7 @@ struct OddOrEvenOptionView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(height: 40)
-                Text(gameVM.getOddOrEvenBet() == nil ? "0" : "5")
+                Text(gameVM.getOddOrEvenBet() == nil ? "0" : dbVM.getOddOrEvenBetLabel(level: level))
                     .foregroundColor(Color("blue")) .font(.system(size: 26, weight: .semibold))
                 Spacer()
             }
@@ -80,5 +85,8 @@ struct OddOrEvenOptionView: View {
 struct OddOrEvenOptionView_Previews: PreviewProvider {
     static var previews: some View {
         OddOrEvenOptionView()
+            .environmentObject(ApplicationViewModel())
+            .environmentObject(DatabaseViewModel())
+            .environmentObject(GameViewModel())
     }
 }

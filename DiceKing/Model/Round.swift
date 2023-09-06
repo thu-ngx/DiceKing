@@ -11,5 +11,5 @@ struct Round {
     var turns: [Turn] = [Turn()]
     var startingCoins: Int = 50
     var totalTurns: Int = 3
-    var expDiff: Int? = nil
+    var bonusExp: Int? = nil
 }

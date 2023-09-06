@@ -41,11 +41,6 @@ class GameViewModel: ObservableObject {
         }
     }
     
-    func getTotalBetLabel() -> String {
-        let betValue = gm.currentRound.turns.last!.betOnEven == nil ? "10" : "15"
-        return betValue
-    }
-    
     func getBetRangeLabel() -> String {
         let betRange = getRangeLabel()
         return "Betted on range: \(betRange)"
@@ -78,6 +73,14 @@ class GameViewModel: ObservableObject {
     
     func getIsBettedLabel() -> String {
         return gm.currentRound.turns.last?.isBetted == true ? "Yes" : "No"
+    }
+    
+    func getWinExpLabel() -> String {
+        return String(Constants.expPerWin)
+    }
+    
+    func getLoseExpLabel() -> String {
+        return String(Constants.expPerLose)
     }
     
     // MARK: Other
@@ -191,14 +194,14 @@ class GameViewModel: ObservableObject {
     func getDefaultDices() -> Int {
         return gm.defaultDices
     }
-
+    
     func isDefault() -> Bool {
         return gm.defaultDices == 1
     }
     
     func resetDiceTypeBet() {
         let lastTurnIndex = getLastTurnIndex()
-        gm.currentRound.turns[lastTurnIndex].selectedRange = nil
+        gm.currentRound.turns[lastTurnIndex].betOnEven = nil
     }
     
     func betOnEvenSum() {
@@ -226,63 +229,65 @@ class GameViewModel: ObservableObject {
         gm.currentRound.turns[turnIndex].isAnimating = false
     }
     
-    func finalizeTurn(turnIndex: Int) {
+    func finalizeTurn(db: DatabaseViewModel, level: Int, turnIndex: Int) {
         let sum = gm.currentRound.turns[turnIndex].dices.reduce(0, { $0 + $1 })
-        var point = 0
-        
+        var coins = 0
+
         // Check if bet on range
         if let selectedRange = gm.currentRound.turns[turnIndex].selectedRange
             ?? getRanges().first
         {
+            let coinDiff = db.getRangeBet(level: level)
+
             if sum >= selectedRange[0] && sum <= selectedRange[1] {
-                point += 10
+                coins += coinDiff
             } else {
-                point -= 10
+                coins -= coinDiff
             }
         }
         
         // Check if bet on even sum
         if let betOnEven = gm.currentRound.turns[turnIndex].betOnEven {
-            if sum % 2 == 0 && betOnEven {
-                point += 5
-            } else if sum % 2 != 0 && !betOnEven {
-                point += 5
+            let coinDiff = db.getOddOrEvenBet(level: level)
+
+            if ((sum % 2 == 0 && betOnEven) || (sum % 2 != 0 && !betOnEven)) {
+                coins += coinDiff
             } else {
-                point -= 5
+                coins -= coinDiff
             }
         }
         
-        // Update point
-        gm.currentRound.turns[turnIndex].point = point
+        // Update coins
+        gm.currentRound.turns[turnIndex].point = coins
     }
     
-    func rollDices(turnIndex: Int) {
-        // Use DispatchQueue to delay the randomization of dices with combination of for loop and random values
-        // to create an animation effect
-        let animationTurns = 10
-        let animationDuration = 0.1
-        let delayAfterAnimation = 0.5
-        
+    func rollDices(db: DatabaseViewModel, level: Int, turnIndex: Int) {
         // Start the turn animation
         startAnimating(turnIndex: turnIndex)
         
         // initialize a new .now() every time the function is called
         let now = DispatchTime.now()
         
-        for i in 0..<(animationTurns + 1) {
-            let isDelayed = i == animationTurns
-            let delay = isDelayed ? delayAfterAnimation : 0
-            let duration = Double(i) * animationDuration + delay
-            
-            DispatchQueue.main.asyncAfter(deadline: now + duration) {
-                // If it's the last turn, finish the turn after the animation is done
-                if isDelayed {
-                    self.finalizeTurn(turnIndex: turnIndex)
-                    self.stopAnimating(turnIndex: turnIndex)
-                } else {
-                    self.randomizeDices(turnIndex: turnIndex)
+        if (Constants.enableAnimation) {
+            for i in 0..<(Constants.animationTurns + 1) {
+                let isDelayed = i == Constants.animationTurns
+                let delay = isDelayed ? Constants.delayAfterAnimation : 0
+                let duration = Double(i) * Constants.animationDuration + delay
+                
+                DispatchQueue.main.asyncAfter(deadline: now + duration) {
+                    // If it's the last turn, finish the turn after the animation is done
+                    if isDelayed {
+                        self.finalizeTurn(db: db, level: level, turnIndex: turnIndex)
+                        self.stopAnimating(turnIndex: turnIndex)
+                    } else {
+                        self.randomizeDices(turnIndex: turnIndex)
+                    }
                 }
             }
+        } else {
+            self.randomizeDices(turnIndex: turnIndex)
+            self.finalizeTurn(db: db, level: level, turnIndex: turnIndex)
+            self.stopAnimating(turnIndex: turnIndex)
         }
     }
     
@@ -296,11 +301,20 @@ class GameViewModel: ObservableObject {
         )
     }
     
-    func createNewRound(user: User) -> Round {
+    func getTurnsCount(db: DatabaseViewModel, level: Int) -> Int {
+        return db.getTurnsCount(level: level)
+    }
+    
+    func getStartingCoins(db: DatabaseViewModel, level: Int) -> Int {
+        return db.getStartingCoins(level: level)
+    }
+    
+    func createNewRound(db: DatabaseViewModel, user: User) -> Round {
         let lastRound = user.rounds.last
+        let (level, _) = db.getLevel(exp: user.exp)
         
-        let newStartingCoins = lastRound?.startingCoins ?? 50
-        let newTotalTurns = lastRound?.totalTurns ?? 3
+        let newStartingCoins = getStartingCoins(db: db, level: level)
+        let newTotalTurns = getTurnsCount(db: db, level: level)
         let newTurns = [createNewTurn(dices: lastRound?.turns.last?.dices)]
         
         // Create a new round with the same starting coins and total turns as the last round if it's not the first round
@@ -312,7 +326,20 @@ class GameViewModel: ObservableObject {
         )
     }
     
-    func startNewTurn(app: ApplicationViewModel) {
+    func setupRound(db: DatabaseViewModel, round: Round, user: User) {
+        // If it's the first round, create a new round
+        if user.rounds.count == 0 {
+            let newRound = createNewRound(db: db, user: user)
+            gm.currentRound = newRound
+        }
+        
+        // If it's not the first round, load the last round
+        else {
+            gm.currentRound = round
+        }
+    }
+    
+    func startNewTurn(db: DatabaseViewModel, app: ApplicationViewModel) {
         // If current turn is still less than total turns, create a new turn
         if gm.currentRound.turns.count < gm.currentRound.totalTurns {
             let newTurn = createNewTurn(dices: nil)
@@ -323,19 +350,21 @@ class GameViewModel: ObservableObject {
         else {
             app.addRound(round: gm.currentRound)
             
-            let newRound = createNewRound(user: app.getUser()!)
+            let newRound = createNewRound(db: db, user: app.getUser()!)
             gm.currentRound = newRound
         }
     }
-
+    
     func handleRoundWin(app: ApplicationViewModel) {
-        // Add exp
-        app.addUserExp(exp: 20)
+        let exp = Constants.expPerWin
+        app.addUserExp(exp: exp)
+        gm.currentRound.bonusExp = exp
     }
-
+    
     func handleRoundLose(app: ApplicationViewModel) {
-        // Remove exp
-        app.removeUserExp(exp: 10)
+        let exp = Constants.expPerLose
+        app.addUserExp(exp: exp)
+        gm.currentRound.bonusExp = exp
     }
     
     func getSelectedRange() -> [Int]? {

@@ -19,7 +19,6 @@ struct BetOptionView: View {
             ZStack  {
                 Color("yellow")
                 VStack (spacing: 3) {
-                    
                     // MARK: CLOSE ICON
                     HStack {
                         Spacer()
@@ -31,7 +30,6 @@ struct BetOptionView: View {
                                 .font(.system(size: 30))
                                 .frame(width: 65)
                         }
-                        
                     }
                     
                     // MARK: TITLE

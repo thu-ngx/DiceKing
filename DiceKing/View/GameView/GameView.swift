@@ -10,6 +10,7 @@ import SwiftUI
 struct GameView: View {
     // MARK: app mode
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var dbVM: DatabaseViewModel
     @EnvironmentObject var gameVM: GameViewModel
     
     // MARK: check showing bet option & result view
@@ -24,6 +25,9 @@ struct GameView: View {
     
     var body: some View {
         let currentIndex = gameVM.getLastTurnIndex()
+
+        let exp = appVM.getUserExp() ?? 0
+        let (level, _) = dbVM.getLevel(exp: exp)
         
         ZStack {
             Color("blue")
@@ -56,7 +60,7 @@ struct GameView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 40) : nil
-                        gameVM.isBetted() ? Text(gameVM.getTotalBetLabel())
+                        gameVM.isBetted() ? Text(dbVM.getTotalBetLabel(level: level, hasOddOrEvenBet: gameVM.getOddOrEvenBet() != nil))
                             .foregroundColor(Color("yellow")) .font(.system(size: 26, weight: .semibold)) : nil
                     }
                     
@@ -68,10 +72,10 @@ struct GameView: View {
                             } else if (gameVM.isWon()) {
                                 isShowingWinningView = true
                             } else {
-                                gameVM.startNewTurn(app: appVM)
+                                gameVM.startNewTurn(db: dbVM, app: appVM)
                             }
                         } else if (gameVM.isBetted()) {
-                            gameVM.rollDices(turnIndex: currentIndex)
+                            gameVM.rollDices(db: dbVM, level:level, turnIndex: currentIndex)
                         } else {
                             isShowingBetOption = true
                         }

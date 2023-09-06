@@ -20,6 +20,21 @@ class ApplicationViewModel: ObservableObject {
     func getColorSchemeLabel() -> String {
         return application.colorScheme == .dark ? "Dark" : "Light"
     }
+
+    func getUserExpLabel(db: DatabaseViewModel, exp: Int) -> String {
+        let (level, expToNextLevel) = db.getLevel(exp: exp)
+        
+        let currentExp = db.getCurrentExp(exp: exp, level: level)
+
+        let currentExpLabel = String(currentExp)
+        let nextExpLabel = String(expToNextLevel)
+
+        return "\(currentExpLabel)/\(nextExpLabel) EXP"
+    }
+
+    func getUserLevelLabel(db: DatabaseViewModel, exp: Int) -> String {
+        return "Level \(getUserLevel(db: db, exp: exp))"
+    }
     
     // MARK: SETTER
 
@@ -39,6 +54,15 @@ class ApplicationViewModel: ObservableObject {
 
     func getUser() -> User? {
         return application.currentUser
+    }
+
+    func getUserExp() -> Int? {
+        return application.currentUser?.exp
+    }
+
+    func getUserLevel(db: DatabaseViewModel, exp: Int) -> Int {
+        let (level, _) = db.getLevel(exp: exp)
+        return level
     }
 
     func getShowAccountSwitcher() -> Bool {
@@ -70,16 +94,26 @@ class ApplicationViewModel: ObservableObject {
             db.createUser(name: name)
         }
 
-        let nextUser = db.getUser(name: name)
+        let nextUser = db.getUser(name: name)!
 
         // Load user
         application.currentUser = nextUser
 
         // Load round
-        game.gm.currentRound = db.getRound(user: nextUser)
+        let round = db.getRound(user: nextUser)
+        game.setupRound(db: db, round: round, user: nextUser)
 
         // Reset
         application.showAccountSwitcher = false
+    }
+
+    func deleteUser(db: DatabaseViewModel) {
+        if (application.currentUser == nil) {
+            return
+        }
+
+        db.deleteUser(name: application.currentUser!.name)
+        application.currentUser = nil
     }
 
     func addRound(round: Round) {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlayerStatusView: View {
     @EnvironmentObject var appVM: ApplicationViewModel
+    @EnvironmentObject var dbVM: DatabaseViewModel
 
     var body: some View {
         HStack {
@@ -16,8 +17,8 @@ struct PlayerStatusView: View {
                 .font(.system(size: 32).weight(.heavy))
             Spacer()
             VStack(alignment: .leading) {
-                // Text("Level 1")
-                Text("Exp: \(appVM.getUser()?.exp ?? 0)")
+                Text(appVM.getUserLevelLabel(db: dbVM, exp: appVM.getUserExp() ?? 0))
+                Text(appVM.getUserExpLabel(db: dbVM, exp: appVM.getUserExp() ?? 0))
             }
             .font(.system(size: 27).weight(.heavy))
         }
@@ -29,5 +30,7 @@ struct PlayerStatusView: View {
 struct PlayerStatusView_Previews: PreviewProvider {
     static var previews: some View {
         PlayerStatusView()
+            .environmentObject(ApplicationViewModel())
+            .environmentObject(DatabaseViewModel())
     }
 }
