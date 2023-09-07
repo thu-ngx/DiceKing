@@ -20,7 +20,6 @@ struct WinningView: View {
             audioVM.playClickSound()
             gameVM.handleRoundWin(db: dbVM, app: appVM)
             appVM.saveUser(db: dbVM)
-            gameVM.startNewTurn(db: dbVM, app: appVM)
             isShowingWinningView = false
         } label: {
             ZStack {

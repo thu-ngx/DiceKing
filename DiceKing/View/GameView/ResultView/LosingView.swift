@@ -20,7 +20,6 @@ struct LosingView: View {
             audioVM.playClickSound()
             gameVM.handleRoundLose(db: dbVM, app: appVM)
             appVM.saveUser(db: dbVM)
-            gameVM.startNewTurn(db: dbVM, app: appVM)
             isShowingLosingView = false
         } label: {
             ZStack {

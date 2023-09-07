@@ -10,7 +10,7 @@ import Foundation
 
 struct Constants {
     // Special
-    static let devMode = true
+    static let devMode = false
 
     // Level
     static let expPerLevel = 100
