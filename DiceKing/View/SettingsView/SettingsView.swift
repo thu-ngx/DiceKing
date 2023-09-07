@@ -23,7 +23,6 @@ struct SettingsView: View {
                 
                 Spacer()
                 
-                // DebugView()
                 GameModeSwitcher()
                 AppThemeSwitcherView()
                 LanguageSwitcherView()
