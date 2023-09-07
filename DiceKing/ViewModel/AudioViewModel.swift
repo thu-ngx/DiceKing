@@ -12,7 +12,7 @@ class AudioViewModel: ObservableObject {
     @Published var gameAudio = AudioManager()
     @Published var sfxAudio = AudioManager()
 
-    @Published var isAudioEnabled = true
+    @Published var isAudioEnabled = UserDefaults.standard.string(forKey: "enableAudio") == nil ? true : UserDefaults.standard.string(forKey: "enableAudio") == "true" ? true : false
 
     init() {
         bgmAudio.audioPlayer?.volume = 0.8

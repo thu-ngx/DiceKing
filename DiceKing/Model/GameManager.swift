@@ -8,8 +8,8 @@
 import Foundation
 
 struct GameManager {
-    var defaultDices: Int = Constants.defaultDices
-    var enableAnimation: Bool = Constants.defaultEnableAnimation
-    var autoBet: Bool = Constants.defaultAutoBet
+    var defaultDices: Int = UserDefaults.standard.string(forKey: "defaultDices") == nil ? Constants.defaultDices : Int(UserDefaults.standard.string(forKey: "defaultDices")!)!
+    var enableAnimation: Bool = UserDefaults.standard.string(forKey: "enableAnimation") == nil ? Constants.defaultEnableAnimation : UserDefaults.standard.string(forKey: "enableAnimation") == "true" ? true : false
+    var autoBet: Bool = UserDefaults.standard.string(forKey: "autoBet") == nil ? Constants.defaultAutoBet : UserDefaults.standard.string(forKey: "autoBet") == "true" ? true : false
     var currentRound: Round = Round()
 }

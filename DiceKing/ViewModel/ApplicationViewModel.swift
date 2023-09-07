@@ -73,10 +73,18 @@ class ApplicationViewModel: ObservableObject {
 
     func setDarkMode() {
         application.colorScheme = .dark
+
+        // Save to user defaults
+        UserDefaults.standard.set("dark", forKey: "AppColorScheme")
+        UserDefaults.standard.synchronize()
     }
     
     func setLightMode() {
         application.colorScheme = .light
+
+        // Save to user defaults
+        UserDefaults.standard.set("light", forKey: "AppColorScheme")
+        UserDefaults.standard.synchronize()
     }
 
     // MARK: OTHER
@@ -142,6 +150,10 @@ class ApplicationViewModel: ObservableObject {
 
         // Reset
         application.showAccountSwitcher = false
+
+        // save name to user defaults
+        UserDefaults.standard.set(name, forKey: "currentUserName")
+        UserDefaults.standard.synchronize()
     }
 
     func deleteUser(db: DatabaseViewModel) {

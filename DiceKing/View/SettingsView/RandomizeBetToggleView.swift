@@ -25,6 +25,11 @@ struct RandomizeBetToggleView: View {
             LazyVGrid(columns: [GridItem(), GridItem()], spacing: 8) {
                 Button {
                     gameVM.useManualBet()
+
+                    // save to user defaults
+                    UserDefaults.standard.set("false", forKey: "autoBet")
+                    UserDefaults.standard.synchronize()
+
                     audioVM.playClickSound()
                 } label: {
                     Text(NSLocalizedString("manual", bundle: .main, comment: ""))
@@ -39,6 +44,11 @@ struct RandomizeBetToggleView: View {
                 
                 Button {
                     gameVM.useAutoBet()
+
+                    // save to user defaults
+                    UserDefaults.standard.set("true", forKey: "autoBet")
+                    UserDefaults.standard.synchronize()
+                    
                     audioVM.playClickSound()
                 } label: {
                     Text(NSLocalizedString("auto", bundle: .main, comment: ""))

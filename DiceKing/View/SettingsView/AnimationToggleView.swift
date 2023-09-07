@@ -26,6 +26,11 @@ struct AnimationToggleView: View {
             LazyVGrid(columns: [GridItem(), GridItem()], spacing: 8) {
                 Button {
                     gameVM.gm.enableAnimation = true
+                    
+                    // save to user defaults
+                    UserDefaults.standard.set("true", forKey: "enableAnimation")
+                    UserDefaults.standard.synchronize()
+
                     audioVM.playClickSound()
                 } label: {
                     Text(NSLocalizedString("enable", bundle: .main, comment: ""))
@@ -40,6 +45,11 @@ struct AnimationToggleView: View {
                 
                 Button {
                     gameVM.gm.enableAnimation = false
+
+                    // save to user defaults
+                    UserDefaults.standard.set("false", forKey: "enableAnimation")
+                    UserDefaults.standard.synchronize()
+                    
                     audioVM.playClickSound()
                 } label: {
                     Text(NSLocalizedString("disable", bundle: .main, comment: ""))

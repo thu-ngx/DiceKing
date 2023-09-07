@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Round {
+struct Round: Codable {
     var turns: [Turn] = []
     var startingCoins: Int = 50
     var totalTurns: Int = 3

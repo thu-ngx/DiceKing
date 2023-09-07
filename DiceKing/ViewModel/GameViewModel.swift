@@ -179,6 +179,10 @@ class GameViewModel: ObservableObject {
         gm.currentRound.turns[lastTurnIndex].selectedRange = nil
         gm.currentRound.turns[lastTurnIndex].betOnEven = nil
         gm.currentRound.turns[lastTurnIndex].point = 0
+
+        // Save to user defaults
+        UserDefaults.standard.set(String(dices), forKey: "defaultDices")
+        UserDefaults.standard.synchronize()
     }
     
     func getDices() -> [Int] {

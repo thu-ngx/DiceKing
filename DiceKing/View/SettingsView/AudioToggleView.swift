@@ -24,6 +24,11 @@ struct AudioToggleView: View {
             LazyVGrid(columns: [GridItem(), GridItem()], spacing: 8) {
                 Button {
                     audioVM.enableAudio()
+
+                    // save to user defaults
+                    UserDefaults.standard.set("true", forKey: "enableAudio")
+                    UserDefaults.standard.synchronize()
+
                     audioVM.playClickSound()
                 } label: {
                     Text(NSLocalizedString("enable", bundle: .main, comment: ""))
@@ -38,6 +43,11 @@ struct AudioToggleView: View {
                 
                 Button {
                     audioVM.disableAudio()
+
+                    // save to user defaults
+                    UserDefaults.standard.set("false", forKey: "enableAudio")
+                    UserDefaults.standard.synchronize()
+                    
                     audioVM.playClickSound()
                 } label: {
                     Text(NSLocalizedString("disable", bundle: .main, comment: ""))

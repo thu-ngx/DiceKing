@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Turn {
+struct Turn: Codable {
     var selectedRange: [Int]? = nil
     var isAnimating: Bool = false
     var isBetted: Bool = false

@@ -10,12 +10,12 @@ import SwiftUI
 
 struct Application {
     var currentUser: User? = nil
-    var currentUserName: String = "Thu"
+    var currentUserName: String = UserDefaults.standard.string(forKey: "currentUserName") ?? "Thu"
 
     var selectedUser: User? = nil
 
     var showAccountSwitcher = false
     
     var locale: String = UserDefaults.standard.string(forKey: "AppLanguage") ?? "en"
-    var colorScheme: ColorScheme = .dark
+    var colorScheme: ColorScheme = UserDefaults.standard.string(forKey: "AppColorScheme") == "light" ? .light : .dark
 }
