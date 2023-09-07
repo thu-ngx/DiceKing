@@ -186,6 +186,7 @@ class ApplicationViewModel: ObservableObject {
         // Reset user defaults
         UserDefaults.standard.removeObject(forKey: "AppLanguage")
         UserDefaults.standard.removeObject(forKey: "AppColorScheme")
+        UserDefaults.standard.removeObject(forKey: "currentUserName")
         UserDefaults.standard.synchronize()
 
         // Reset application

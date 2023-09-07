@@ -41,7 +41,7 @@ struct Constants {
 
 
     static let defaultUsers: [User] = [
-        User(name: "Thu", exp: 5000, badges: ["NEWBIE", "GRANDMASTER"], rounds: []),
+        User(name: "Thu", exp: 0, badges: ["NEWBIE"], rounds: []),
         User(name: "Huy", exp: 80, badges: ["NEWBIE"], rounds: []),
         User(name: "Hieu", exp: 280, badges: ["NEWBIE"], rounds: []),
         User(name: "Hoa", exp: 160, badges: ["NEWBIE"], rounds: []),
@@ -64,5 +64,7 @@ struct Constants {
         User(name: "Huyen", exp: 40, badges: ["NEWBIE"], rounds: []),
         User(name: "Khang", exp: 0, badges: ["NEWBIE"], rounds: []),
         User(name: "Khanh", exp: 40, badges: ["NEWBIE"], rounds: []),
+        User(name: "Thang", exp: 4080, badges: ["NEWBIE", "GRANDMASTER"], rounds: []),
+        User(name: "Minh", exp: 2760, badges: ["NEWBIE", "GRANDMASTER"], rounds: []),
 ]
 }

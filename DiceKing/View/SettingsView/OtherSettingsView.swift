@@ -28,6 +28,7 @@ struct OtherSettingsView: View {
                     appVM.resetAll()
                     gameVM.resetAll()
                     audioVM.resetAll()
+                    appVM.application.showAccountSwitcher = true
                 } label: {
                     Text(NSLocalizedString("reset_to_default", bundle: .main, comment: ""))
                         .font(.system(size: 20).weight(.heavy))
