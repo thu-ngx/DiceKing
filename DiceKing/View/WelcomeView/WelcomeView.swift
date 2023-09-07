@@ -19,10 +19,10 @@ struct WelcomeView: View {
                 VStack {
                     // MARK: APP INFO
                     VStack {
-                        Text("DiceKing")
+                        Text(NSLocalizedString("dice_king", bundle: .main, comment: ""))
                             .font(.system(size: 60).weight(.heavy))
                             .foregroundColor(Color("yellow"))
-                        Text("Claim Your Fortune")
+                        Text(NSLocalizedString("slogan", bundle: .main, comment: ""))
                             .font(.system(size: 30).weight(.semibold))
                             .foregroundColor(Color("yellow"))
                     }

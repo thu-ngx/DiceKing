@@ -32,7 +32,7 @@ struct AchievementsDetailsSheetView: View {
                     }
                 }
                 .padding(.vertical, 20)
-                Text("List of achievements")
+                Text(NSLocalizedString("badges", bundle: .main, comment: ""))
                     .font(.system(size: 30).weight(.medium))
                     .padding(.bottom, 30)
                     .foregroundColor(Color("yellow"))
@@ -66,9 +66,9 @@ struct BadgeView : View {
                 .opacity(unlocked ? 1 : 0.3)
             
             VStack (alignment: .leading) {
-                Text("\(badge.name)")
+                Text(NSLocalizedString(badge.id, bundle: .main, comment: ""))
                     .font(.system(size: 25).weight(.bold))
-                Text("\(badge.description)")
+                Text(NSLocalizedString("\(badge.id)_description", bundle: .main, comment: ""))
                     .font(.system(size: 18).weight(.medium))
             }
             

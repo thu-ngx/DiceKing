@@ -22,10 +22,10 @@ struct NameInputView: View {
                 VStack(spacing: 30) {
                     // MARK: INPUT FIELD
                     VStack {
-                        Text("Enter your name")
+                        Text(NSLocalizedString("enter_name", bundle: .main, comment: ""))
                             .font(.system(size: 25).weight(.medium))
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        TextField("Your name", text: $appVM.application.currentUserName)
+                        TextField(NSLocalizedString("your_name", bundle: .main, comment: ""), text: $appVM.application.currentUserName)
                             .padding(.vertical, 5)
                             .padding(.horizontal, 8)
                             .background(Color("transparent-white").cornerRadius(10))
@@ -38,7 +38,7 @@ struct NameInputView: View {
                         audioVM.playClickSound()
                         appVM.loadUser(db: dbVM, game: gameVM)
                     }) {
-                        Text("Continue")
+                        Text(NSLocalizedString("continue", bundle: .main, comment: ""))
                             .font(.system(size: 18).weight(.heavy))
                             .foregroundColor(Color("yellow"))
                             .padding(.horizontal, 25)

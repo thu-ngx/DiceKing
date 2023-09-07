@@ -16,7 +16,7 @@ struct OtherSettingsView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
             VStack (alignment: .leading, spacing: 0) {
-                Text("Other settings")
+                Text(NSLocalizedString("other_settings", bundle: .main, comment: ""))
                     .foregroundColor(Color("yellow"))
                     .font(.system(size: 30).weight(.semibold))
             }
@@ -27,7 +27,7 @@ struct OtherSettingsView: View {
                     appVM.resetAll()
                     gameVM.resetAll()
                 } label: {
-                    Text("Reset to default")
+                    Text(NSLocalizedString("reset_to_default", bundle: .main, comment: ""))
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
                         .frame(maxWidth: .infinity, minHeight: 40)
@@ -41,7 +41,7 @@ struct OtherSettingsView: View {
                     audioVM.playClickSound()
                     appVM.application.showAccountSwitcher = true
                 } label: {
-                    Text("Switch profile")
+                    Text(NSLocalizedString("switch_profile", bundle: .main, comment: ""))
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
                         .frame(maxWidth: .infinity, minHeight: 40)
@@ -55,7 +55,7 @@ struct OtherSettingsView: View {
                     appVM.deleteUser(db: dbVM)
                     appVM.application.showAccountSwitcher = true
                 } label: {
-                    Text("Delete profile")
+                    Text(NSLocalizedString("delete_profile", bundle: .main, comment: ""))
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
                         .frame(maxWidth: .infinity, minHeight: 40)

@@ -13,10 +13,10 @@ struct AudioToggleView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
             VStack (alignment: .leading, spacing: 0) {
-                Text("Audio")
+                Text(NSLocalizedString("audio", bundle: .main, comment: ""))
                     .foregroundColor(Color("yellow"))
                     .font(.system(size: 30).weight(.semibold))
-                Text("Enable or disable audio")
+                Text(NSLocalizedString("audio_description", bundle: .main, comment: ""))
                     .foregroundColor(Color("yellow").opacity(0.9))
                     .font(.system(size: 20).weight(.semibold))
             }
@@ -26,7 +26,7 @@ struct AudioToggleView: View {
                     audioVM.enableAudio()
                     audioVM.playClickSound()
                 } label: {
-                    Text("Enable")
+                    Text(NSLocalizedString("enable", bundle: .main, comment: ""))
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
@@ -40,7 +40,7 @@ struct AudioToggleView: View {
                     audioVM.disableAudio()
                     audioVM.playClickSound()
                 } label: {
-                    Text("Disable")
+                    Text(NSLocalizedString("disable", bundle: .main, comment: ""))
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))

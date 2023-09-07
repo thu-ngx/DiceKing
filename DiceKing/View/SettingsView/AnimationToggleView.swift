@@ -15,10 +15,10 @@ struct AnimationToggleView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
             VStack (alignment: .leading, spacing: 0) {
-                Text("Animation")
+                Text(NSLocalizedString("animation", bundle: .main, comment: ""))
                     .foregroundColor(Color("yellow"))
                     .font(.system(size: 30).weight(.semibold))
-                Text("Enable or disable animation")
+                Text(NSLocalizedString("animation_description", bundle: .main, comment: ""))
                     .foregroundColor(Color("yellow").opacity(0.9))
                     .font(.system(size: 20).weight(.semibold))
             }
@@ -28,7 +28,7 @@ struct AnimationToggleView: View {
                     gameVM.gm.enableAnimation = true
                     audioVM.playClickSound()
                 } label: {
-                    Text("Enable")
+                    Text(NSLocalizedString("enable", bundle: .main, comment: ""))
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
@@ -42,7 +42,7 @@ struct AnimationToggleView: View {
                     gameVM.gm.enableAnimation = false
                     audioVM.playClickSound()
                 } label: {
-                    Text("Disable")
+                    Text(NSLocalizedString("disable", bundle: .main, comment: ""))
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))

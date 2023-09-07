@@ -1,0 +1,95 @@
+/* 
+  Localizable.strings
+  DiceKing
+
+  Created by Thu Nguyen  on 07/09/2023.
+  
+*/
+
+"dice_king" = "Dice King";
+"slogan" = "Claim your fortune";
+"enter_name" = "Enter your name";
+"your_name" = "Your name";
+"unknown" = "Unknown";
+"continue" = "Continue";
+"start" = "Start";
+"tutorial" = "Tutorial";
+"leaderboard" = "Leaderboard";
+"settings" = "Settings";
+"announcement" = "Announcement";
+"switching_language_message" = "Please restart the app to apply the new language (use CMD + Option + P in simulator)";
+"ok" = "OK";
+"lvl" = "Lvl";
+"xp" = "XP";
+"dice" = "Dice";
+"dices" = "Dices";
+"dices_description" = "Choose how many dices you want to play with";
+"app_theme" = "App theme";
+"app_theme_description" = "Choose the theme of the app";
+"dark" = "Dark";
+"light" = "Light";
+"language" = "Language";
+"language_description" = "Choose the language of the app";
+"english" = "English";
+"vietnamese" = "Vietnamese";
+"animation" = "Animation";
+"animation_description" = "Choose the animation of the app";
+"enable" = "Enable";
+"disable" = "Disable";
+"audio" = "Audio";
+"audio_description" = "Choose the audio of the app";
+"betting" = "Betting";
+"betting_description" = "Choose how to bet";
+"manual" = "Manual";
+"auto" = "Auto";
+"other_settings" = "Other settings";
+"reset_to_default" = "Reset to default";
+"switch_profile" = "Switch profile";
+"delete_profile" = "Delete profile";
+"badges" = "Badges";
+"games_played" = "Games played";
+"win_rate" = "Win rate";
+"levels_and_exp" = "Levels and exp";
+"NEWBIE" = "Newbie";
+"NEWBIE_description" = "Take your first steps into the dice world";
+"GRANDMASTER" = "Grandmaster";
+"GRANDMASTER_description" = "You've reached level 5 mastery of the dice";
+"LUCKY7" = "Lucky 7";
+"LUCKY7_description" = "Roll a total of 7 with the 2 or more dices";
+"SNAKE_EYES" = "Snake eyes";
+"SNAKE_EYES_description" = "Roll double 1s";
+"VICTORIOUS" = "Victorious";
+"VICTORIOUS_description" = "Win 3 turns in a row";
+"STRAIGHT_DICES" = "Straight dices";
+"STRAIGHT_DICES_description" = "Rolling a straight (sequence like 3-4-5)";
+"exp_per_game" = "XP per game";
+"exp_per_game_won" = "Won: +30 XP";
+"exp_per_game_lost" = "Lost: +10 XP";
+"turns_per_game" = "Turns per game";
+"turns_per_game_description" = "There are 5 turns at level 1, each level after that increases 2 turns, maximum 15 turns";
+"starting_coins_per_game" = "Starting coins";
+"starting_coins_per_game_description" = "There are 50 coins at level 1, each level after that increases 50 coins, maximum 500 coins";
+"level_requirement" = "Level requirement";
+"level_requirement_description" = "Need 100 XP to level up from level 1 to level 2, each level after that doubles the XP requirement of the previous level";
+"tut_1" = "There are 6 dice(🎲) options, ranging from 1 🎲 to 6 🎲s, each with different bet options.";
+"tut_2" = "Each game has different numbers of turns, coins, winning and losing points based on current level."; 
+"tut_3" = "Win bet if total of 🎲 sum is in chosen range.";
+"tut_4" = "Win experience points if your coin count is greater than or equal to 0 at the end of the game round.";
+"tut_5" = "In case special patterns are met, you'll earn new achievements accordingly.";
+"tut_6" = "Use the same username to keep track of your progress.";
+"set_a_bet_to_continue" = "Set a bet to continue...";
+"bet" = "Bet";
+"betted" = "Betted";
+"rolling" = "Rolling...";
+"roll" = "Roll";
+"bet_options" = "Bet options";
+"bet_range" = "Bet range";
+"odd_or_even" = "Odd or even";
+"odd" = "Odd";
+"even" = "Even";
+"all" = "All";
+"betted_on_range" = "Betted on range";
+"sum" = "Sum";
+"victory" = "Victory";
+"defeat" = "Defeat";
+"tap_to_continue" = "Tap to continue";

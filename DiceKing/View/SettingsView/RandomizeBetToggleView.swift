@@ -14,10 +14,10 @@ struct RandomizeBetToggleView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
             VStack (alignment: .leading, spacing: 0) {
-                Text("Betting")
+                Text(NSLocalizedString("betting", bundle: .main, comment: ""))
                     .foregroundColor(Color("yellow"))
                     .font(.system(size: 30).weight(.semibold))
-                Text("Choose how to bet")
+                Text(NSLocalizedString("betting_description", bundle: .main, comment: ""))
                     .foregroundColor(Color("yellow").opacity(0.9))
                     .font(.system(size: 20).weight(.semibold))
             }
@@ -27,7 +27,7 @@ struct RandomizeBetToggleView: View {
                     gameVM.useManualBet()
                     audioVM.playClickSound()
                 } label: {
-                    Text("Manual")
+                    Text(NSLocalizedString("manual", bundle: .main, comment: ""))
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
@@ -41,7 +41,7 @@ struct RandomizeBetToggleView: View {
                     gameVM.useAutoBet()
                     audioVM.playClickSound()
                 } label: {
-                    Text("Automatic")
+                    Text(NSLocalizedString("auto", bundle: .main, comment: ""))
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))

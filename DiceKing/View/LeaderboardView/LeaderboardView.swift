@@ -18,7 +18,7 @@ struct LeaderboardView: View {
             Color("blue")
                 .edgesIgnoringSafeArea(.all)
             ScrollView {
-                Text("Leaderboard")
+                Text(NSLocalizedString("leaderboard", bundle: .main, comment: ""))
                     .font(.system(size: 50).weight(.bold))
                     .foregroundColor(Color("yellow"))
                 

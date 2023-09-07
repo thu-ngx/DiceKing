@@ -21,7 +21,7 @@ struct OddOrEvenOptionView: View {
             
             //MARK: TITLE
             HStack (spacing: 0) {
-                Text("Odd or even: ")
+                Text("\(NSLocalizedString("odd_or_even", bundle: .main, comment: "")): ")
                     .foregroundColor(Color("blue")) .font(.system(size: 26, weight: .semibold))
                 Image("coins")
                     .resizable()
@@ -38,7 +38,7 @@ struct OddOrEvenOptionView: View {
                     audioVM.playClickSound()
                     gameVM.resetDiceTypeBet()
                 } label: {
-                    Text("All")
+                    Text(NSLocalizedString("all", bundle: .main, comment: ""))
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
                         .frame(width: 110)
@@ -53,7 +53,7 @@ struct OddOrEvenOptionView: View {
                     audioVM.playClickSound()
                     gameVM.betOnOddSum()
                 } label: {
-                    Text("Odd")
+                    Text(NSLocalizedString("odd", bundle: .main, comment: ""))
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
                         .frame(width: 110)
@@ -68,7 +68,7 @@ struct OddOrEvenOptionView: View {
                     audioVM.playClickSound()
                     gameVM.betOnEvenSum()
                 } label: {
-                    Text("Even")
+                    Text(NSLocalizedString("even", bundle: .main, comment: ""))
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
                         .frame(width: 110)

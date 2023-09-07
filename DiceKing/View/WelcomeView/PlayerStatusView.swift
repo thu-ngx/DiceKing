@@ -13,14 +13,14 @@ struct PlayerStatusView: View {
 
     var body: some View {
         HStack {
-            Text(appVM.getUser()?.name ?? "Unknown")
-                .font(.system(size: 32).weight(.heavy))
+            Text(appVM.getUser()?.name ?? NSLocalizedString("unknown", bundle: .main, comment: ""))
+                .font(.system(size: 24).weight(.heavy))
             Spacer()
-            VStack(alignment: .leading) {
+            VStack(alignment: .trailing) {
                 Text(appVM.getUserLevelLabel(db: dbVM, exp: appVM.getUserExp() ?? 0))
                 Text(appVM.getUserExpLabel(db: dbVM, exp: appVM.getUserExp() ?? 0))
             }
-            .font(.system(size: 27).weight(.heavy))
+            .font(.system(size: 20).weight(.heavy))
         }
         .foregroundColor(Color("yellow"))
         .padding(.horizontal, 30)

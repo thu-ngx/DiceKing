@@ -17,11 +17,11 @@ class GameViewModel: ObservableObject {
         // Else return "Continue"
         for turn in gm.currentRound.turns {
             if turn.point != 0 || turn.isBetted {
-                return "Continue"
+                return "continue"
             }
         }
         
-        return "Start"
+        return "start"
     }
     
     func getRollOrBetLabel() -> String {
@@ -31,24 +31,24 @@ class GameViewModel: ObservableObject {
         let lastTurn = gm.currentRound.turns[lastTurnIndex]
         
         if lastTurn.isAnimating {
-            return "Rolling..."
+            return NSLocalizedString("rolling", bundle: .main, comment: "")
         } else if lastTurn.isBetted && lastTurn.point != 0 {
-            return "Continue"
+            return NSLocalizedString("continue", bundle: .main, comment: "")
         } else if lastTurn.isBetted {
-            return "Roll"
+            return NSLocalizedString("roll", bundle: .main, comment: "")
         } else {
-            return "Bet"
+            return NSLocalizedString("bet", bundle: .main, comment: "")
         }
     }
     
     func getBetRangeLabel() -> String {
         let betRange = getRangeLabel()
-        return "Betted on range: \(betRange)"
+        return "\(NSLocalizedString("betted_on_range", bundle: .main, comment: "")): \(betRange)"
     }
     
     func getBetTypeLabel() -> String {
         let betType = getOddOrEvenLabel()
-        return "(\(betType) sum)"
+        return "(\(betType) \(NSLocalizedString("sum", bundle: .main, comment: "")))"
     }
     
     func getDicesLabel() -> String {
@@ -60,7 +60,7 @@ class GameViewModel: ObservableObject {
     }
     
     func getOddOrEvenLabel() -> String {
-        return gm.currentRound.turns.last?.betOnEven == nil ? "All" : gm.currentRound.turns.last!.betOnEven! ? "Even" : "Odd"
+        return gm.currentRound.turns.last?.betOnEven == nil ? NSLocalizedString("all", bundle: .main, comment: "") : gm.currentRound.turns.last!.betOnEven! ? NSLocalizedString("even", bundle: .main, comment: "") : NSLocalizedString("odd", bundle: .main, comment: "")
     }
     
     func getRangeLabel() -> String {

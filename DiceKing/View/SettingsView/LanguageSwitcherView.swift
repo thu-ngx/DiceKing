@@ -14,10 +14,10 @@ struct LanguageSwitcherView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
             VStack (alignment: .leading, spacing: 0) {
-                Text("Language")
+                Text(NSLocalizedString("language", bundle: .main, comment: ""))
                     .foregroundColor(Color("yellow"))
                     .font(.system(size: 30).weight(.semibold))
-                Text("This will change the app's language")
+                Text(NSLocalizedString("language_description", bundle: .main, comment: ""))
                     .foregroundColor(Color("yellow").opacity(0.9))
                     .font(.system(size: 20).weight(.semibold))
             }
@@ -26,8 +26,13 @@ struct LanguageSwitcherView: View {
                 Button {
                     appVM.useEnglish()
                     audioVM.playClickSound()
+
+                    // Alert user that the app will restart
+                    let alert = UIAlertController(title: NSLocalizedString("announcement", bundle: .main, comment: ""), message: NSLocalizedString("switching_language_message", bundle: .main, comment: ""), preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("ok", bundle: .main, comment: ""), style: .default))
+                    UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
                 } label: {
-                    Text("English")
+                    Text(NSLocalizedString("english", bundle: .main, comment: ""))
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
@@ -40,8 +45,13 @@ struct LanguageSwitcherView: View {
                 Button {
                     appVM.useVietnamese()
                     audioVM.playClickSound()
+
+                    // Alert user that the app will restart
+                    let alert = UIAlertController(title: NSLocalizedString("switching_language", bundle: .main, comment: ""), message: NSLocalizedString("switching_language_message", bundle: .main, comment: ""), preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("ok", bundle: .main, comment: ""), style: .default))
+                    UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
                 } label: {
-                    Text("Vietnamese")
+                    Text(NSLocalizedString("vietnamese", bundle: .main, comment: ""))
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))

@@ -33,7 +33,7 @@ struct PointDetailsSheetView: View {
                     }
                 }
                 // MARK: TITLE
-                Text("Points details")
+                Text(NSLocalizedString("levels_and_exp", bundle: .main, comment: ""))
                     .font(.system(size: 30).weight(.medium))
                     .padding(.bottom, 30)
                     .frame(width: 350)
@@ -44,8 +44,7 @@ struct PointDetailsSheetView: View {
                         ExperiencePointsList()
                         CoinsList()
                         TurnsPerGameList()
-                        WinningExpList()
-                        LosingExpList()
+                        ExpPerGameList()
                     }
                 }
                 .scrollIndicators(.hidden)
@@ -62,10 +61,10 @@ struct PointDetailsSheetView: View {
 struct ExperiencePointsList: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 5) {
-            Text("Experience points to unlock level")
+            Text(NSLocalizedString("level_requirement", bundle: .main, comment: ""))
                 .font(.system(size: 25).weight(.bold))
                 .frame(width: 350, alignment: .leading)
-            Text("Level 1: 0\nLevel 2: 100\nLevel 3: 300\nLevel 4: 600\nLevel 5: 1000")
+            Text(NSLocalizedString("level_requirement_description", bundle: .main, comment: ""))
                 .font(.system(size: 18).weight(.medium))
         }
     }
@@ -76,10 +75,10 @@ struct ExperiencePointsList: View {
 struct CoinsList: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 5) {
-            Text("Starting coins per game")
+            Text(NSLocalizedString("starting_coins_per_game", bundle: .main, comment: ""))
                 .font(.system(size: 25).weight(.bold))
                 .frame(width: 350, alignment: .leading)
-            Text("Level 1: 50\nLevel 2: 75\nLevel 3: 100\nLevel 4: 150\nLevel 5: 200")
+            Text(NSLocalizedString("starting_coins_per_game_description", bundle: .main, comment: ""))
                 .font(.system(size: 18).weight(.medium))
         }
     }
@@ -89,44 +88,24 @@ struct CoinsList: View {
 struct TurnsPerGameList: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 5) {
-            Text("Turns per game")
+            Text(NSLocalizedString("turns_per_game", bundle: .main, comment: ""))
                 .font(.system(size: 25).weight(.bold))
                 .frame(width: 350, alignment: .leading)
-            Text("Level 1: 5 turns\nLevel 2: 7 turns\nLevel 3: 10 turns\nLevel 4: 12 turns\nLevel 5: 15 turns")
+            Text(NSLocalizedString("turns_per_game_description", bundle: .main, comment: ""))
                 .font(.system(size: 18).weight(.medium))
         }
     }
 }
 
 // MARK: WIN EXP
-struct WinningExpList: View {
+struct ExpPerGameList: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 5) {
-            Text("Winning exp per game")
+            Text(NSLocalizedString("exp_per_game", bundle: .main, comment: ""))
                 .font(.system(size: 25).weight(.bold))
                 .frame(width: 350, alignment: .leading)
-            Text("Level 1: +20 exp\nLevel 2: +40 exp\nLevel 3: +60 exp\nLevel 4: +80 exp\nLevel 5: +100 exp")
+            Text("\(NSLocalizedString("exp_per_game_won", bundle: .main, comment: ""))\n\(NSLocalizedString("exp_per_game_lost", bundle: .main, comment: ""))")
                 .font(.system(size: 18).weight(.medium))
         }
     }
 }
-
-// MARK: LOSE EXP
-struct LosingExpList: View {
-    var body: some View {
-        VStack (alignment: .leading, spacing: 5) {
-            Text("Losing exp per game")
-                .font(.system(size: 25).weight(.bold))
-                .frame(width: 350, alignment: .leading)
-            Text("Level 1: -5 exp\nLevel 2: -10 exp\nLevel 3: -15 exp\nLevel 4: -20 exp\nLevel 5: -25 exp")
-                .font(.system(size: 18).weight(.medium))
-        }
-    }
-}
-
-
-//struct PointDetailsSheetView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PointDetailsSheetView()
-//    }
-//}

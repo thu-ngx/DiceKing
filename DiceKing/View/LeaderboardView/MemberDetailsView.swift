@@ -27,7 +27,7 @@ struct MemberDetailsView: View {
                 }
                 
                 // USER NAME
-                Text(appVM.getSelectedUser()?.name ?? "Player")
+                Text(appVM.getSelectedUser()?.name ?? NSLocalizedString("unknown", bundle: .main, comment: ""))
                     .font(.title)
                     .bold()
                     .padding()
@@ -52,7 +52,7 @@ struct MemberDetailsView: View {
                 
                 // BADGES
                 VStack(alignment: .leading) {
-                    Text("Badges")
+                    Text(NSLocalizedString("badges", bundle: .main, comment: ""))
                         .font(.title2)
                         .bold()
                     
@@ -74,10 +74,10 @@ struct MemberDetailsView: View {
                     .padding(.vertical, 10)
                 
                 // GAMES PLAYED
-                Text("Games played: \(dbVM.getUserTotalGames(name: appVM.getSelectedUser()?.name))")
+                Text("\(NSLocalizedString("games_played", bundle: .main, comment: "")): \(dbVM.getUserTotalGames(name: appVM.getSelectedUser()?.name))")
                 
                 // WIN PERCENTAGE   
-                Text("Win percentage: \(dbVM.getUserWinrateLabel(name: appVM.getSelectedUser()?.name))")
+                Text("\(NSLocalizedString("win_rate", bundle: .main, comment: "")): \(dbVM.getUserWinrateLabel(name: appVM.getSelectedUser()?.name))")
                     .padding(.bottom)
             }
             .font(.title3)
@@ -85,7 +85,7 @@ struct MemberDetailsView: View {
             .padding()
             
         }
-        .frame(width: 350, height: 400)
+        .frame(width: 350, height: 420)
         .cornerRadius(20)
         
     }

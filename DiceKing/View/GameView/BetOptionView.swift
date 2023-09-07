@@ -35,7 +35,7 @@ struct BetOptionView: View {
                     }
                     
                     // MARK: TITLE
-                    Text("Bet option")
+                    Text(NSLocalizedString("bet_options", bundle: .main, comment: ""))
                         .font(.system(size: 45).weight(.semibold))
                         .foregroundColor(Color("blue"))
                         .padding(0)
@@ -54,7 +54,7 @@ struct BetOptionView: View {
                         gameVM.completeBetting()
                         isShowingBetOption = false
                     } label: {
-                        Text("Bet")
+                        Text(NSLocalizedString("bet", bundle: .main, comment: ""))
                             .font(.system(size: 25).weight(.heavy))
                             .foregroundColor(Color("yellow"))
                             .frame(width: 200)

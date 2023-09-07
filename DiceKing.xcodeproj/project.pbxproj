@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A318182D2AA48B580097F901 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318182C2AA48B580097F901 /* Round.swift */; };
+		A33273C62AA9C0B200870DC8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A33273C42AA9C0B200870DC8 /* Localizable.strings */; };
+		A33273C92AA9C0B900870DC8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A33273C72AA9C0B900870DC8 /* Localizable.strings */; };
+		A33273CB2AA9C0CA00870DC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33273CA2AA9C0CA00870DC8 /* AppDelegate.swift */; };
 		A354AE6B2AA5E4AB002049AF /* AppThemeSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354AE6A2AA5E4AB002049AF /* AppThemeSwitcherView.swift */; };
 		A354AE6D2AA5E51F002049AF /* GameModeSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354AE6C2AA5E51F002049AF /* GameModeSwitcher.swift */; };
 		A354AE6F2AA6E7FE002049AF /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354AE6E2AA6E7FE002049AF /* DebugView.swift */; };
@@ -65,6 +68,9 @@
 
 /* Begin PBXFileReference section */
 		A318182C2AA48B580097F901 /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
+		A33273C52AA9C0B200870DC8 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = Localizable.strings; sourceTree = "<group>"; };
+		A33273C82AA9C0B900870DC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		A33273CA2AA9C0CA00870DC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A354AE6A2AA5E4AB002049AF /* AppThemeSwitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeSwitcherView.swift; sourceTree = "<group>"; };
 		A354AE6C2AA5E51F002049AF /* GameModeSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeSwitcher.swift; sourceTree = "<group>"; };
 		A354AE6E2AA6E7FE002049AF /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
@@ -132,6 +138,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A33273C22AA9C08C00870DC8 /* vi.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				A33273C42AA9C0B200870DC8 /* Localizable.strings */,
+			);
+			path = vi.lproj;
+			sourceTree = "<group>";
+		};
+		A33273C32AA9C09800870DC8 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				A33273C72AA9C0B900870DC8 /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
 		A354AE7C2AA82583002049AF /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +187,8 @@
 		A3D593C72A9F3B55000F2753 /* DiceKing */ = {
 			isa = PBXGroup;
 			children = (
+				A33273C32AA9C09800870DC8 /* en.lproj */,
+				A33273C22AA9C08C00870DC8 /* vi.lproj */,
 				A354AE7C2AA82583002049AF /* Sounds */,
 				A3D594142AA31A3A000F2753 /* ViewModel */,
 				A3D593EF2AA063CC000F2753 /* Model */,
@@ -173,6 +197,7 @@
 				A3D593CA2A9F3B55000F2753 /* ContentView.swift */,
 				A3D593CC2A9F3B59000F2753 /* Assets.xcassets */,
 				A3D593CE2A9F3B59000F2753 /* Preview Content */,
+				A33273CA2AA9C0CA00870DC8 /* AppDelegate.swift */,
 			);
 			path = DiceKing;
 			sourceTree = "<group>";
@@ -346,7 +371,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				vi,
 			);
 			mainGroup = A3D593BC2A9F3B55000F2753;
 			productRefGroup = A3D593C62A9F3B55000F2753 /* Products */;
@@ -365,9 +390,11 @@
 			files = (
 				A354AEBF2AA87D5A002049AF /* click.wav in Resources */,
 				A3D593D02A9F3B59000F2753 /* Preview Assets.xcassets in Resources */,
+				A33273C92AA9C0B900870DC8 /* Localizable.strings in Resources */,
 				A354AEBC2AA87D5A002049AF /* round-lost.mp3 in Resources */,
 				A354AEBD2AA87D5A002049AF /* game-lost.mp3 in Resources */,
 				A354AEBE2AA87D5A002049AF /* game-won.wav in Resources */,
+				A33273C62AA9C0B200870DC8 /* Localizable.strings in Resources */,
 				A354AEBB2AA87D5A002049AF /* background.mp3 in Resources */,
 				A3D593CD2A9F3B59000F2753 /* Assets.xcassets in Resources */,
 				A354AEBA2AA87D5A002049AF /* round-won.wav in Resources */,
@@ -404,6 +431,7 @@
 				A3D593CB2A9F3B55000F2753 /* ContentView.swift in Sources */,
 				A3D594212AA32FAB000F2753 /* ApplicationViewModel.swift in Sources */,
 				A3D594012AA0A8A8000F2753 /* LosingView.swift in Sources */,
+				A33273CB2AA9C0CA00870DC8 /* AppDelegate.swift in Sources */,
 				A3D593C92A9F3B55000F2753 /* DiceKingApp.swift in Sources */,
 				A3D593D82A9F4129000F2753 /* NameInputView.swift in Sources */,
 				A3D5941F2AA32F29000F2753 /* Application.swift in Sources */,
@@ -431,6 +459,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A33273C42AA9C0B200870DC8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A33273C52AA9C0B200870DC8 /* vi */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		A33273C72AA9C0B900870DC8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A33273C82AA9C0B900870DC8 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A3D593D12A9F3B59000F2753 /* Debug */ = {

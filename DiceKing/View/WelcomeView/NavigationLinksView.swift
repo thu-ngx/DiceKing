@@ -19,10 +19,10 @@ struct NavigationLinksView: View {
     
     var body: some View {
         let destinations = [
-            Destination(label: gameVM.getStartLabel(), destination: AnyView(GameView())),
-            Destination(label: "Tutorial", destination: AnyView(TutorialView())),
-            Destination(label: "Leaderboard", destination: AnyView(LeaderboardView())),
-            Destination(label: "Settings", destination: AnyView(SettingsView()))
+            Destination(label: NSLocalizedString(gameVM.getStartLabel(), bundle: .main, comment: ""), destination: AnyView(GameView())),
+            Destination(label: NSLocalizedString("tutorial", bundle: .main, comment: ""), destination: AnyView(TutorialView())),
+            Destination(label: NSLocalizedString("leaderboard", bundle: .main, comment: ""), destination: AnyView(LeaderboardView())),
+            Destination(label: NSLocalizedString("settings", bundle: .main, comment: ""), destination: AnyView(SettingsView()))
         ]
         
         VStack(spacing: 15) {

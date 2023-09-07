@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@main
 struct DiceKingApp: App {
     var body: some Scene {
         WindowGroup {

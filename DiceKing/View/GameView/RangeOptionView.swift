@@ -28,7 +28,7 @@ struct RangeOptionView: View {
         VStack (spacing: 0) {
             //MARK: TITLE
             HStack (spacing: 0) {
-                Text("Range: ")
+                Text("\(NSLocalizedString("bet_range", bundle: .main, comment: "")): ")
                     .foregroundColor(Color("blue")) .font(.system(size: 26, weight: .semibold))
                 Image("coins")
                     .resizable()

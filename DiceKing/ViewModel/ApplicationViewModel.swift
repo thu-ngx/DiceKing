@@ -27,14 +27,24 @@ class ApplicationViewModel: ObservableObject {
         let currentExpLabel = String(exp)
         let nextExpLabel = String(expToNextLevel)
 
-        return "\(currentExpLabel)/\(nextExpLabel) XP"
+        return "\(currentExpLabel)/\(nextExpLabel) \(NSLocalizedString("xp", bundle: .main, comment: ""))"
     }
 
     func getUserLevelLabel(db: DatabaseViewModel, exp: Int) -> String {
-        return "Lvl \(getUserLevel(db: db, exp: exp))"
+        return "\(NSLocalizedString("lvl", bundle: .main, comment: "")) \(getUserLevel(db: db, exp: exp))"
     }
     
     // MARK: SETTER
+
+    func changeLanguage(locale: String) {
+        Bundle.main.path(forResource: locale, ofType: "lproj")
+
+        UserDefaults.standard.set([locale], forKey: "AppleLanguages")
+        UserDefaults.standard.set(locale, forKey: "AppLanguage")
+        UserDefaults.standard.synchronize()
+
+        application.locale = locale
+    }
 
     func addBadge(id: String) {
         // If user already has the badge, don't add it
@@ -148,11 +158,11 @@ class ApplicationViewModel: ObservableObject {
     }
 
     func useEnglish() {
-        application.locale = "en"
+        changeLanguage(locale: "en")
     }
 
     func useVietnamese() {
-        application.locale = "vi"
+        changeLanguage(locale: "vi")
     }
 
     func resetAll() {

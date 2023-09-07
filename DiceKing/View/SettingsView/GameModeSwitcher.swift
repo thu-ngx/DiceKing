@@ -14,10 +14,10 @@ struct GameModeSwitcher: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
             VStack (alignment: .leading, spacing: 0) {
-                Text("Dices")
+                Text(NSLocalizedString("dices", bundle: .main, comment: ""))
                     .foregroundColor(Color("yellow"))
                     .font(.system(size: 30).weight(.semibold))
-                Text("Choose how many dices to play")
+                Text(NSLocalizedString("dices_description", bundle: .main, comment: ""))
                     .foregroundColor(Color("yellow").opacity(0.9))
                     .font(.system(size: 20).weight(.semibold))
             }
@@ -28,7 +28,7 @@ struct GameModeSwitcher: View {
                         gameVM.setDefaultDices(dices: diceCount)
                         audioVM.playClickSound()
                     } label: {
-                        Text("\(diceCount) dices")
+                        Text("\(diceCount) \(diceCount == 1 ? NSLocalizedString("dice", bundle: .main, comment: "") : NSLocalizedString("dices", bundle: .main, comment: ""))")
                             .frame(maxWidth: .infinity, minHeight: 40)
                             .font(.system(size: 20).weight(.heavy))
                             .foregroundColor(Color("yellow"))

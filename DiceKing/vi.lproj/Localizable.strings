@@ -1,0 +1,95 @@
+/* 
+  Localizable.strings
+  DiceKing
+
+  Created by Thu Nguyen  on 07/09/2023.
+  
+*/
+
+"dice_king" = "Vua xúc xắc";
+"slogan" = "Chinh phục vận may";
+"enter_name" = "Nhập tên của bạn";
+"your_name" = "Tên của bạn";
+"unknown" = "Chưa rõ";
+"continue" = "Tiếp tục";
+"start" = "Bắt đầu";
+"tutorial" = "Hướng dẫn";
+"leaderboard" = "Bảng xếp hạng";
+"settings" = "Cài đặt";
+"announcement" = "Thông báo";
+"switching_language_message" = "Vui lòng khởi động lại ứng dụng để áp dụng ngôn ngữ mới (sử dụng CMD + Option + P trong máy mô phỏng)";
+"ok" = "OK";
+"lvl" = "Cấp";
+"xp" = "KN";
+"dice" = "Xúc xắc";
+"dices" = "Xúc xắc";
+"dices_description" = "Chọn số lượng xúc xắc muốn chơi";
+"app_theme" = "Giao diện";
+"app_theme_description" = "Chọn giao diện ứng dụng";
+"dark" = "Tối";
+"light" = "Sáng";
+"language" = "Ngôn ngữ";
+"language_description" = "Chọn ngôn ngữ ứng dụng";
+"english" = "Tiếng Anh";
+"vietnamese" = "Tiếng Việt";
+"animation" = "Hiệu ứng";
+"animation_description" = "Chọn hiệu ứng xúc xắc";
+"enable" = "Bật";
+"disable" = "Tắt";
+"audio" = "Âm thanh";
+"audio_description" = "Chọn âm thanh xúc xắc";
+"betting" = "Cược";
+"betting_description" = "Chọn cách cược";
+"manual" = "Tự chọn";
+"auto" = "Tự động";
+"other_settings" = "Cài đặt khác";
+"reset_to_default" = "Khôi phục mặc định";
+"switch_profile" = "Đổi tài khoản";
+"delete_profile" = "Xóa tài khoản";
+"badges" = "Huy hiệu";
+"games_played" = "Số trận đã chơi";
+"win_rate" = "Tỉ lệ thắng";
+"levels_and_exp" = "Cấp độ và KN";
+"NEWBIE" = "Mới chơi";
+"NEWBIE_description" = "Bắt đầu cuộc hành trình của bạn";
+"GRANDMASTER" = "Đại cao thủ";
+"GRANDMASTER_description" = "Bạn đã đạt cấp độ 5";
+"LUCKY7" = "Số 7 may mắn";
+"LUCKY7_description" = "Tổng số điểm của 2 xúc xắc là 7";
+"SNAKE_EYES" = "Mắt rắn";
+"SNAKE_EYES_description" = "2 xúc xắc đều là 1";
+"VICTORIOUS" = "Thắng liên tiếp";
+"VICTORIOUS_description" = "Thắng 3 lượt liên tiếp";
+"STRAIGHT_DICES" = "Sảnh";
+"STRAIGHT_DICES_description" = "3 xúc xắc có số điểm liên tiếp nhau";
+"exp_per_game" = "KN mỗi trận";
+"exp_per_game_won" = "Trận thắng: +30 KN";
+"exp_per_game_lost" = "Trận thua: +10 KN";
+"turns_per_game" = "Số lượt mỗi trận";
+"turns_per_game_description" = "Có 5 lượt chơi ở cấp 1, mỗi cấp sau đó tăng thêm 2 lượt, tối đa 15 lượt";
+"starting_coins_per_game" = "Số xu ban đầu";
+"starting_coins_per_game_description" = "Có 50 xu ở cấp 1, mỗi cấp sau đó tăng thêm 50 xu, tối đa 500 xu";
+"level_requirement" = "Yêu cầu cấp độ";
+"level_requirement_description" = "Cần 100 KN để từ cấp 1 lên cấp 2, mỗi cấp sau đó cần gấp đôi yêu cầu KN của cấp trước";
+"tut_1" = "Có 6 lựa chọn xúc xắc khác nhau, từ 1 🎲 đến 6 🎲, mỗi loại có các lựa chọn cược khác nhau.";  
+"tut_2" = "Mỗi ván chơi có số lượt chơi, điểm thắng thua khác nhau dựa trên mức độ hiện tại.";
+"tut_3" = "Thắng cược nếu tổng số chấm của 🎲 nằm trong khoảng đã chọn.";
+"tut_4" = "Nhận điểm kinh nghiệm nếu số xu của bạn lớn hơn hoặc bằng 0 vào cuối ván chơi.";  
+"tut_5" = "Nhận thành tích mới nếu đạt được các mẫu đặc biệt.";
+"tut_6" = "Sử dụng cùng tên người chơi để theo dõi tiến độ của bạn.";
+"set_a_bet_to_continue" = "Đặt cược để tiếp tục...";
+"bet" = "Cược";
+"betted" = "Đã cược";
+"rolling" = "Đang quay...";
+"roll" = "Quay";
+"bet_options" = "Lựa chọn cược";
+"bet_range" = "Khoảng cược";
+"odd_or_even" = "Lẻ hay chẵn";
+"odd" = "Lẻ";
+"even" = "Chẵn";
+"all" = "Tất cả";
+"betted_on_range" = "Đã cược vào khoảng";
+"sum" = "Tổng";
+"victory" = "Thắng";
+"defeat" = "Thua";
+"tap_to_continue" = "Nhấn để tiếp tục";

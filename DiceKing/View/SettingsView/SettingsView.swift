@@ -16,7 +16,7 @@ struct SettingsView: View {
                 .edgesIgnoringSafeArea(.all)
             
             ScrollView {
-                Text("Settings")
+                Text(NSLocalizedString("settings", bundle: .main, comment: ""))
                     .font(.system(size: 50).weight(.bold))
                     .foregroundColor(Color("yellow"))
                     .padding(.bottom, 30)

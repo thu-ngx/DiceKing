@@ -19,7 +19,7 @@ struct TutorialView: View {
                 .edgesIgnoringSafeArea(.all)
             ScrollView {
                 // MARK: TITLE
-                Text("Tutorial")
+                Text(NSLocalizedString("tutorial", bundle: .main, comment: ""))
                     .font(.system(size: 50).weight(.bold))
                     .foregroundColor(Color("yellow"))
                     .padding(.bottom, 30)
@@ -32,7 +32,7 @@ struct TutorialView: View {
                         showPointDetailsSheet = true
                         audioVM.playClickSound()
                     }) {
-                        Text("Levels & Exp")
+                        Text(NSLocalizedString("levels_and_exp", bundle: .main, comment: ""))
                             .font(.system(size: 18).weight(.heavy))
                             .foregroundColor(Color("blue"))
                             .frame(maxWidth: .infinity, minHeight: 40)
@@ -45,7 +45,7 @@ struct TutorialView: View {
                         showAchievementsDetailsSheet = true
                         audioVM.playClickSound()
                     }) {
-                        Text("Achievements")
+                        Text(NSLocalizedString("badges", bundle: .main, comment: ""))
                             .font(.system(size: 18).weight(.heavy))
                             .foregroundColor(Color("blue"))
                             .frame(maxWidth: .infinity, minHeight: 40)

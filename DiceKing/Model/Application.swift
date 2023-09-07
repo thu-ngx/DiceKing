@@ -16,6 +16,6 @@ struct Application {
 
     var showAccountSwitcher = false
     
-    var locale: String = "en"
+    var locale: String = UserDefaults.standard.string(forKey: "AppLanguage") ?? "en"
     var colorScheme: ColorScheme = .dark
 }

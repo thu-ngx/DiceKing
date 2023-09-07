@@ -55,7 +55,7 @@ struct GameView: View {
                 VStack (spacing: 5)  {
                     // MARK: BET AMOUNT
                     HStack (spacing: 0) {
-                        Text(gameVM.isBetted() ? "Betted" : "Set a bet to continue...")
+                        Text(gameVM.isBetted() ? NSLocalizedString("betted", bundle: .main, comment: "") : NSLocalizedString("set_a_bet_to_continue", bundle: .main, comment: ""))
                             .foregroundColor(Color("yellow")) .font(.system(size: 26, weight: .semibold))
                         gameVM.isBetted() ? Image("coins")
                             .resizable()

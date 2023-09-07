@@ -26,7 +26,7 @@ struct MemberRow: View {
                     .frame(width: 150)
                 Spacer()
                 VStack (alignment: .leading, spacing: 0) {
-                    Text("\(user.exp) XP")
+                    Text("\(user.exp) \(NSLocalizedString("xp", bundle: .main, comment: ""))")
                         .font(.system(size: 20).weight(.medium))
                         .foregroundColor(Color(.white))
                     ProgressBar(progress: CGFloat(db.getProgress(exp: user.exp)))

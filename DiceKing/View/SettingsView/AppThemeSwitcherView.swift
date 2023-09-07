@@ -14,10 +14,10 @@ struct AppThemeSwitcherView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 16) {
             VStack (alignment: .leading, spacing: 0) {
-                Text("Dark mode")
+                Text(NSLocalizedString("app_theme", bundle: .main, comment: ""))
                     .foregroundColor(Color("yellow"))
                     .font(.system(size: 30).weight(.semibold))
-                Text("This will change the app's theme")
+                Text(NSLocalizedString("app_theme_description", bundle: .main, comment: ""))
                     .foregroundColor(Color("yellow").opacity(0.9))
                     .font(.system(size: 20).weight(.semibold))
             }
@@ -27,7 +27,7 @@ struct AppThemeSwitcherView: View {
                     appVM.setLightMode()
                     audioVM.playClickSound()
                 } label: {
-                    Text("Light")
+                    Text(NSLocalizedString("light", bundle: .main, comment: ""))
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
@@ -41,7 +41,7 @@ struct AppThemeSwitcherView: View {
                     appVM.setDarkMode()
                     audioVM.playClickSound()
                 } label: {
-                    Text("Dark")
+                    Text(NSLocalizedString("dark", bundle: .main, comment: ""))
                         .frame(maxWidth: .infinity, minHeight: 40)
                         .font(.system(size: 20).weight(.heavy))
                         .foregroundColor(Color("yellow"))
