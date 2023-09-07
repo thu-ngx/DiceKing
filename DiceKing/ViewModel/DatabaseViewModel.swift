@@ -57,7 +57,9 @@ class DatabaseViewModel: ObservableObject {
         }
         
         let user = getUser(name: name!)
-        return user?.rounds.count ?? 0
+
+        // return count of rounds where all turns have non-zero points and turns.count == totalTurns
+        return user?.rounds.filter({ $0.turns.allSatisfy({ $0.point != 0 }) && $0.turns.count == $0.totalTurns }).count ?? 0
     }
     
     func getBadgeById(id: String) -> Badge {
