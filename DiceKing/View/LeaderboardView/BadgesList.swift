@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct BadgesList: View {
-    
-    var imgNames = ["coins", "coins", "coins", "coins"]
+    @EnvironmentObject var dbVM: DatabaseViewModel
+
+    var unlockedBadges: [String] = []
     
     var body: some View {
         HStack (spacing: 0) {
-            ForEach(imgNames, id: \.self) { imgName in
-                Image(imgName)
+            ForEach(dbVM.getBadges(), id: \.name) { badge in
+                Image(badge.image)
                     .resizable()
-                    .scaledToFit()
-                    .frame(width: 50)
-                    .shadow(color: Color("bright-yellow"), radius: 4, x: 0, y: 2)
+                    .frame(width: 50, height: 50)
+                    .padding(.horizontal, 5)
+                    .opacity(unlockedBadges.contains(badge.id) ? 1 : 0.3)
             }
         }
     }

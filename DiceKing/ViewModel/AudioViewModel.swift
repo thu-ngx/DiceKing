@@ -9,23 +9,27 @@ import Foundation
 
 class AudioViewModel: ObservableObject {
     @Published var bgmAudio = AudioManager()
+    @Published var gameAudio = AudioManager()
     @Published var sfxAudio = AudioManager()
 
     @Published var isAudioEnabled = true
 
     init() {
         bgmAudio.audioPlayer?.volume = 0.8
+        gameAudio.audioPlayer?.volume = 0.8
         sfxAudio.audioPlayer?.volume = 0.8
     }
 
     func disableAudio() {
         bgmAudio.audioPlayer?.volume = 0
+        gameAudio.audioPlayer?.volume = 0
         sfxAudio.audioPlayer?.volume = 0
         isAudioEnabled = false
     }
 
     func enableAudio() {
         bgmAudio.audioPlayer?.volume = 0.8
+        gameAudio.audioPlayer?.volume = 0.8
         sfxAudio.audioPlayer?.volume = 0.8
         isAudioEnabled = true
     }
@@ -36,6 +40,10 @@ class AudioViewModel: ObservableObject {
 
     func isSFXPlaying() -> Bool {
         return sfxAudio.audioPlayer?.isPlaying ?? false
+    }
+
+    func isGameAudioPlaying() -> Bool {
+        return gameAudio.audioPlayer?.isPlaying ?? false
     }
 
     func playBGM() {
@@ -51,16 +59,20 @@ class AudioViewModel: ObservableObject {
         sfxAudio.stopSound()
     }
 
+    func stopGameAudio() {
+        gameAudio.stopSound()
+    }
+
     func playClickSound() {
         sfxAudio.playSound(soundName: "click", type: "wav")
     }
 
     func playRollSound() {
-        sfxAudio.playSound(soundName: "rolling", type: "wav")
+        gameAudio.playSound(soundName: "rolling", type: "wav")
     }
 
     func playRoundWonSound() {
-        sfxAudio.playSound(soundName: "round-won", type: "wav")
+        gameAudio.playSound(soundName: "round-won", type: "wav")
     }
 
     func playGameWonSound() {
@@ -68,7 +80,7 @@ class AudioViewModel: ObservableObject {
     }
 
     func playRoundLostSound() {
-        sfxAudio.playSound(soundName: "round-lost", type: "mp3")
+        gameAudio.playSound(soundName: "round-lost", type: "mp3")
     }
 
     func playGameLostSound() {

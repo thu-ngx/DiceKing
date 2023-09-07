@@ -83,3 +83,26 @@ struct BadgeView : View {
         .foregroundColor(Color("yellow").opacity(unlocked ? 1 : 0.3))
     }
 }
+
+// MARK: MINI BADGE VIEW
+struct MiniBadgeView : View {
+    var badge: Badge
+    var unlocked: Bool = false
+    
+    var body: some View {
+        HStack (spacing: 12) {
+            Image("\(badge.image)")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 30)
+                .opacity(unlocked ? 1 : 0.3)
+            
+            if unlocked {
+                Image(systemName: "checkmark")
+                    .font(.system(size: 20))
+                    .foregroundColor(Color("yellow"))
+            }
+        }
+        .foregroundColor(Color("yellow").opacity(unlocked ? 1 : 0.3))
+    }
+}

@@ -380,6 +380,13 @@ class GameViewModel: ObservableObject {
             gm.currentRound = round
         }
     }
+
+    func startNewRound(db: DatabaseViewModel, app: ApplicationViewModel) {
+        app.addRound(round: gm.currentRound)
+        
+        let newRound = createNewRound(db: db, user: app.getUser()!)
+        gm.currentRound = newRound
+    }
     
     func startNewTurn(db: DatabaseViewModel, app: ApplicationViewModel) {
         // If current turn is still less than total turns, create a new turn
@@ -390,10 +397,7 @@ class GameViewModel: ObservableObject {
         
         // If current turn is equal to total turns, create a new round
         else {
-            app.addRound(round: gm.currentRound)
-            
-            let newRound = createNewRound(db: db, user: app.getUser()!)
-            gm.currentRound = newRound
+            startNewRound(db: db, app: app)
         }
     }
     
@@ -468,12 +472,8 @@ class GameViewModel: ObservableObject {
                 let nextDices = turns[i + 1].dices
                 let nextNextDices = turns[i + 2].dices
                 
-                if dices[0] + 1 == dices[1]
-                    && dices[1] + 1 == dices[2]
-                    && nextDices[0] + 1 == nextDices[1]
-                    && nextDices[1] + 1 == nextDices[2]
-                    && nextNextDices[0] + 1 == nextNextDices[1]
-                    && nextNextDices[1] + 1 == nextNextDices[2]
+                if dices[0] + 1 == nextDices[0]
+                    && nextDices[0] + 1 == nextNextDices[0]
                 {
                     app.addBadge(id: "STRAIGHT_DICES")
                     print("Added STRAIGHT_DICES badge")
@@ -481,6 +481,8 @@ class GameViewModel: ObservableObject {
                 }
             }
         }
+
+        startNewRound(db: db, app: app)
     }
     
     func handleRoundWin(db: DatabaseViewModel, app: ApplicationViewModel) {

@@ -10,7 +10,7 @@ import Foundation
 
 struct Constants {
     // Special
-    static let devMode = true
+    static let devMode = false
 
     // Level
     static let expPerLevel = 100
@@ -30,8 +30,8 @@ struct Constants {
     static let defaultAutoBet = devMode ? true : false
     static let expPerWin = 50
     static let expPerLose = 5
-    static let rangeBetPercentage = 0.3     // 30%
-    static let oddOrEvenBetPercentage = 0.2 // 20%
+    static let rangeBetPercentage = 0.25      // 25%
+    static let oddOrEvenBetPercentage = 0.05 // 5%
 
     // Animation
     static let defaultEnableAnimation = devMode ? false : true

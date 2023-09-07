@@ -1,76 +1,93 @@
-//
-//  MemberDetailsView.swift
-//  DiceKing
-//
-//  Created by Thu Nguyen  on 31/08/2023.
-//
-
 import SwiftUI
 
 struct MemberDetailsView: View {
-    @EnvironmentObject var appVM: ApplicationViewModel
+    
+    @EnvironmentObject var appVM: ApplicationViewModel 
     @EnvironmentObject var dbVM: DatabaseViewModel
-
+    
     var body: some View {
+        
         ZStack {
-            Color("blue").opacity(0.5)
+            
+            Color("yellow").opacity(0.8)
                 .edgesIgnoringSafeArea(.all)
-            ZStack  {
-                Color("yellow")
-                VStack ( spacing: 7) {
-                    // MARK: CLOSE ICON
-                    HStack {
-                        Spacer()
-                        Button {
-                            appVM.resetSelectedUser()
-                        } label: {
-                            Image(systemName: "xmark")
-                                .foregroundColor(.black)
-                                .font(.system(size: 30))
-                                .frame(width: 20)
-                        }
-                        
+            
+            VStack {
+                
+                // CLOSE BUTTON
+                HStack {
+                    Spacer()
+                    Button {
+                        appVM.resetSelectedUser()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.black)
+                            .font(.title)
                     }
-                    
-                    //MARK: player name
-                    Text(appVM.getSelectedUser()?.name ?? "Player")
-                        .font(.system(size: 35).weight(.bold))
-                        .offset(y: -10)
-                    
-                    VStack(alignment: .leading, spacing: 5) {
-                        //MARK: exp & level
-                        HStack {
-                            Text(appVM.getUserExpLabel(db: dbVM, exp: appVM.getSelectedUser()?.exp ?? 0))
-                            Spacer()
-                            Text(appVM.getUserLevelLabel(db: dbVM, exp: appVM.getSelectedUser()?.exp ?? 0))
-                        }
-                        
-                        //MARK: badges
-                        VStack (alignment: .leading, spacing: 0) {
-                            Text("Badges")
-                            BadgesList()
-                        }
-                        
-                        //MARK: games played
-                        Text("Games played: \(dbVM.getUserTotalGames(name: appVM.getSelectedUser()?.name))")
-                        
-                        //MARK: win percentage
-                        Text("Win percentage: \(dbVM.getUserWinrateLabel(name: appVM.getSelectedUser()?.name))")
-                    }
-                    .font(.system(size: 25).weight(.medium))
                 }
-                // .padding(.vertical, 0)
-                .padding(.horizontal, 25)
-                .foregroundColor(Color("blue"))
-            }
-            .frame(width: 320, height: 330)
-            .cornerRadius(20)
-        }
-    }
-}
+                
+                // USER NAME
+                Text(appVM.getSelectedUser()?.name ?? "Player")
+                    .font(.title)
+                    .bold()
+                    .padding()
+                
+                // EXP & LEVEL
+                HStack {
+                    Text(appVM.getUserExpLabel(db: dbVM, exp: appVM.getSelectedUser()?.exp ?? 0))
+                        .fontWeight(.semibold)
 
-//struct MemberDetailsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MemberDetailsView()
-//    }
-//}
+                    Spacer()
+                    Text(appVM.getUserLevelLabel(db: dbVM, exp: appVM.getSelectedUser()?.exp ?? 0))
+                        .font(.title2)
+                        .bold()
+                }
+                .padding(.bottom, 4)
+
+                // Divider
+                Rectangle()
+                    .fill(Color("blue").opacity(0.5))
+                    .frame(width: 280, height: 2)
+                    .padding(.vertical, 10)
+                
+                // BADGES
+                VStack(alignment: .leading) {
+                    Text("Badges")
+                        .font(.title2)
+                        .bold()
+                    
+                    LazyVGrid(columns: [GridItem(), GridItem(), GridItem(), GridItem(), GridItem(), GridItem()], spacing: 10) {
+                        ForEach(dbVM.getBadges(), id: \.name) { badge in
+                            Image(badge.image)
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .padding(.horizontal, 5)
+                                .opacity(appVM.getSelectedUser()?.badges.contains(badge.id) ?? false ? 1 : 0.3)
+                        }
+                    }
+                }
+
+                // Divider
+                Rectangle()
+                    .fill(Color("blue").opacity(0.5))
+                    .frame(width: 280, height: 2)
+                    .padding(.vertical, 10)
+                
+                // GAMES PLAYED
+                Text("Games played: \(dbVM.getUserTotalGames(name: appVM.getSelectedUser()?.name))")
+                
+                // WIN PERCENTAGE   
+                Text("Win percentage: \(dbVM.getUserWinrateLabel(name: appVM.getSelectedUser()?.name))")
+                    .padding(.bottom)
+            }
+            .font(.title3)
+            .foregroundColor(Color("blue"))
+            .padding()
+            
+        }
+        .frame(width: 350, height: 400)
+        .cornerRadius(20)
+        
+    }
+    
+}

@@ -32,7 +32,7 @@ struct LeaderboardView: View {
                 
                 // Divider
                 Rectangle()
-                    .fill(Color("yellow"))
+                    .fill(Color("yellow").opacity(0.5))
                     .frame(width: 350, height: 2)
                     .padding(.vertical, 10)
                 
