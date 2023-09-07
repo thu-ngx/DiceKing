@@ -156,6 +156,11 @@ class ApplicationViewModel: ObservableObject {
         UserDefaults.standard.synchronize()
     }
 
+    func reloadUser(db: DatabaseViewModel, game: GameViewModel) {
+        application.currentUserName = application.currentUser!.name
+        loadUser(db: db, game: game)
+    }
+
     func deleteUser(db: DatabaseViewModel) {
         if (application.currentUser == nil) {
             return
@@ -178,7 +183,12 @@ class ApplicationViewModel: ObservableObject {
     }
 
     func resetAll() {
-        application.colorScheme = .dark
-        application.locale = "en"
+        // Reset user defaults
+        UserDefaults.standard.removeObject(forKey: "AppLanguage")
+        UserDefaults.standard.removeObject(forKey: "AppColorScheme")
+        UserDefaults.standard.synchronize()
+
+        // Reset application
+        application = Application()
     }
 }

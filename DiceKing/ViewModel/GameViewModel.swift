@@ -204,7 +204,9 @@ class GameViewModel: ObservableObject {
     }
     
     func isDefault() -> Bool {
-        return gm.defaultDices == 1
+        return gm.defaultDices == Constants.defaultDices
+            && gm.enableAnimation == Constants.defaultEnableAnimation
+            && gm.autoBet == Constants.defaultAutoBet
     }
     
     func resetDiceTypeBet() {
@@ -269,7 +271,7 @@ class GameViewModel: ObservableObject {
         gm.currentRound.turns[turnIndex].isAnimating = false
     }
     
-    func finalizeTurn(db: DatabaseViewModel, audio: AudioViewModel, level: Int, turnIndex: Int) {
+    func finalizeTurn(app: ApplicationViewModel, db: DatabaseViewModel, audio: AudioViewModel, level: Int, turnIndex: Int) {
         let sum = gm.currentRound.turns[turnIndex].dices.reduce(0, { $0 + $1 })
         var coins = 0
         
@@ -305,9 +307,11 @@ class GameViewModel: ObservableObject {
         } else {
             audio.playRoundLostSound()
         }
+
+        app.reloadUser(db: db, game: self)
     }
     
-    func rollDices(db: DatabaseViewModel, audio: AudioViewModel, level: Int, turnIndex: Int) {
+    func rollDices(app: ApplicationViewModel, db: DatabaseViewModel, audio: AudioViewModel, level: Int, turnIndex: Int) {
         // Start the turn animation
         startAnimating(turnIndex: turnIndex)
         
@@ -323,7 +327,7 @@ class GameViewModel: ObservableObject {
                 DispatchQueue.main.asyncAfter(deadline: now + duration) {
                     // If it's the last turn, finish the turn after the animation is done
                     if isDelayed {
-                        self.finalizeTurn(db: db, audio: audio, level: level, turnIndex: turnIndex)
+                        self.finalizeTurn(app: app, db: db, audio: audio, level: level, turnIndex: turnIndex)
                         self.stopAnimating(turnIndex: turnIndex)
                     } else {
                         self.randomizeDices(turnIndex: turnIndex)
@@ -332,7 +336,7 @@ class GameViewModel: ObservableObject {
             }
         } else {
             self.randomizeDices(turnIndex: turnIndex)
-            self.finalizeTurn(db: db, audio: audio, level: level, turnIndex: turnIndex)
+            self.finalizeTurn(app: app, db: db, audio: audio, level: level, turnIndex: turnIndex)
             self.stopAnimating(turnIndex: turnIndex)
         }
     }
@@ -548,6 +552,13 @@ class GameViewModel: ObservableObject {
     }
     
     func resetAll() {
-        gm.defaultDices = 1
+        // Reset user default
+        UserDefaults.standard.removeObject(forKey: "defaultDices")
+        UserDefaults.standard.removeObject(forKey: "enableAnimation")
+        UserDefaults.standard.removeObject(forKey: "autoBet")
+        UserDefaults.standard.synchronize()
+
+        // Reset game manager
+        gm = GameManager()
     }
 }

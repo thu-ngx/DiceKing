@@ -47,7 +47,7 @@ struct LanguageSwitcherView: View {
                     audioVM.playClickSound()
 
                     // Alert user that the app will restart
-                    let alert = UIAlertController(title: NSLocalizedString("switching_language", bundle: .main, comment: ""), message: NSLocalizedString("switching_language_message", bundle: .main, comment: ""), preferredStyle: .alert)
+                    let alert = UIAlertController(title: NSLocalizedString("announcement", bundle: .main, comment: ""), message: NSLocalizedString("switching_language_message", bundle: .main, comment: ""), preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: NSLocalizedString("ok", bundle: .main, comment: ""), style: .default))
                     UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: nil)
                 } label: {

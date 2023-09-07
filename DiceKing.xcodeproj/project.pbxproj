@@ -33,7 +33,6 @@
 		A354AEBD2AA87D5A002049AF /* game-lost.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A354AEB62AA87D5A002049AF /* game-lost.mp3 */; };
 		A354AEBE2AA87D5A002049AF /* game-won.wav in Resources */ = {isa = PBXBuildFile; fileRef = A354AEB72AA87D5A002049AF /* game-won.wav */; };
 		A354AEBF2AA87D5A002049AF /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = A354AEB82AA87D5A002049AF /* click.wav */; };
-		A3A5F55B2AA5AE3900652284 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A5F55A2AA5AE3900652284 /* Turn.swift */; };
 		A3A5F5612AA5B4FF00652284 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A5F5602AA5B4FF00652284 /* GameViewModel.swift */; };
 		A3A5F5632AA5B53B00652284 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A5F5622AA5B53B00652284 /* GameManager.swift */; };
 		A3D593C92A9F3B55000F2753 /* DiceKingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D593C82A9F3B55000F2753 /* DiceKingApp.swift */; };
@@ -93,7 +92,6 @@
 		A354AEB62AA87D5A002049AF /* game-lost.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-lost.mp3"; sourceTree = "<group>"; };
 		A354AEB72AA87D5A002049AF /* game-won.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "game-won.wav"; sourceTree = "<group>"; };
 		A354AEB82AA87D5A002049AF /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
-		A3A5F55A2AA5AE3900652284 /* Turn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn.swift; sourceTree = "<group>"; };
 		A3A5F5602AA5B4FF00652284 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		A3A5F5622AA5B53B00652284 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		A3D593C52A9F3B55000F2753 /* DiceKing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiceKing.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,7 +285,6 @@
 			children = (
 				A3D5941E2AA32F29000F2753 /* Application.swift */,
 				A318182C2AA48B580097F901 /* Round.swift */,
-				A3A5F55A2AA5AE3900652284 /* Turn.swift */,
 				A3A5F5622AA5B53B00652284 /* GameManager.swift */,
 				A354AE722AA71D53002049AF /* Database.swift */,
 				A354AE742AA71D6B002049AF /* User.swift */,
@@ -417,7 +414,6 @@
 				A3D594092AA0C47B000F2753 /* MemberDetailsView.swift in Sources */,
 				A3D593DB2AA0488A000F2753 /* Modifiers.swift in Sources */,
 				A3D593EE2AA062A9000F2753 /* PlayerStatusView.swift in Sources */,
-				A3A5F55B2AA5AE3900652284 /* Turn.swift in Sources */,
 				A3A5F5612AA5B4FF00652284 /* GameViewModel.swift in Sources */,
 				A3D594032AA0B382000F2753 /* WinningView.swift in Sources */,
 				A3D593F72AA0946A000F2753 /* RangeOptionView.swift in Sources */,

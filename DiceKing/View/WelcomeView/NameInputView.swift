@@ -36,6 +36,7 @@ struct NameInputView: View {
                     // MARK: SAVE BUTTON
                     Button(action: {
                         audioVM.playClickSound()
+                        dbVM.loadUsers()
                         appVM.loadUser(db: dbVM, game: gameVM)
                     }) {
                         Text(NSLocalizedString("continue", bundle: .main, comment: ""))

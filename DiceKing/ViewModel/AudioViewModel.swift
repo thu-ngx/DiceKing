@@ -86,4 +86,21 @@ class AudioViewModel: ObservableObject {
     func playGameLostSound() {
         sfxAudio.playSound(soundName: "game-lost", type: "mp3")
     }
+
+    func resetAll() {
+        // Reset user defaults
+        UserDefaults.standard.removeObject(forKey: "enableAudio")
+        UserDefaults.standard.synchronize()
+
+        // Reset audio
+        bgmAudio.audioPlayer?.volume = 0.8
+        gameAudio.audioPlayer?.volume = 0.8
+        sfxAudio.audioPlayer?.volume = 0.8
+
+        isAudioEnabled = true
+    }
+
+    func isDefault() -> Bool {
+        return isAudioEnabled == true
+    }
 }

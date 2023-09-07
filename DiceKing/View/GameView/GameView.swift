@@ -68,6 +68,8 @@ struct GameView: View {
                     // MARK: BET / ROLL
                     Button {
                         audioVM.playClickSound()
+                        appVM.reloadUser(db: dbVM, game: gameVM)
+                        dbVM.saveUsers()
                         if (gameVM.isTurnCompleted()) {
                             if (gameVM.getCurrentPoints() < 0) {
                                 isShowingLosingView = true
@@ -80,7 +82,7 @@ struct GameView: View {
                             }
                         } else if (gameVM.isBetted()) {
                             audioVM.playRollSound()
-                            gameVM.rollDices(db: dbVM, audio: audioVM, level:level, turnIndex: currentIndex)
+                            gameVM.rollDices(app: appVM, db: dbVM, audio: audioVM, level:level, turnIndex: currentIndex)
                         } else if (gameVM.isAutoBet()) {
                             gameVM.handleAutoBet()
                         } else {

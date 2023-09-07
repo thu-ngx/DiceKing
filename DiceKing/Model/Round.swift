@@ -13,3 +13,12 @@ struct Round: Codable {
     var totalTurns: Int = 3
     var bonusExp: Int? = nil
 }
+
+struct Turn: Codable {
+    var selectedRange: [Int]? = nil
+    var isAnimating: Bool = false
+    var isBetted: Bool = false
+    var betOnEven: Bool? = nil
+    var dices: [Int] = [1]
+    var point: Int = 0
+}

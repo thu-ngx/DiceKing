@@ -24,8 +24,10 @@ struct OtherSettingsView: View {
             LazyVGrid(columns: [GridItem()], spacing: 8) {
                 Button {
                     audioVM.playClickSound()
+                    dbVM.resetAll()
                     appVM.resetAll()
                     gameVM.resetAll()
+                    audioVM.resetAll()
                 } label: {
                     Text(NSLocalizedString("reset_to_default", bundle: .main, comment: ""))
                         .font(.system(size: 20).weight(.heavy))
@@ -35,7 +37,7 @@ struct OtherSettingsView: View {
                         .cornerRadius(10)
                         .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
                 }
-                .disabled(appVM.isDefault() && gameVM.isDefault())
+                .disabled(appVM.isDefault() && gameVM.isDefault() && audioVM.isDefault() && dbVM.isDefault())
                 
                 appVM.hasUser() ? Button {
                     audioVM.playClickSound()
